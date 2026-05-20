@@ -17,7 +17,8 @@ export default function App() {
       {/* Cinematic Hero */}
       <section className="hero">
         <motion.div
-          {...variants.fadeIn}
+          initial={variants.fadeIn.initial}
+          animate={variants.fadeIn.animate}
           transition={transitions.smooth}
           className="container"
         >
