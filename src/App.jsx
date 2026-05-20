@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, MapPin, ChevronRight, PenTool, Maximize, Crown, ArrowUpRight } from 'lucide-react';
+import { MessageCircle, MapPin, ChevronRight, PenTool, Maximize, Crown, ArrowUpRight, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { STUDIO_INFO, CONSULTATION_OPTIONS, REASSURANCES, TRUST_CARDS, CONCEPT_WALL } from './data/demoData';
 import { getWhatsAppUrl, WHATSAPP_MESSAGES } from './lib/whatsapp';
 import { transitions, variants } from './lib/motion';
@@ -43,7 +43,7 @@ export default function App() {
             <MapPin size={14} /> {STUDIO_INFO.location}
           </motion.div>
 
-          {/* High-Impact Decision Dock */}
+          {/* Premium Decision Dock */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -63,32 +63,17 @@ export default function App() {
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            position: 'absolute',
-            bottom: '20%',
-            right: 0,
-            width: '40%',
-            height: '2px',
-            background: 'var(--accent-color)',
-            originX: 1
-          }}
+          className="hero-accent-line"
         />
       </section>
 
       <main className="container">
-        {/* Trust Bar */}
-        <section className="trust-bar">
-          {TRUST_CARDS.map((stat, i) => (
-            <div key={i} className="trust-stat">
-              <span className="value">{stat.value}</span>
-              <span className="label">{stat.label}</span>
-            </div>
-          ))}
-        </section>
-
         {/* Consultation Options */}
         <section className="section">
-          <h2 style={{ marginBottom: '2.5rem', fontSize: '1.5rem' }}>The Consultation</h2>
+          <div className="section-header">
+            <span className="section-subtitle">Entry Points</span>
+            <h2>The Consultation</h2>
+          </div>
           <div className="grid">
             {CONSULTATION_OPTIONS.map((option, index) => (
               <motion.a
@@ -102,19 +87,28 @@ export default function App() {
                 transition={{ delay: index * 0.1 }}
                 style={{ textDecoration: 'none', display: 'block' }}
               >
-                <div style={{ color: 'var(--accent-color)', marginBottom: '1.5rem' }}>
+                <div className="card-icon">
                   {IconMap[option.icon]}
                 </div>
                 <h3>{option.title}</h3>
-                <p>{option.description}</p>
+                <p className="card-desc">{option.description}</p>
 
                 <div className="card-meta">
-                  <span className="card-meta-label">For</span>
-                  <div className="card-meta-value" style={{ marginBottom: '1rem' }}>{option.intent}</div>
+                  <div className="meta-block">
+                    <span className="card-meta-label">Intent</span>
+                    <div className="card-meta-value">{option.forWho}</div>
+                  </div>
 
-                  <span className="card-meta-label">Next Step</span>
-                  <div className="card-meta-value" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--secondary-accent)' }}>
-                    {option.next} <ArrowUpRight size={14} />
+                  <div className="meta-block">
+                    <span className="card-meta-label">What to Send</span>
+                    <div className="card-meta-value">{option.whatToSend}</div>
+                  </div>
+
+                  <div className="meta-block highlighted">
+                    <span className="card-meta-label">Next Step</span>
+                    <div className="card-meta-value next-step-value">
+                      {option.whatHappensNext} <ArrowUpRight size={14} />
+                    </div>
                   </div>
                 </div>
               </motion.a>
@@ -122,67 +116,127 @@ export default function App() {
           </div>
         </section>
 
-        {/* Visual Story Board (Concept Wall) */}
-        <section className="section">
-          <h2 style={{ marginBottom: '2.5rem', fontSize: '1.5rem' }}>Aesthetic Identity</h2>
-          <div className="concept-wall">
-            {CONCEPT_WALL.map((item, i) => (
-              <motion.div
-                key={i}
-                className="concept-panel"
-                whileInView={{ opacity: 1 }}
-                initial={{ opacity: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <span className="category">{item.category}</span>
-                <span className="label">{item.label}</span>
-                <p style={{ fontSize: '0.7rem', color: '#555', marginTop: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  {item.description}
-                </p>
-              </motion.div>
+        {/* Reassurance & Trust */}
+        <section className="section reassurance-section">
+          <div className="trust-bar">
+            {TRUST_CARDS.map((stat, i) => (
+              <div key={i} className="trust-stat">
+                <span className="value">{stat.value}</span>
+                <span className="label">{stat.label}</span>
+              </div>
             ))}
           </div>
-        </section>
 
-        {/* Reassurance (Objections) */}
-        <section className="section">
-          <h2 style={{ marginBottom: '2.5rem', fontSize: '1.5rem' }}>The Commitment</h2>
           <div className="reassurance-grid">
             {REASSURANCES.map((item, i) => (
               <motion.div
                 key={i}
-                className="reassurance-item"
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                className="reassurance-card"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
               >
-                <h4>{item.q}</h4>
+                <div className="reassurance-header">
+                  <ShieldCheck size={16} className="reassurance-icon" />
+                  <h4>{item.q}</h4>
+                </div>
                 <p>{item.a}</p>
               </motion.div>
             ))}
           </div>
         </section>
 
-        {/* Final WhatsApp CTA */}
-        <section className="section" style={{ paddingBottom: '8rem' }}>
-          <motion.a
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            href={getWhatsAppUrl(WHATSAPP_MESSAGES.CONSULTATION)}
-            className="btn btn-primary"
+        {/* CSS-Driven Concept Wall / Studio Board */}
+        <section className="section">
+          <div className="section-header">
+            <span className="section-subtitle">Visual Story</span>
+            <h2>Concept Wall</h2>
+          </div>
+          <div className="studio-board">
+            {CONCEPT_WALL.map((item, i) => (
+              <motion.div
+                key={i}
+                className={`board-panel panel-${i}`}
+                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+              >
+                <div className="panel-content">
+                  <div className="panel-header">
+                    <span className="category">{item.category}</span>
+                    <span className="mood">{item.mood}</span>
+                  </div>
+                  <h3>{item.label}</h3>
+                  <div className="panel-details">
+                    <div className="detail-item">
+                      <span className="detail-label">Note</span>
+                      <span className="detail-value">{item.placementNote}</span>
+                    </div>
+                    <div className="detail-item">
+                      <span className="detail-label">Spec</span>
+                      <span className="detail-value">{item.detail}</span>
+                    </div>
+                  </div>
+                  <div className="style-tags">
+                    {item.styleTags.map((tag, j) => (
+                      <span key={j} className="tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        {/* Final Intent-Specific WhatsApp CTA */}
+        <section className="section final-cta-section">
+          <motion.div
+            className="cta-card"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
-            <MessageCircle size={18} style={{ marginRight: '10px' }} />
-            Book Private Consultation
-          </motion.a>
+            <div className="cta-content">
+              <span className="cta-subtitle">Ready to Begin?</span>
+              <h2>Start Your Story</h2>
+              <p>Direct access to our lead artist. High-priority response for custom work.</p>
+
+              <div className="cta-actions">
+                <motion.a
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  href={getWhatsAppUrl(WHATSAPP_MESSAGES.IDEA)}
+                  className="btn btn-primary"
+                >
+                  <MessageCircle size={18} />
+                  Send My Tattoo Idea
+                </motion.a>
+
+                <div className="cta-secondary">
+                  <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.CONSULTATION)} className="secondary-link">
+                    Check Availability
+                  </a>
+                  <span className="divider">•</span>
+                  <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.COVER_UP)} className="secondary-link">
+                    Ask Cover-Up Question
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className="cta-footer-marker">
+              <CheckCircle2 size={14} /> Licensed & Sterile Studio
+            </div>
+          </motion.div>
         </section>
       </main>
 
       <footer>
         <div className="container">
-          <p>© {new Date().getFullYear()} {STUDIO_INFO.name}</p>
-          <p style={{ marginTop: '0.5rem', opacity: 0.5 }}>{STUDIO_INFO.niche} • Pune</p>
+          <div className="footer-line" />
+          <p className="copyright">© {new Date().getFullYear()} {STUDIO_INFO.name}</p>
+          <p className="footer-location">{STUDIO_INFO.niche} • {STUDIO_INFO.location}</p>
         </div>
       </footer>
     </div>

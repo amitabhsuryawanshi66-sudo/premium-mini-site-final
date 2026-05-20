@@ -9,32 +9,36 @@ export const CONSULTATION_OPTIONS = [
   {
     title: "Fine-Line Concept",
     description: "For delicate, precise, and minimalist designs. Best for script or micro-realism.",
-    intent: "Ideal for first-timers or those seeking subtle elegance.",
-    next: "Share your reference image for a specialized quote.",
+    forWho: "Ideal for first-timers or those seeking subtle elegance.",
+    whatToSend: "Share your reference image for a specialized quote.",
+    whatHappensNext: "Direct quote & placement guide via WhatsApp.",
     whatsappKey: "FINE_LINE",
     icon: "PenTool",
   },
   {
     title: "Realism Consult",
     description: "Deep-dive into photorealistic pieces or complex illustrative works.",
-    intent: "For clients ready for high-detail, statement art.",
-    next: "Discuss placement and size for a time estimate.",
+    forWho: "For clients ready for high-detail, statement art.",
+    whatToSend: "Discuss placement and size for a time estimate.",
+    whatHappensNext: "1:1 technical review & booking slot offer.",
     whatsappKey: "REFERENCE",
     icon: "Maximize",
   },
   {
     title: "Cover-Up Review",
     description: "Expert assessment of existing ink for potential transformation.",
-    intent: "For those looking to breathe new life into old work.",
-    next: "Send a clear photo of current tattoo in natural light.",
+    forWho: "For those looking to breathe new life into old work.",
+    whatToSend: "Send a clear photo of current tattoo in natural light.",
+    whatHappensNext: "Cover-up feasibility assessment & design plan.",
     whatsappKey: "COVER_UP",
     icon: "Crown",
   },
   {
     title: "Custom Symbolic Piece",
     description: "Bespoke storytelling through ink. We translate your narrative into art.",
-    intent: "For meaningful, unique, and highly personal tattoos.",
-    next: "Book a 1:1 session to conceptualize your story.",
+    forWho: "For meaningful, unique, and highly personal tattoos.",
+    whatToSend: "Book a 1:1 session to conceptualize your story.",
+    whatHappensNext: "Concept sketch session & artist matching.",
     whatsappKey: "IDEA",
     icon: "PenTool",
   },
@@ -83,10 +87,42 @@ export const TRUST_CARDS = [
 ];
 
 export const CONCEPT_WALL = [
-  { label: "Fine-Line", category: "Technique", description: "Precision & Elegance" },
-  { label: "Dark Illustrative", category: "Aesthetic", description: "High Contrast Depth" },
-  { label: "Micro Realism", category: "Detail", description: "Sharper Than Life" },
-  { label: "Ornamental", category: "Flow", description: "Anatomy Driven" },
+  {
+    label: "Fine-Line",
+    category: "Technique",
+    description: "Precision & Elegance",
+    placementNote: "Inner Forearm / Collarbone",
+    styleTags: ["Minimalist", "Single Needle"],
+    mood: "Sophisticated",
+    detail: "0.25mm Needle Depth"
+  },
+  {
+    label: "Dark Illustrative",
+    category: "Aesthetic",
+    description: "High Contrast Depth",
+    placementNote: "Outer Thigh / Full Back",
+    styleTags: ["Chiaroscuro", "Graphic"],
+    mood: "Ethereal Noir",
+    detail: "Custom Ink Blends"
+  },
+  {
+    label: "Micro Realism",
+    category: "Detail",
+    description: "Sharper Than Life",
+    placementNote: "Ankle / Wrist",
+    styleTags: ["Hyper-Detail", "Portrait"],
+    mood: "Scientific",
+    detail: "400% Zoom Precision"
+  },
+  {
+    label: "Ornamental",
+    category: "Flow",
+    description: "Anatomy Driven",
+    placementNote: "Sternum / Spine",
+    styleTags: ["Mandala", "Geometric"],
+    mood: "Symmetric",
+    detail: "Bio-Metric Flow"
+  },
 ];
 
 // Deprecated in favor of CONSULTATION_OPTIONS but kept for initial backward compatibility if needed
