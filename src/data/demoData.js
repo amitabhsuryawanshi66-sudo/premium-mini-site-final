@@ -3,7 +3,8 @@ export const STUDIO_INFO = {
   location: "Koregaon Park, Pune",
   niche: "Premium Appointment-Only Tattoo Studio",
   tagline: "Cinematic Tattoo Concierge",
-  heroImage: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1000&auto=format&fit=crop",
+  heroImage: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1200&auto=format&fit=crop",
+  secondaryHeroImage: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?q=80&w=800&auto=format&fit=crop",
 };
 
 export const CONSULTATION_OPTIONS = [
@@ -16,6 +17,7 @@ export const CONSULTATION_OPTIONS = [
     whatsappKey: "FINE_LINE",
     icon: "PenTool",
     image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800&auto=format&fit=crop",
+    accentImage: "https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?q=80&w=400&auto=format&fit=crop"
   },
   {
     title: "Realism Consult",
@@ -54,31 +56,37 @@ export const REASSURANCES = [
     q: "Sterilization & Safety",
     a: "Hospital-grade hygiene standards. Single-use needles and premium vegan inks in a private studio environment.",
     icon: "ShieldCheck",
+    label: "Safe",
   },
   {
     q: "Custom Design Process",
     a: "We don't do 'books'. Every design is sketched specifically for your anatomy and story.",
     icon: "PenTool",
+    label: "Bespoke",
   },
   {
     q: "Pain & Placement",
     a: "Expert guidance on anatomy-flow and numbing options to ensure a premium experience.",
     icon: "Activity",
+    label: "Flow",
   },
   {
     q: "Pricing & Investment",
     a: "Transparent project-based or hourly rates discussed upfront during consultation.",
     icon: "Zap",
+    label: "Fair",
   },
   {
     q: "Reference Policy",
     a: "We use references as inspiration, never as copies. Your tattoo will be uniquely yours.",
     icon: "Search",
+    label: "Unique",
   },
   {
     q: "Healing & Aftercare",
     a: "Premium aftercare kits and 24/7 recovery guidance included with every major session.",
     icon: "Heart",
+    label: "Care",
   },
 ];
 
@@ -106,7 +114,7 @@ export const CONCEPT_WALL = [
     styleTags: ["Minimalist", "Single Needle"],
     mood: "Sophisticated",
     detail: "0.25mm Needle Depth",
-    image: "https://images.unsplash.com/photo-1612459284970-e8f027596582?q=80&w=600&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1612459284970-e8f027596582?q=80&w=800&auto=format&fit=crop"
   },
   {
     label: "Dark Illustrative",
@@ -116,7 +124,7 @@ export const CONCEPT_WALL = [
     styleTags: ["Chiaroscuro", "Graphic"],
     mood: "Ethereal Noir",
     detail: "Custom Ink Blends",
-    image: "https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=600&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=800&auto=format&fit=crop"
   },
   {
     label: "Micro Realism",
@@ -126,7 +134,7 @@ export const CONCEPT_WALL = [
     styleTags: ["Hyper-Detail", "Portrait"],
     mood: "Scientific",
     detail: "400% Zoom Precision",
-    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=600&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=800&auto=format&fit=crop"
   },
   {
     label: "Ornamental",
@@ -136,11 +144,26 @@ export const CONCEPT_WALL = [
     styleTags: ["Mandala", "Geometric"],
     mood: "Symmetric",
     detail: "Bio-Metric Flow",
-    image: "https://images.unsplash.com/photo-1590210315325-d41fd4607831?q=80&w=600&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1590210315325-d41fd4607831?q=80&w=800&auto=format&fit=crop"
   },
+  {
+    label: "Process Study",
+    category: "Craft",
+    description: "The Stencil Phase",
+    placementNote: "Technical Blueprint",
+    styleTags: ["Precision", "Planning"],
+    mood: "Methodical",
+    detail: "Bespoke Fitting",
+    image: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?q=80&w=800&auto=format&fit=crop"
+  },
+  {
+    label: "Ink & Steel",
+    category: "Tools",
+    description: "Hospital Grade",
+    placementNote: "Studio Setup",
+    styleTags: ["Sterile", "Professional"],
+    mood: "Industrial",
+    detail: "Single Use Only",
+    image: "https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?q=80&w=800&auto=format&fit=crop"
+  }
 ];
-
-// Deprecated in favor of CONSULTATION_OPTIONS but kept for initial backward compatibility if needed
-export const SERVICES = CONSULTATION_OPTIONS;
-export const OBJECTIONS = REASSURANCES;
-export const STYLE_GALLERY = CONCEPT_WALL;
