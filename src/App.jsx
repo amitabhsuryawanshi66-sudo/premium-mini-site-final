@@ -40,7 +40,8 @@ export default function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ ...transitions.smooth, delay: 0.2 }}
             >
-              Obsidian<br />Ink Studio
+              Obsidian<br />
+              <span className="accent-text">Ink Studio</span>
             </motion.h1>
 
             <motion.div
@@ -121,17 +122,17 @@ export default function App() {
             <span className="section-subtitle">The Pathways</span>
             <h2>Curated Consultations</h2>
           </div>
-          <div className="grid">
+          <div className="pathways-layout">
             {CONSULTATION_OPTIONS.map((option, index) => (
               <motion.a
                 key={index}
                 href={getWhatsAppUrl(WHATSAPP_MESSAGES[option.whatsappKey])}
-                className="consultation-card"
+                className={`consultation-card ${index === 0 ? 'featured' : ''}`}
                 whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ ...transitions.smooth, delay: index * 0.1 }}
               >
                 <div className="consult-img-slot">
                   <img src={option.image} alt={option.title} className="consult-img" />
@@ -156,50 +157,29 @@ export default function App() {
                       </div>
                     </div>
                   </div>
+
+                  {index === 0 && (
+                    <div className="context-badge-wrap">
+                      <div className="context-badge">
+                        <ShieldCheck size={14} /> Medical Grade
+                      </div>
+                      <div className="context-badge">
+                        <Zap size={14} /> Vegan Inks
+                      </div>
+                    </div>
+                  )}
                 </div>
               </motion.a>
             ))}
           </div>
         </section>
 
-        {/* Reassurance & Trust */}
-        <section className="section reassurance-section">
-          <div className="trust-bar">
-            {TRUST_CARDS.map((stat, i) => (
-              <div key={i} className="trust-stat">
-                <span className="value">{stat.value}</span>
-                <span className="label">{stat.label}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="reassurance-grid">
-            {REASSURANCES.map((item, i) => (
-              <motion.div
-                key={i}
-                className="reassurance-card"
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-              >
-                <div className="reassurance-header">
-                  <div className="reassurance-icon">
-                    {IconMap[item.icon]}
-                  </div>
-                  <h4>{item.q}</h4>
-                </div>
-                <p>{item.a}</p>
-              </motion.div>
-            ))}
-          </div>
-        </section>
 
         {/* Visual Story Board (Concept Wall) */}
-        <section className="section">
+        <section className="section studio-board-section">
           <div className="section-header">
             <span className="section-subtitle">Aesthetic Identity</span>
-            <h2>Concept Board</h2>
+            <h2>Studio Board</h2>
           </div>
           <div className="studio-board">
             {CONCEPT_WALL.map((item, i) => (
@@ -235,6 +215,11 @@ export default function App() {
                       ))}
                     </div>
                   </div>
+                  {i === 1 && (
+                    <div className="floating-reassurance">
+                      <ShieldCheck size={12} /> Sterile Process
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}
