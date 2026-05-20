@@ -5,7 +5,9 @@ export const getWhatsAppUrl = (message = "") => {
 };
 
 export const WHATSAPP_MESSAGES = {
-  CONSULTATION: "Hi Obsidian Ink, I'd like to book a consultation for a new tattoo.",
-  ENQUIRY: "Hello, I have a question about your tattoo services.",
-  MEMBERSHIP: "I'm interested in the Obsidian Concierge membership.",
+  CONSULTATION: "Hi Obsidian Ink Studio, I want to check appointment availability for a tattoo consultation.",
+  FINE_LINE: "Hi Obsidian Ink Studio, I want to ask about pricing for a fine-line/script tattoo.",
+  COVER_UP: "Hi Obsidian Ink Studio, I want to ask if a cover-up is possible. I can send a photo.",
+  REFERENCE: "Hi Obsidian Ink Studio, I want to share a tattoo reference and get guidance.",
+  IDEA: "Hi Obsidian Ink Studio, I want to discuss a fine-line tattoo idea. I can share reference images.",
 };
