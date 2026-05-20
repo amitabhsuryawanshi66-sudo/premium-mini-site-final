@@ -3,6 +3,7 @@ export const STUDIO_INFO = {
   location: "Koregaon Park, Pune",
   niche: "Premium Appointment-Only Tattoo Studio",
   tagline: "Cinematic Tattoo Concierge",
+  heroImage: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1000&auto=format&fit=crop",
 };
 
 export const CONSULTATION_OPTIONS = [
@@ -14,6 +15,7 @@ export const CONSULTATION_OPTIONS = [
     whatHappensNext: "Direct quote & placement guide via WhatsApp.",
     whatsappKey: "FINE_LINE",
     icon: "PenTool",
+    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Realism Consult",
@@ -23,6 +25,7 @@ export const CONSULTATION_OPTIONS = [
     whatHappensNext: "1:1 technical review & booking slot offer.",
     whatsappKey: "REFERENCE",
     icon: "Maximize",
+    image: "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Cover-Up Review",
@@ -32,6 +35,7 @@ export const CONSULTATION_OPTIONS = [
     whatHappensNext: "Cover-up feasibility assessment & design plan.",
     whatsappKey: "COVER_UP",
     icon: "Crown",
+    image: "https://images.unsplash.com/photo-1590210315325-d41fd4607831?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Custom Symbolic Piece",
@@ -41,6 +45,7 @@ export const CONSULTATION_OPTIONS = [
     whatHappensNext: "Concept sketch session & artist matching.",
     whatsappKey: "IDEA",
     icon: "PenTool",
+    image: "https://images.unsplash.com/photo-1621112904887-419379ce6824?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
@@ -48,26 +53,32 @@ export const REASSURANCES = [
   {
     q: "Sterilization & Safety",
     a: "Hospital-grade hygiene standards. Single-use needles and premium vegan inks in a private studio environment.",
+    icon: "ShieldCheck",
   },
   {
     q: "Custom Design Process",
     a: "We don't do 'books'. Every design is sketched specifically for your anatomy and story.",
+    icon: "PenTool",
   },
   {
     q: "Pain & Placement",
     a: "Expert guidance on anatomy-flow and numbing options to ensure a premium experience.",
+    icon: "Activity",
   },
   {
     q: "Pricing & Investment",
     a: "Transparent project-based or hourly rates discussed upfront during consultation.",
+    icon: "Zap",
   },
   {
     q: "Reference Policy",
     a: "We use references as inspiration, never as copies. Your tattoo will be uniquely yours.",
+    icon: "Search",
   },
   {
     q: "Healing & Aftercare",
     a: "Premium aftercare kits and 24/7 recovery guidance included with every major session.",
+    icon: "Heart",
   },
 ];
 
@@ -94,7 +105,8 @@ export const CONCEPT_WALL = [
     placementNote: "Inner Forearm / Collarbone",
     styleTags: ["Minimalist", "Single Needle"],
     mood: "Sophisticated",
-    detail: "0.25mm Needle Depth"
+    detail: "0.25mm Needle Depth",
+    image: "https://images.unsplash.com/photo-1612459284970-e8f027596582?q=80&w=600&auto=format&fit=crop"
   },
   {
     label: "Dark Illustrative",
@@ -103,7 +115,8 @@ export const CONCEPT_WALL = [
     placementNote: "Outer Thigh / Full Back",
     styleTags: ["Chiaroscuro", "Graphic"],
     mood: "Ethereal Noir",
-    detail: "Custom Ink Blends"
+    detail: "Custom Ink Blends",
+    image: "https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=600&auto=format&fit=crop"
   },
   {
     label: "Micro Realism",
@@ -112,7 +125,8 @@ export const CONCEPT_WALL = [
     placementNote: "Ankle / Wrist",
     styleTags: ["Hyper-Detail", "Portrait"],
     mood: "Scientific",
-    detail: "400% Zoom Precision"
+    detail: "400% Zoom Precision",
+    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=600&auto=format&fit=crop"
   },
   {
     label: "Ornamental",
@@ -121,7 +135,8 @@ export const CONCEPT_WALL = [
     placementNote: "Sternum / Spine",
     styleTags: ["Mandala", "Geometric"],
     mood: "Symmetric",
-    detail: "Bio-Metric Flow"
+    detail: "Bio-Metric Flow",
+    image: "https://images.unsplash.com/photo-1590210315325-d41fd4607831?q=80&w=600&auto=format&fit=crop"
   },
 ];
 
