@@ -4,27 +4,27 @@ Decisions made for the current foundation:
 
 ### Hero Section
 - **Direction 1 (Rejected)**: Standard full-height background image with centered text. (Too generic/SaaS).
-- **Direction 2 (Rejected)**: Video background. (Violates "no external media" preference and can be heavy).
-- **Direction 3 (Selected)**: Editorial cinematic layout. Asymmetric typography with a floating accent panel and layered motion.
-- **Why**: Creates a high-end "magazine" feel that communicates premium positioning within 3 seconds.
+- **Direction 2 (Rejected)**: 100% text and CSS lines. (Fails "visual craft" test; feels too abstract).
+- **Direction 3 (Selected)**: Editorial Vertical-Grid Layout. Cinematic text block followed by a high-impact media panel with a floating stat card.
+- **Why**: Creates a high-end "magazine" feel optimized for mobile viewports, communicating premium positioning and physical craft within 3 seconds.
 
 ### Decision Dock / Intent Buttons
 - **Direction 1 (Rejected)**: A single large button. (Too limiting for varied user intents).
 - **Direction 2 (Rejected)**: Vertical list of buttons. (Too much vertical space on mobile).
-- **Direction 3 (Selected)**: Horizontal-scrolling intent chips (Decision Dock).
+- **Direction 3 (Selected)**: Horizontal-scrolling intent chips (Decision Dock) with a "Floating Overlay" effect.
 - **Why**: Allows for multiple specific WhatsApp intents (Cover-up, Fine-line, etc.) without cluttering the screen, inviting exploration through a tactile swipe gesture.
 
 ### Service/Consultation Cards
 - **Direction 1 (Rejected)**: Standard cards with "Learn More" buttons. (Boring).
-- **Direction 2 (Selected)**: Premium meta-cards. 1px bordered dark cards with explicit "Intent", "What to Send", and highlighted "Next Step" metadata.
-- **Why**: Clearly defines the consultation value proposition and maps directly to a WhatsApp action, reducing friction.
+- **Direction 2 (Selected)**: Image-Rich Meta-Cards. Header image with a dedicated icon badge, followed by explicit "Intent", "What to Send", and highlighted "Next Step" metadata.
+- **Why**: Visually anchors each service in the craft (tattoo images) while clearly defining the consultation value proposition.
 
-### Visual Story (Concept Wall)
+### Visual Story (Concept Board)
 - **Direction 1 (Rejected)**: Unsplash photo gallery. (Looks like a template).
-- **Direction 2 (Selected)**: Asymmetric CSS-driven Concept Wall. Abstract grid panels with varying sizes, technical labels, and mood tags.
-- **Why**: Evokes the feel of a physical studio "mood board" or sketch wall without relying on generic stock photos. It breaks the standard grid to feel more "editorial."
+- **Direction 2 (Selected)**: Asymmetric Studio Board. Image cards with subtle rotations, layered metadata (specs, notes), and tags.
+- **Why**: Evokes the feel of a physical studio "mood board" or sketch wall. It breaks the standard grid to feel more "editorial" and less like a standard e-commerce site.
 
 ### Final CTA
 - **Direction 1 (Rejected)**: Single button at the bottom. (Lacks urgency).
-- **Direction 2 (Selected)**: High-impact CTA Card. A full-width accent card recapping the main intent with secondary links.
-- **Why**: Provides a strong closing statement and offers guided next steps for different user readiness levels.
+- **Direction 2 (Selected)**: High-impact Carbon-Fibre Textured CTA Card. A full-width accent card recapping the main intent with secondary links.
+- **Why**: Provides a strong, trust-backed closing statement that offers guided next steps for different user readiness levels.
