@@ -43,6 +43,20 @@ h1, h2, h3 {
   padding: 5rem 0;
 }
 
+.section-header {
+  margin-bottom: 3rem;
+}
+
+.section-subtitle {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  letter-spacing: 0.3em;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
 /* Hero Section - Editorial Layout */
 .hero {
   min-height: 100vh;
@@ -83,19 +97,29 @@ h1, h2, h3 {
   gap: 0.5rem;
 }
 
-/* Decision Dock - Horizontal Scroll on Mobile */
+.hero-accent-line {
+  position: absolute;
+  bottom: 20%;
+  right: 0;
+  width: 40%;
+  height: 2px;
+  background: var(--accent-color);
+  transform-origin: right;
+}
+
+/* Decision Dock */
 .decision-dock {
   display: flex;
   gap: 0.75rem;
   overflow-x: auto;
   padding: 0.5rem 0 1.5rem 0;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   scroll-snap-type: x mandatory;
 }
 
 .decision-dock::-webkit-scrollbar {
-  display: none; /* Chrome/Safari */
+  display: none;
 }
 
 .intent-chip {
@@ -113,51 +137,52 @@ h1, h2, h3 {
   transition: var(--transition-smooth);
 }
 
-.intent-chip:active {
-  background: var(--border-color);
-  transform: scale(0.96);
-}
-
-/* Cards & Grid */
+/* Premium Consultation Cards */
 .grid {
   display: grid;
-  gap: 1.25rem;
+  gap: 1.5rem;
 }
 
 .premium-card {
   background: var(--card-bg);
   border: 1px solid var(--border-color);
-  padding: 2rem;
+  padding: 2.5rem;
   border-radius: 4px;
   position: relative;
   transition: var(--transition-smooth);
 }
 
+.card-icon {
+  color: var(--accent-color);
+  margin-bottom: 1.5rem;
+}
+
 .premium-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.75rem;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
   color: var(--secondary-accent);
 }
 
-.premium-card p {
+.card-desc {
   font-size: 0.95rem;
   color: #aaa;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 .card-meta {
   border-top: 1px solid #222;
-  padding-top: 1rem;
-  margin-top: 1rem;
+  padding-top: 1.5rem;
+  display: grid;
+  gap: 1.25rem;
 }
 
 .card-meta-label {
   display: block;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
   color: #555;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.25rem;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.4rem;
 }
 
 .card-meta-value {
@@ -166,68 +191,208 @@ h1, h2, h3 {
   font-weight: 500;
 }
 
-/* Concept Wall (Visual Story) */
-.concept-wall {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1px;
-  background: var(--border-color);
-  border: 1px solid var(--border-color);
-}
-
-.concept-panel {
-  background: var(--bg-color);
-  aspect-ratio: 1;
-  padding: 1.5rem;
+.next-step-value {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  position: relative;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--secondary-accent);
 }
 
-.concept-panel .category {
-  font-size: 0.65rem;
-  color: var(--accent-color);
+.meta-block.highlighted {
+  background: rgba(139, 42, 42, 0.05);
+  margin: 0 -1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+}
+
+/* Reassurance & Trust */
+.reassurance-section {
+  background: linear-gradient(180deg, transparent, #0f0f0f, transparent);
+  margin: 0 -1.5rem;
+  padding: 5rem 1.5rem;
+}
+
+.trust-bar {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 4rem;
+  margin-bottom: 4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.trust-stat .value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.trust-stat .label {
+  font-size: 0.6rem;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
-  margin-bottom: 0.5rem;
+  color: #666;
+  letter-spacing: 0.1em;
 }
 
-.concept-panel .label {
-  font-size: 0.9rem;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-/* Reassurance Section */
 .reassurance-grid {
   display: grid;
   gap: 1.5rem;
 }
 
-.reassurance-item {
-  border-left: 2px solid var(--accent-color);
-  padding-left: 1.5rem;
+.reassurance-card {
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1.5rem;
+  border-left: 1px solid var(--accent-color);
 }
 
-.reassurance-item h4 {
+.reassurance-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.reassurance-icon {
+  color: var(--accent-color);
+}
+
+.reassurance-card h4 {
   font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 0.5rem;
+  letter-spacing: 0.05em;
   color: var(--secondary-accent);
 }
 
-.reassurance-item p {
-  font-size: 0.9rem;
-  color: #888;
+.reassurance-card p {
+  font-size: 0.85rem;
+  color: #777;
+  line-height: 1.6;
 }
 
-/* Buttons */
+/* Asymmetric Studio Board (Concept Wall) */
+.studio-board {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: 1rem;
+}
+
+.board-panel {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-0 { grid-column: span 6; }
+.panel-1 { grid-column: span 3; }
+.panel-2 { grid-column: span 3; }
+.panel-3 { grid-column: span 6; }
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.category {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.mood {
+  font-size: 0.6rem;
+  color: #444;
+  font-style: italic;
+}
+
+.board-panel h3 {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.panel-details {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.detail-label {
+  display: block;
+  font-size: 0.55rem;
+  text-transform: uppercase;
+  color: #555;
+  margin-bottom: 0.15rem;
+}
+
+.detail-value {
+  font-size: 0.75rem;
+  color: #999;
+}
+
+.style-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  font-size: 0.6rem;
+  padding: 0.25rem 0.6rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid #222;
+  color: #666;
+  border-radius: 2px;
+}
+
+/* Final CTA Card */
+.cta-card {
+  background: var(--accent-color);
+  padding: 3rem 2rem;
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-subtitle {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.cta-card h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.cta-card p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2.5rem;
+  font-size: 1rem;
+}
+
+.cta-actions {
+  display: grid;
+  gap: 2rem;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.75rem;
   text-decoration: none;
   font-weight: 700;
   text-transform: uppercase;
@@ -239,52 +404,78 @@ h1, h2, h3 {
 }
 
 .btn-primary {
-  background: var(--accent-color);
-  color: white;
+  background: white;
+  color: var(--accent-color);
   width: 100%;
 }
 
-.btn-ghost {
-  border: 1px solid var(--border-color);
-  color: var(--text-color);
-}
-
-/* Trust Bar */
-.trust-bar {
+.cta-secondary {
   display: flex;
-  justify-content: space-between;
-  padding: 3rem 0;
-  border-bottom: 1px solid var(--border-color);
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
 }
 
-.trust-stat {
-  text-align: center;
-}
-
-.trust-stat .value {
-  display: block;
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--text-color);
-}
-
-.trust-stat .label {
-  font-size: 0.6rem;
+.secondary-link {
+  color: white;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 600;
   text-transform: uppercase;
-  color: #666;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.divider {
+  opacity: 0.3;
+}
+
+.cta-footer-marker {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
   letter-spacing: 0.1em;
+  opacity: 0.6;
 }
 
 /* Footer */
 footer {
-  padding: 4rem 0;
+  padding: 4rem 0 6rem;
   text-align: center;
+}
+
+.footer-line {
+  width: 100%;
+  height: 1px;
+  background: var(--border-color);
+  margin-bottom: 3rem;
+}
+
+.copyright {
   font-size: 0.75rem;
   color: #444;
-  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.footer-location {
+  font-size: 0.65rem;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 /* Animations */
-.reveal-text {
-  overflow: hidden;
+.hero-accent-line {
+  /* Handled by Framer Motion in JSX */
+}
+
+@media (min-width: 400px) {
+  .panel-1 { grid-column: span 3; }
+  .panel-2 { grid-column: span 3; }
 }

@@ -16,10 +16,15 @@ Decisions made for the current foundation:
 
 ### Service/Consultation Cards
 - **Direction 1 (Rejected)**: Standard cards with "Learn More" buttons. (Boring).
-- **Direction 2 (Selected)**: Premium meta-cards. 1px bordered dark cards with explicit "For" and "Next Step" metadata.
+- **Direction 2 (Selected)**: Premium meta-cards. 1px bordered dark cards with explicit "Intent", "What to Send", and highlighted "Next Step" metadata.
 - **Why**: Clearly defines the consultation value proposition and maps directly to a WhatsApp action, reducing friction.
 
-### Visual Story
+### Visual Story (Concept Wall)
 - **Direction 1 (Rejected)**: Unsplash photo gallery. (Looks like a template).
-- **Direction 2 (Selected)**: CSS-driven Concept Wall. Abstract grid panels with technical labels.
-- **Why**: Evokes the feel of a physical studio "mood board" or sketch wall without relying on generic stock photos.
+- **Direction 2 (Selected)**: Asymmetric CSS-driven Concept Wall. Abstract grid panels with varying sizes, technical labels, and mood tags.
+- **Why**: Evokes the feel of a physical studio "mood board" or sketch wall without relying on generic stock photos. It breaks the standard grid to feel more "editorial."
+
+### Final CTA
+- **Direction 1 (Rejected)**: Single button at the bottom. (Lacks urgency).
+- **Direction 2 (Selected)**: High-impact CTA Card. A full-width accent card recapping the main intent with secondary links.
+- **Why**: Provides a strong closing statement and offers guided next steps for different user readiness levels.
