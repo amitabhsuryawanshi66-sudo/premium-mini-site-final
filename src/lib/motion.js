@@ -1,9 +1,9 @@
 export const transitions = {
-  // Mechanical and Precise - High stiffness, high damping for no overshoot but fast response
+  // Mechanical and Precise - High stiffness, high damping per Emil Kowalski
   mechanical: {
     type: "spring",
-    stiffness: 400,
-    damping: 30,
+    stiffness: 260,
+    damping: 20,
     mass: 0.8
   },
   // Snappy for UI elements
@@ -16,12 +16,12 @@ export const transitions = {
   soft: {
     type: "spring",
     stiffness: 100,
-    damping: 20,
+    damping: 15,
   },
-  // Smooth editorial reveal
+  // Smooth editorial reveal per Taste/Impeccable
   editorial: {
-    duration: 0.7,
-    ease: [0.33, 1, 0.68, 1],
+    duration: 0.8,
+    ease: [0.22, 1, 0.36, 1], // Custom Bézier for high-end feel
   },
 };
 
@@ -34,7 +34,7 @@ export const variants = {
   staggerContainer: {
     animate: {
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.08,
       },
     },
   },

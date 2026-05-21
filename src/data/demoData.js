@@ -3,28 +3,28 @@ export const STUDIO_INFO = {
   location: "Koregaon Park, Pune",
   niche: "Premium Appointment-Only Tattoo Studio",
   tagline: "Cinematic Tattoo Concierge",
-  heroImage: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1200&auto=format&fit=crop",
-  secondaryHeroImage: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?q=80&w=800&auto=format&fit=crop",
+  // High-impact process and craft imagery
+  heroImage: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1200&auto=format&fit=crop", // Detailed tattoo work
+  secondaryHeroImage: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800&auto=format&fit=crop", // Fine line detail
 };
 
 export const CONSULTATION_OPTIONS = [
   {
     title: "Fine-Line Concept",
     description: "For delicate, precise, and minimalist designs. Best for script or micro-realism.",
-    forWho: "Ideal for first-timers or those seeking subtle elegance.",
-    whatToSend: "Share your reference image for a specialized quote.",
-    whatHappensNext: "Direct quote & placement guide via WhatsApp.",
+    forWho: "First-timers or seekers of subtle elegance",
+    whatToSend: "Reference image & placement size",
+    whatHappensNext: "Specialized quote & technique guide",
     whatsappKey: "FINE_LINE",
     icon: "PenTool",
-    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800&auto=format&fit=crop",
-    accentImage: "https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?q=80&w=400&auto=format&fit=crop"
+    image: "https://images.unsplash.com/photo-1612459284970-e8f027596582?q=80&w=800&auto=format&fit=crop",
   },
   {
     title: "Realism Consult",
     description: "Deep-dive into photorealistic pieces or complex illustrative works.",
-    forWho: "For clients ready for high-detail, statement art.",
-    whatToSend: "Discuss placement and size for a time estimate.",
-    whatHappensNext: "1:1 technical review & booking slot offer.",
+    forWho: "Clients ready for high-detail, statement art",
+    whatToSend: "Bespoke references & body area photo",
+    whatHappensNext: "1:1 technical review & booking offer",
     whatsappKey: "REFERENCE",
     icon: "Maximize",
     image: "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?q=80&w=800&auto=format&fit=crop",
@@ -32,9 +32,9 @@ export const CONSULTATION_OPTIONS = [
   {
     title: "Cover-Up Review",
     description: "Expert assessment of existing ink for potential transformation.",
-    forWho: "For those looking to breathe new life into old work.",
-    whatToSend: "Send a clear photo of current tattoo in natural light.",
-    whatHappensNext: "Cover-up feasibility assessment & design plan.",
+    forWho: "Those breathing new life into old work",
+    whatToSend: "Clear photo of current work in natural light",
+    whatHappensNext: "Feasibility assessment & design plan",
     whatsappKey: "COVER_UP",
     icon: "Crown",
     image: "https://images.unsplash.com/photo-1590210315325-d41fd4607831?q=80&w=800&auto=format&fit=crop",
@@ -42,12 +42,12 @@ export const CONSULTATION_OPTIONS = [
   {
     title: "Custom Symbolic Piece",
     description: "Bespoke storytelling through ink. We translate your narrative into art.",
-    forWho: "For meaningful, unique, and highly personal tattoos.",
-    whatToSend: "Book a 1:1 session to conceptualize your story.",
-    whatHappensNext: "Concept sketch session & artist matching.",
+    forWho: "Meaningful, unique, and personal tattoos",
+    whatToSend: "Your story or symbolic starting point",
+    whatHappensNext: "Concept sketch session & artist matching",
     whatsappKey: "IDEA",
     icon: "PenTool",
-    image: "https://images.unsplash.com/photo-1621112904887-419379ce6824?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=800&auto=format&fit=crop",
   },
 ];
 
@@ -90,80 +90,35 @@ export const REASSURANCES = [
   },
 ];
 
-export const TRUST_CARDS = [
-  {
-    value: "12+",
-    label: "Years of Craft",
-  },
-  {
-    value: "100%",
-    label: "Sterile Setup",
-  },
-  {
-    value: "Bespoke",
-    label: "Storytelling",
-  },
-];
-
 export const CONCEPT_WALL = [
   {
-    label: "Fine-Line",
+    label: "Fine-Line Precision",
     category: "Technique",
-    description: "Precision & Elegance",
-    placementNote: "Inner Forearm / Collarbone",
-    styleTags: ["Minimalist", "Single Needle"],
-    mood: "Sophisticated",
-    detail: "0.25mm Needle Depth",
     image: "https://images.unsplash.com/photo-1612459284970-e8f027596582?q=80&w=800&auto=format&fit=crop"
   },
   {
     label: "Dark Illustrative",
     category: "Aesthetic",
-    description: "High Contrast Depth",
-    placementNote: "Outer Thigh / Full Back",
-    styleTags: ["Chiaroscuro", "Graphic"],
-    mood: "Ethereal Noir",
-    detail: "Custom Ink Blends",
     image: "https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=800&auto=format&fit=crop"
   },
   {
     label: "Micro Realism",
     category: "Detail",
-    description: "Sharper Than Life",
-    placementNote: "Ankle / Wrist",
-    styleTags: ["Hyper-Detail", "Portrait"],
-    mood: "Scientific",
-    detail: "400% Zoom Precision",
     image: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=800&auto=format&fit=crop"
   },
   {
-    label: "Ornamental",
-    category: "Flow",
-    description: "Anatomy Driven",
-    placementNote: "Sternum / Spine",
-    styleTags: ["Mandala", "Geometric"],
-    mood: "Symmetric",
-    detail: "Bio-Metric Flow",
+    label: "Ornamental Flow",
+    category: "Anatomy",
     image: "https://images.unsplash.com/photo-1590210315325-d41fd4607831?q=80&w=800&auto=format&fit=crop"
   },
   {
-    label: "Process Study",
-    category: "Craft",
-    description: "The Stencil Phase",
-    placementNote: "Technical Blueprint",
-    styleTags: ["Precision", "Planning"],
-    mood: "Methodical",
-    detail: "Bespoke Fitting",
-    image: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?q=80&w=800&auto=format&fit=crop"
+    label: "Studio Atmosphere",
+    category: "Vibe",
+    image: "https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?q=80&w=800&auto=format&fit=crop"
   },
   {
-    label: "Ink & Steel",
-    category: "Tools",
-    description: "Hospital Grade",
-    placementNote: "Studio Setup",
-    styleTags: ["Sterile", "Professional"],
-    mood: "Industrial",
-    detail: "Single Use Only",
-    image: "https://images.unsplash.com/photo-1512149177596-f817c7ef5d4c?q=80&w=800&auto=format&fit=crop"
+    label: "Craft Study",
+    category: "Process",
+    image: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?q=80&w=800&auto=format&fit=crop"
   }
 ];

@@ -1,33 +1,41 @@
 # Skill to Code Trace
 
-This document tracks how skills were applied to transform the Obsidian Ink Studio demo into a premium, pitch-worthy cinematic experience.
+This document tracks how the 5 core skills were used as strict rejection gates to transform the Obsidian Ink Studio demo into a pitch-worthy editorial experience.
 
-- **Skill: Taste (Curation)**
-  - Rule: Reject generic dark-card/template output. Reject CSS-only boxes. Reject "image background with text" as a fallback.
-  - Issue: The previous UI was a 500px linear stack of safe, dark cards. Early iterations still used a single background image Hero which felt too much like a template.
-  - File: `src/App.jsx`, `src/styles.css`, `src/data/demoData.js`
-  - Decision: Implemented a true **Layered Editorial Collage** for the Hero, using two overlapping media containers with different grayscale/color depth. Added physical "Status" markers (ACCEPTING REQUESTS) and vertical "PREMIUM CRAFT" labels to create a sense of exclusivity and "Status" weight.
+## 1. UI UX Pro Max (Flow & Clarity)
+- **Rule**: Obvious conversion hierarchy and decision support.
+- **Issue**: Previous linear stack had high cognitive load; trust was a separate section.
+- **Action**:
+    - Consolidated the Decision Dock into a "Protocol Entry" grid in the Hero.
+    - Embedded "Decision Support" (FOR, SEND, NEXT) directly into pathway strips.
+    - Trust markers (Hospital Grade, Recovery Support) are now marginalia near CTAs.
 
-- **Skill: Emil Kowalski (Motion)**
-  - Rule: Motion with intent. Tactile Physics.
-  - Issue: Previous motion was purely decorative "fade-ins" that felt floaty and non-premium.
-  - File: `src/lib/motion.js`, `src/App.jsx`
-  - Decision: Implemented "Mechanical Precision" transitions. Switched to high-stiffness, high-damping springs (`mechanical`) for snappy, tool-like feedback. Added `whileTap` scale effects to the Control Panel and Pathway strips to make them feel like physical buttons.
+## 2. Impeccable (Polish & Hierarchy)
+- **Rule**: Typography is UI; 8px grid precision.
+- **Issue**: Standard card layout felt "safe" and template-like.
+- **Action**:
+    - Implemented extreme scale contrasts in Hero brand mark.
+    - Used vertical writing modes for editorial markers.
+    - Applied high-stiffness spring constants (mechanical) to interactions.
 
-- **Skill: Impeccable (Polish)**
-  - Rule: Typography is UI. Hierarchy through weight and scale.
-  - Issue: Heading scales were too safe; typography lacked the "premium underground" vibe.
-  - File: `src/styles.css`
-  - Decision: Implemented extreme size contrasts (Hero brand mark) and editorial heading scales. Added a gritty texture overlay to the entire body. Used `writing-mode: vertical-rl` for editorial tagging.
+## 3. Taste (Composition & Originality)
+- **Rule**: Reject generic skeletons; editorial imagery as structural material.
+- **Issue**: Images were just background-covers for standard blocks.
+- **Action**:
+    - Created an asymmetric "Magazine Spread" skeleton.
+    - Used image overlaps and bleeds to break the section-block feel.
+    - Updated `demoData.js` with process-focused, high-contrast craft imagery.
 
-- **Skill: UI UX Pro Max (Flow)**
-  - Rule: 5-second clarity and obvious CTA hierarchy.
-  - Issue: The Decision Dock was a floating chip row that felt separate from the entrance experience.
-  - File: `src/App.jsx`, `src/styles.css`
-  - Decision: Integrated the Decision Dock as a "Concierge Control Panel" directly into the Hero flow. Maintained 5-second clarity by putting "Appointment Only", "Koregaon Park", and "Send My Tattoo Idea" in the first viewport.
+## 4. Emil Design Engineering (Interaction)
+- **Rule**: Mechanical precision and sequenced storytelling.
+- **Issue**: Decorative fades; floaty motion.
+- **Action**:
+    - Implemented `mechanical` spring constants (260/20) for tactile feedback.
+    - Staggered child entries to guide the user's eye through the editorial grid.
+    - Added `whileTap` scale effects (0.98) to simulate physical button clicks.
 
-- **Skill: 21st.dev (Component Variation)**
-  - Rule: Reject weak defaults. Compare variations.
-  - Issue: Standard card grids for consultations were too generic.
-  - File: `src/App.jsx`
-  - Decision: Compared a "Card Grid" (Rejected) vs. "Media Strips" (Selected). Chose the "Featured Strip + Mini Grid" layout for Consultation Pathways to create visual hierarchy and break the vertical linear stack.
+## 5. 21st.dev (Component Variation)
+- **Rule**: Reject weak defaults; compare compositions.
+- **Action**:
+    - Evaluated "Editorial Spread" (Selected) vs. "Dashboard" (Rejected).
+    - Adapted the "Physical Desk" pattern for the Concept Wall, using rotations and asymmetric spans to simulate a real studio spread.
