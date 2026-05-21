@@ -1,278 +1,156 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import {
-  MessageCircle, MapPin, ChevronRight, PenTool, Maximize, Crown,
-  ArrowUpRight, ShieldCheck, CheckCircle2, Activity, Zap, Search, Heart
-} from 'lucide-react';
-import { STUDIO_INFO, CONSULTATION_OPTIONS, REASSURANCES, TRUST_CARDS, CONCEPT_WALL } from './data/demoData';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { STUDIO_INFO, EXHIBIT_ARCHIVE, PRIVATE_LEDGER } from './data/demoData';
 import { getWhatsAppUrl, WHATSAPP_MESSAGES } from './lib/whatsapp';
-import { transitions, variants } from './lib/motion';
 
-const IconMap = {
-  PenTool: <PenTool size={20} />,
-  Maximize: <Maximize size={20} />,
-  Crown: <Crown size={20} />,
-  ShieldCheck: <ShieldCheck size={18} />,
-  Activity: <Activity size={18} />,
-  Zap: <Zap size={18} />,
-  Search: <Search size={18} />,
-  Heart: <Heart size={18} />,
+const Reveal = ({ children, className = "", stagger = 0 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: stagger }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
 };
+
+const Nav = () => (
+  <nav>
+    <div className="logo">Obsidian</div>
+    <div className="mono">Pune — KP</div>
+  </nav>
+);
+
+const SceneEntry = () => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 1000], [0, 100]);
+  const scale = useTransform(scrollY, [0, 1000], [1, 1.2]);
+
+  return (
+    <section className="scene-entry canvas">
+      <Reveal className="entry-visual">
+        <motion.img
+          src={STUDIO_INFO.heroImage}
+          alt="Material Shimmer"
+          style={{ y, scale }}
+        />
+      </Reveal>
+      <h1 className="hero-title">Obsidian</h1>
+      <Reveal className="entry-footer">
+        <div className="mono">Studio Access: KP / Pune</div>
+        <div className="mono" style={{ color: 'var(--fg)', borderBottom: '1px solid var(--accent)' }}>
+          By Appointment Only
+        </div>
+      </Reveal>
+    </section>
+  );
+};
+
+const SceneStance = () => (
+  <section className="scene-stance canvas">
+    <Reveal className="stance-text">
+      The artist leads the dialogue. Pigment as a <span style={{ color: 'var(--accent)' }}>technical instrument</span>.
+    </Reveal>
+    <Reveal className="stance-sub">
+      Obsidian Ink is a sanctuary for style-conscious collectors. We treat tattooing as an anatomical dialogue, mapping every composition to the unique architecture of the body with absolute restraint.
+    </Reveal>
+  </section>
+);
+
+const SceneArchive = () => {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [1000, 3000], [0, -100]);
+  const y2 = useTransform(scrollY, [1000, 3000], [0, 100]);
+
+  return (
+    <section className="scene-archive canvas">
+      <div className="exhibit-header">
+        <div className="mono">Exhibit 01 — Selected Works</div>
+      </div>
+
+      <div className="exhibit-flow">
+        {EXHIBIT_ARCHIVE.map((item, i) => {
+          const isWhisper1 = item.type === 'whisper-1';
+          const isWhisper2 = item.type === 'whisper-2';
+          const y = isWhisper1 ? y1 : isWhisper2 ? y2 : 0;
+
+          return (
+            <Reveal key={i} className={`plate plate-${item.type}`}>
+              <motion.div className="plate-box" style={{
+                aspectRatio: item.type === 'scream' ? '16/9' : item.type === 'anchor' ? '16/8' : item.type === 'whisper-1' ? '1/1' : '4/5',
+                y
+              }}>
+                <img src={item.image} alt={item.title} />
+              </motion.div>
+              <div className="plate-meta">
+                <span className="mono">{item.title}</span>
+                {item.location && <span className="mono">{item.location}</span>}
+              </div>
+            </Reveal>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
+const SceneRitual = () => (
+  <section className="scene-ritual canvas">
+    <div className="ledger">
+      <div className="ledger-line"></div>
+
+      {PRIVATE_LEDGER.map((item, i) => (
+        <div key={i} className="ledger-row">
+          <Reveal>
+            <span className="mono">{item.index}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </Reveal>
+        </div>
+      ))}
+    </div>
+  </section>
+);
+
+const SceneInquiry = () => (
+  <section className="scene-inquiry canvas">
+    <div className="inquiry-content">
+      <Reveal>
+        <h2 className="inquiry-title">Initiate the<br />Dialogue.</h2>
+      </Reveal>
+      <Reveal>
+        <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.IDEA)} className="inquiry-portal">
+          <span>Start a private concept review</span>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </Reveal>
+    </div>
+  </section>
+);
 
 export default function App() {
   return (
-    <div className="app-container">
-      {/* Editorial Hero */}
-      <section className="hero">
-        <div className="container hero-layout">
-          <div className="hero-text">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...transitions.smooth, delay: 0.1 }}
-              className="hero-tagline"
-            >
-              {STUDIO_INFO.tagline}
-            </motion.span>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...transitions.smooth, delay: 0.2 }}
-            >
-              Obsidian<br />
-              <span className="accent-text">Ink Studio</span>
-            </motion.h1>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="hero-location-bar"
-            >
-              <div className="location-chip">
-                <MapPin size={12} /> {STUDIO_INFO.location}
-              </div>
-              <div className="availability-chip">
-                <span className="pulse-dot"></span> Appointment Only
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="hero-cta-group"
-            >
-              <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.IDEA)} className="btn btn-primary hero-btn">
-                <MessageCircle size={18} />
-                Start My Tattoo Story
-              </a>
-            </motion.div>
-          </div>
-
-          <motion.div
-            className="hero-visual"
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ ...transitions.smooth, delay: 0.3 }}
-          >
-            <div className="media-panel">
-              <img src={STUDIO_INFO.heroImage} alt="Premium Tattoo Studio" className="hero-img" />
-              <div className="media-overlay"></div>
-
-              <motion.div
-                className="floating-card"
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ ...transitions.soft, delay: 0.7 }}
-              >
-                <div className="stat-row">
-                  <span className="stat-val">100%</span>
-                  <span className="stat-label">Sterile Environment</span>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Premium Decision Dock (Floating Overlay Effect) */}
-        <div className="decision-dock-wrapper">
-          <div className="container">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...transitions.smooth, delay: 0.6 }}
-              className="decision-dock"
-            >
-              <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.IDEA)} className="intent-chip">Send My Tattoo Idea</a>
-              <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.CONSULTATION)} className="intent-chip">Check Availability</a>
-              <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.FINE_LINE)} className="intent-chip">Ask Fine-Line Price</a>
-              <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.REFERENCE)} className="intent-chip">Share Reference</a>
-              <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.COVER_UP)} className="intent-chip">Ask Cover-Up Question</a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      <main className="container">
-        {/* Consultation Options */}
-        <section className="section">
-          <div className="section-header">
-            <span className="section-subtitle">The Pathways</span>
-            <h2>Curated Consultations</h2>
-          </div>
-          <div className="pathways-layout">
-            {CONSULTATION_OPTIONS.map((option, index) => (
-              <motion.a
-                key={index}
-                href={getWhatsAppUrl(WHATSAPP_MESSAGES[option.whatsappKey])}
-                className={`consultation-card ${index === 0 ? 'featured' : ''}`}
-                whileTap={{ scale: 0.98 }}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ ...transitions.smooth, delay: index * 0.1 }}
-              >
-                <div className="consult-img-slot">
-                  <img src={option.image} alt={option.title} className="consult-img" />
-                  <div className="consult-icon-badge">
-                    {IconMap[option.icon]}
-                  </div>
-                </div>
-                <div className="consult-content">
-                  <h3>{option.title}</h3>
-                  <p className="consult-desc">{option.description}</p>
-
-                  <div className="consult-meta">
-                    <div className="meta-item">
-                      <span className="meta-label">For</span>
-                      <div className="meta-value">{option.forWho}</div>
-                    </div>
-
-                    <div className="meta-item highlighted">
-                      <span className="meta-label">Next Step</span>
-                      <div className="meta-value next-step">
-                        {option.whatHappensNext} <ArrowUpRight size={14} />
-                      </div>
-                    </div>
-                  </div>
-
-                  {index === 0 && (
-                    <div className="context-badge-wrap">
-                      <div className="context-badge">
-                        <ShieldCheck size={14} /> Medical Grade
-                      </div>
-                      <div className="context-badge">
-                        <Zap size={14} /> Vegan Inks
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </motion.a>
-            ))}
-          </div>
-        </section>
-
-
-        {/* Visual Story Board (Concept Wall) */}
-        <section className="section studio-board-section">
-          <div className="section-header">
-            <span className="section-subtitle">Aesthetic Identity</span>
-            <h2>Studio Board</h2>
-          </div>
-          <div className="studio-board">
-            {CONCEPT_WALL.map((item, i) => (
-              <motion.div
-                key={i}
-                className={`board-item item-${i}`}
-                whileInView={{ opacity: 1, scale: 1, rotate: (i % 2 === 0 ? -1 : 1) }}
-                initial={{ opacity: 0, scale: 0.95, rotate: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-              >
-                <div className="board-card">
-                  <img src={item.image} alt={item.label} className="board-img" />
-                  <div className="board-overlay">
-                    <div className="board-header">
-                      <span className="category">{item.category}</span>
-                      <span className="mood">{item.mood}</span>
-                    </div>
-                    <h3>{item.label}</h3>
-                    <div className="board-meta">
-                      <div className="meta-line">
-                        <span className="label">Note</span>
-                        <span className="val">{item.placementNote}</span>
-                      </div>
-                      <div className="meta-line">
-                        <span className="label">Spec</span>
-                        <span className="val">{item.detail}</span>
-                      </div>
-                    </div>
-                    <div className="board-tags">
-                      {item.styleTags.map((tag, j) => (
-                        <span key={j} className="tag">{tag}</span>
-                      ))}
-                    </div>
-                  </div>
-                  {i === 1 && (
-                    <div className="floating-reassurance">
-                      <ShieldCheck size={12} /> Sterile Process
-                    </div>
-                  )}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </section>
-
-        {/* Final Intent-Specific WhatsApp CTA */}
-        <section className="section final-cta-section">
-          <motion.div
-            className="cta-card"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="cta-content">
-              <span className="cta-subtitle">Secure Your Session</span>
-              <h2>Start Your Piece</h2>
-              <p>Direct communication with our lead artist for bespoke designs and availability.</p>
-
-              <div className="cta-actions">
-                <motion.a
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  href={getWhatsAppUrl(WHATSAPP_MESSAGES.IDEA)}
-                  className="btn btn-white"
-                >
-                  <MessageCircle size={18} />
-                  Send My Tattoo Idea
-                </motion.a>
-
-                <div className="cta-secondary">
-                  <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.CONSULTATION)} className="secondary-link">
-                    Check Availability
-                  </a>
-                  <span className="divider">•</span>
-                  <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.COVER_UP)} className="secondary-link">
-                    Ask Cover-Up Question
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="cta-footer-marker">
-              <CheckCircle2 size={14} /> Certified Luxury Studio • Pune
-            </div>
-          </motion.div>
-        </section>
+    <div className="app-root">
+      <div className="grain"></div>
+      <Nav />
+      <main>
+        <SceneEntry />
+        <SceneStance />
+        <SceneArchive />
+        <SceneRitual />
+        <SceneInquiry />
       </main>
-
-      <footer>
+      <footer style={{ padding: '5rem 0', textAlign: 'center', opacity: 0.3 }}>
         <div className="container">
-          <div className="footer-line" />
-          <p className="copyright">© {new Date().getFullYear()} {STUDIO_INFO.name}</p>
-          <p className="footer-meta">{STUDIO_INFO.niche} • {STUDIO_INFO.location}</p>
+          <p className="mono">© {new Date().getFullYear()} OBSIDIAN INK STUDIO • KOREGAON PARK • PUNE</p>
         </div>
       </footer>
     </div>

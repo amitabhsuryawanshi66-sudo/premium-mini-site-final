@@ -1,27 +1,41 @@
 # Skill to Code Trace
 
-This document tracks how skills are applied in the current codebase.
+This document tracks how the 5 core skills were used as strict rejection gates to transform the Obsidian Ink Studio demo into a pitch-worthy editorial experience.
 
-- **Skill: Emil Kowalski (Motion)**
-  - Rule: Use spring physics for tactile interactions.
-  - Issue: Generic transitions made the site feel static.
-  - File: `src/lib/motion.js`, `src/App.jsx`
-  - Decision: Applied custom spring transitions and staggered entry animations for consultation cards. Added a cinematic horizontal reveal for the hero accent panel. Implemented subtle scale/opacity entries for the asymmetric concept wall panels. Added `whileTap` scale effects (`0.98`) to all interactive chips and cards for tactile feedback.
+## 1. UI UX Pro Max (Flow & Clarity)
+- **Rule**: Obvious conversion hierarchy and decision support.
+- **Issue**: Previous linear stack had high cognitive load; trust was a separate section.
+- **Action**:
+    - Consolidated the Decision Dock into a "Protocol Entry" grid in the Hero.
+    - Embedded "Decision Support" (FOR, SEND, NEXT) directly into pathway strips.
+    - Trust markers (Hospital Grade, Recovery Support) are now marginalia near CTAs.
 
-- **Skill: Impeccable (Polish)**
-  - Rule: Maintain a strict 8px grid and consistent typography.
-  - Issue: Container was too wide for mobile; typography lacked hierarchy.
-  - File: `src/styles.css`
-  - Decision: Narrowed `.container` to 500px for a focused mobile read. Implemented `clamp()` for responsive H1 sizing. Established a bone-white/charcoal color palette. Added a "Next Step" highlight in consultation cards to drive focus. Ensured all elements align to a refined grid system with consistent padding (1.5rem/2rem).
+## 2. Impeccable (Polish & Hierarchy)
+- **Rule**: Typography is UI; 8px grid precision.
+- **Issue**: Standard card layout felt "safe" and template-like.
+- **Action**:
+    - Implemented extreme scale contrasts in Hero brand mark.
+    - Used vertical writing modes for editorial markers.
+    - Applied high-stiffness spring constants (mechanical) to interactions.
 
-- **Skill: UI UX Pro Max (Flow)**
-  - Rule: 5-second clarity and obvious CTA hierarchy.
-  - Issue: The main action was buried.
-  - File: `src/App.jsx`, `src/lib/whatsapp.js`
-  - Decision: Implemented an editorial Hero with a primary "Start My Tattoo Story" CTA. Maintained a "Decision Dock" for instant intent mapping. Refactored consultation options to show "What to Send" and "Next Step," mapping directly to intent-specific WhatsApp messages. Added a final CTA recap card with secondary options for varied readiness.
+## 3. Taste (Composition & Originality)
+- **Rule**: Reject generic skeletons; editorial imagery as structural material.
+- **Issue**: Images were just background-covers for standard blocks.
+- **Action**:
+    - Created an asymmetric "Magazine Spread" skeleton.
+    - Used image overlaps and bleeds to break the section-block feel.
+    - Updated `demoData.js` with process-focused, high-contrast craft imagery.
 
-- **Skill: Taste (Curation)**
-  - Rule: Reject generic AI-template design.
-  - Issue: Previous iteration was "abstract CSS boxes on black," lacking physical craft weight.
-  - File: `src/App.jsx`, `src/data/demoData.js`, `src/styles.css`
-  - Decision: Injected high-quality cinematic imagery (Unsplash) into the Hero, Consultation Cards, and Concept Board. Replaced the text-only Concept Wall with an image-rich "Studio Board" using subtle rotations and editorial overlays to evoke the feel of a physical tattoo studio.
+## 4. Emil Design Engineering (Interaction)
+- **Rule**: Mechanical precision and sequenced storytelling.
+- **Issue**: Decorative fades; floaty motion.
+- **Action**:
+    - Implemented `mechanical` spring constants (260/20) for tactile feedback.
+    - Staggered child entries to guide the user's eye through the editorial grid.
+    - Added `whileTap` scale effects (0.98) to simulate physical button clicks.
+
+## 5. 21st.dev (Component Variation)
+- **Rule**: Reject weak defaults; compare compositions.
+- **Action**:
+    - Evaluated "Editorial Spread" (Selected) vs. "Dashboard" (Rejected).
+    - Adapted the "Physical Desk" pattern for the Concept Wall, using rotations and asymmetric spans to simulate a real studio spread.
