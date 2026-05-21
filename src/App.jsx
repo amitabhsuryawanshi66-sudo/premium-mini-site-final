@@ -1,104 +1,137 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import {
-  ShieldCheck, Activity, Zap, Search, Heart, PenTool, Maximize, Crown, ArrowUpRight
-} from 'lucide-react';
-import { STUDIO_INFO, CONSULTATION_OPTIONS, REASSURANCES, CONCEPT_WALL } from './data/demoData';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { STUDIO_INFO, EXHIBIT_ARCHIVE, PRIVATE_LEDGER } from './data/demoData';
 import { getWhatsAppUrl, WHATSAPP_MESSAGES } from './lib/whatsapp';
-import { transitions } from './lib/motion';
 
-const IconMap = {
-  PenTool: <PenTool size={16} />,
-  Maximize: <Maximize size={16} />,
-  Crown: <Crown size={16} />,
-  ShieldCheck: <ShieldCheck size={16} />,
-  Activity: <Activity size={16} />,
-  Zap: <Zap size={16} />,
-  Search: <Search size={16} />,
-  Heart: <Heart size={16} />,
+const Reveal = ({ children, className = "", stagger = 0 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.15 });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 40 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: stagger }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
 };
 
-const Hero = () => (
-  <section className="hero-poster">
-    <div className="poster-bg">
-      <img src={STUDIO_INFO.heroImage} alt="Obsidian Primary" className="poster-img-primary" />
-      <motion.div
-        className="poster-img-secondary-wrap"
-        initial={{ opacity: 0, scale: 1.1 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <img src={STUDIO_INFO.secondaryHeroImage} alt="Obsidian Detail" className="poster-img-secondary" />
-      </motion.div>
+const Nav = () => (
+  <nav>
+    <div className="logo">Obsidian</div>
+    <div className="mono">Pune — KP</div>
+  </nav>
+);
+
+const SceneEntry = () => {
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 1000], [0, 100]);
+  const scale = useTransform(scrollY, [0, 1000], [1, 1.2]);
+
+  return (
+    <section className="scene-entry canvas">
+      <Reveal className="entry-visual">
+        <motion.img
+          src={STUDIO_INFO.heroImage}
+          alt="Material Shimmer"
+          style={{ y, scale }}
+        />
+      </Reveal>
+      <h1 className="hero-title">Obsidian</h1>
+      <Reveal className="entry-footer">
+        <div className="mono">Studio Access: KP / Pune</div>
+        <div className="mono" style={{ color: 'var(--fg)', borderBottom: '1px solid var(--accent)' }}>
+          By Appointment Only
+        </div>
+      </Reveal>
+    </section>
+  );
+};
+
+const SceneStance = () => (
+  <section className="scene-stance canvas">
+    <Reveal className="stance-text">
+      The artist leads the dialogue. Pigment as a <span style={{ color: 'var(--accent)' }}>technical instrument</span>.
+    </Reveal>
+    <Reveal className="stance-sub">
+      Obsidian Ink is a sanctuary for style-conscious collectors. We treat tattooing as an anatomical dialogue, mapping every composition to the unique architecture of the body with absolute restraint.
+    </Reveal>
+  </section>
+);
+
+const SceneArchive = () => {
+  const { scrollY } = useScroll();
+  const y1 = useTransform(scrollY, [1000, 3000], [0, -100]);
+  const y2 = useTransform(scrollY, [1000, 3000], [0, 100]);
+
+  return (
+    <section className="scene-archive canvas">
+      <div className="exhibit-header">
+        <div className="mono">Exhibit 01 — Selected Works</div>
+      </div>
+
+      <div className="exhibit-flow">
+        {EXHIBIT_ARCHIVE.map((item, i) => {
+          const isWhisper1 = item.type === 'whisper-1';
+          const isWhisper2 = item.type === 'whisper-2';
+          const y = isWhisper1 ? y1 : isWhisper2 ? y2 : 0;
+
+          return (
+            <Reveal key={i} className={`plate plate-${item.type}`}>
+              <motion.div className="plate-box" style={{
+                aspectRatio: item.type === 'scream' ? '16/9' : item.type === 'anchor' ? '16/8' : item.type === 'whisper-1' ? '1/1' : '4/5',
+                y
+              }}>
+                <img src={item.image} alt={item.title} />
+              </motion.div>
+              <div className="plate-meta">
+                <span className="mono">{item.title}</span>
+                {item.location && <span className="mono">{item.location}</span>}
+              </div>
+            </Reveal>
+          );
+        })}
+      </div>
+    </section>
+  );
+};
+
+const SceneRitual = () => (
+  <section className="scene-ritual canvas">
+    <div className="ledger">
+      <div className="ledger-line"></div>
+
+      {PRIVATE_LEDGER.map((item, i) => (
+        <div key={i} className="ledger-row">
+          <Reveal>
+            <span className="mono">{item.index}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </Reveal>
+        </div>
+      ))}
     </div>
+  </section>
+);
 
-    <div className="editorial-marker left">PREMIUM CRAFT</div>
-    <div className="editorial-marker right">STATUS // ACCEPTING REQUESTS</div>
-
-    <div className="poster-content">
-      <motion.div
-        className="poster-top"
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={transitions.editorial}
-      >
-        <div className="poster-brand">
-          <div className="brand-main">
-            <span>OBSIDIAN</span>
-            <span className="ink-accent">INK STUDIO</span>
-          </div>
-          <div className="brand-badge">APPOINTMENT ONLY // KOREGAON PARK</div>
-        </div>
-        <div className="poster-sub">{STUDIO_INFO.tagline}</div>
-      </motion.div>
-
-      <div className="poster-center">
-        <div className="poster-control-header">
-          <div className="poster-control-label">Protocol Entry</div>
-          <div className="trust-pill"><ShieldCheck size={10} /> Hospital Grade</div>
-        </div>
-        <motion.div
-          className="protocol-grid"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ ...transitions.mechanical, delay: 0.5 }}
-        >
-          <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.IDEA)} className="protocol-node">
-            <span>Send My Tattoo Idea</span>
-            <span className="node-num">[01]</span>
-          </a>
-          <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.CONSULTATION)} className="protocol-node">
-            <span>Check Availability</span>
-            <span className="node-num">[02]</span>
-          </a>
-          <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.FINE_LINE)} className="protocol-node">
-            <span>Ask Fine-Line Price</span>
-            <span className="node-num">[03]</span>
-          </a>
-          <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.REFERENCE)} className="protocol-node">
-            <span>Share Reference</span>
-            <span className="node-num">[04]</span>
-          </a>
-          <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.COVER_UP)} className="protocol-node">
-            <span>Ask Cover-Up Question</span>
-            <span className="node-num">[05]</span>
-          </a>
-        </motion.div>
-      </div>
-
-      <div className="poster-bottom">
-        <div className="location-marker">
-          <div className="marker-dot" />
-          <div className="marker-text">
-            <b>{STUDIO_INFO.location}</b>
-            <span>Pune, India</span>
-          </div>
-        </div>
-        <div className="scroll-indicator">
-          <div className="scroll-line" />
-          <span>Scroll to Explore</span>
-        </div>
-      </div>
+const SceneInquiry = () => (
+  <section className="scene-inquiry canvas">
+    <div className="inquiry-content">
+      <Reveal>
+        <h2 className="inquiry-title">Initiate the<br />Dialogue.</h2>
+      </Reveal>
+      <Reveal>
+        <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.IDEA)} className="inquiry-portal">
+          <span>Start a private concept review</span>
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </Reveal>
     </div>
   </section>
 );
@@ -106,138 +139,18 @@ const Hero = () => (
 export default function App() {
   return (
     <div className="app-root">
-      <Hero />
-
+      <div className="grain"></div>
+      <Nav />
       <main>
-        {/* Pathway Strips */}
-        <section className="editorial-panel">
-          <div className="container">
-            <header className="panel-header">
-              <span className="panel-index">PRT_02</span>
-              <h2 className="panel-title">Consultation<br />Pathways</h2>
-            </header>
-          </div>
-
-          <div className="pathway-strips">
-            {CONSULTATION_OPTIONS.map((path, i) => (
-              <motion.a
-                key={i}
-                href={getWhatsAppUrl(WHATSAPP_MESSAGES[path.whatsappKey])}
-                className={`pathway-strip ${i === 0 ? 'featured' : ''}`}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.8 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <div className="strip-media">
-                  <img src={path.image} alt={path.title} />
-                </div>
-                <div className="strip-overlay">
-                  <div className="strip-top">
-                    <span className="strip-tag">Pathway_{i+1}</span>
-                    <div className="trust-pill"><Zap size={10} /> Bespoke</div>
-                  </div>
-                  <h3 className="strip-title">{path.title}</h3>
-                  <div className="strip-info">
-                    <div className="info-row"><b>FOR:</b> {path.forWho}</div>
-                    <div className="info-row"><b>SEND:</b> {path.whatToSend}</div>
-                    <div className="info-row"><b>NEXT:</b> {path.whatHappensNext}</div>
-                  </div>
-                  <div className="strip-action">
-                    <span>INITIATE CONCIERGE</span>
-                    <ArrowUpRight size={20} color="var(--accent-color)" />
-                  </div>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-        </section>
-
-        {/* Concept Wall - Reference Spread */}
-        <section className="editorial-panel" style={{ background: '#080808' }}>
-          <div className="container">
-            <header className="panel-header">
-              <span className="panel-index">REF_03</span>
-              <h2 className="panel-title">Studio<br />Reference</h2>
-            </header>
-          </div>
-
-          <div className="reference-spread">
-            <div className="spread-grid">
-              {CONCEPT_WALL.map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="spread-item"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ ...transitions.snappy, delay: i * 0.1 }}
-                >
-                  <img src={item.image} alt={item.label} className="spread-img" />
-                  <div className="spread-caption">
-                    <span className="caption-tag">{item.category}</span>
-                    <div className="caption-title">{item.label}</div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Operational Specs - Reassurance */}
-        <section className="editorial-panel">
-          <div className="container">
-            <header className="panel-header">
-              <span className="panel-index">SPEC_04</span>
-              <h2 className="panel-title">Operational<br />Security</h2>
-            </header>
-
-            <div className="spec-list">
-              {REASSURANCES.map((item, i) => (
-                <motion.div
-                  key={i}
-                  className="spec-item"
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  <div className="spec-head">
-                    <span className="spec-icon">{IconMap[item.icon]}</span>
-                    <h4>{item.q}</h4>
-                  </div>
-                  <p>{item.a}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Final CTA */}
-        <section className="private-invite">
-          <div className="container">
-            <div className="invite-badge"><Activity size={14} /> 24/7 Recovery Support</div>
-            <h2 className="invite-title">Join the<br />Obsidian Story</h2>
-            <motion.a
-              href={getWhatsAppUrl(WHATSAPP_MESSAGES.IDEA)}
-              className="btn-primary-poster"
-              whileTap={{ scale: 0.96 }}
-            >
-              Start Your Piece
-            </motion.a>
-
-            <div className="invite-options">
-              <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.CONSULTATION)} className="option-link">Availability</a>
-              <a href={getWhatsAppUrl(WHATSAPP_MESSAGES.COVER_UP)} className="option-link">Cover-Up Review</a>
-            </div>
-          </div>
-        </section>
+        <SceneEntry />
+        <SceneStance />
+        <SceneArchive />
+        <SceneRitual />
+        <SceneInquiry />
       </main>
-
-      <footer>
+      <footer style={{ padding: '5rem 0', textAlign: 'center', opacity: 0.3 }}>
         <div className="container">
-          <p className="footer-stamp">© {new Date().getFullYear()} OBSIDIAN INK STUDIO • KOREGAON PARK • PUNE</p>
+          <p className="mono">© {new Date().getFullYear()} OBSIDIAN INK STUDIO • KOREGAON PARK • PUNE</p>
         </div>
       </footer>
     </div>
