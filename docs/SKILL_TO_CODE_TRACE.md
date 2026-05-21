@@ -3,10 +3,10 @@
 This document tracks how skills were applied to transform the Obsidian Ink Studio demo into a premium, pitch-worthy cinematic experience.
 
 - **Skill: Taste (Curation)**
-  - Rule: Reject generic dark-card/template output. Reject CSS-only boxes.
-  - Issue: The previous UI was a 500px linear stack of safe, dark cards that felt like a basic landing page template.
+  - Rule: Reject generic dark-card/template output. Reject CSS-only boxes. Reject "image background with text" as a fallback.
+  - Issue: The previous UI was a 500px linear stack of safe, dark cards. Early iterations still used a single background image Hero which felt too much like a template.
   - File: `src/App.jsx`, `src/styles.css`, `src/data/demoData.js`
-  - Decision: Rejected the "card-per-section" habit. Implemented an asymmetric, editorial Hero collage and a "physical desk" Concept Board. Replaced generic images with process-led, cinematic photography.
+  - Decision: Implemented a true **Layered Editorial Collage** for the Hero, using two overlapping media containers with different grayscale/color depth. Added physical "Status" markers (ACCEPTING REQUESTS) and vertical "PREMIUM CRAFT" labels to create a sense of exclusivity and "Status" weight.
 
 - **Skill: Emil Kowalski (Motion)**
   - Rule: Motion with intent. Tactile Physics.
