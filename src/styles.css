@@ -1,17 +1,17 @@
 :root {
   /* Obsidian Palette: Deep Obsidian, Graphite, Oxide Red */
-  --bg: oklch(8% 0.005 250);
-  --surface: oklch(12% 0.01 250);
-  --fg: oklch(98% 0.002 250);
-  --muted: oklch(42% 0.005 250);
-  --border: oklch(18% 0.01 250);
-  --accent: oklch(50% 0.22 28); /* Muted Oxide Red */
+  --bg: oklch(12% 0.01 250);
+  --surface: oklch(16% 0.01 250);
+  --fg: oklch(98% 0.005 250);
+  --muted: oklch(50% 0.01 250);
+  --border: oklch(22% 0.015 250);
+  --accent: oklch(55% 0.28 28); /* Integrated Oxide Red */
 
-  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", system-ui, sans-serif;
   --font-mono: "SF Mono", "JetBrains Mono", ui-monospace, monospace;
 
-  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
-  --gutter: clamp(1.2rem, 8vw, 6rem);
+  --gutter: clamp(1.5rem, 8vw, 6rem);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -22,28 +22,38 @@ body {
   font-family: var(--font-display);
   line-height: 1.1;
   overflow-x: hidden;
+  scrollbar-width: none;
 }
+body::-webkit-scrollbar { display: none; }
 
-/* Utility */
-.mono {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--muted);
+/* Structural Artifact Ticks & Marks */
+.technical-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
 }
+.reg-mark {
+  position: absolute;
+  width: 12px; height: 12px;
+  border: 1px solid var(--accent);
+  opacity: 0.4;
+}
+.reg-top-left { top: 2rem; left: 2rem; border-right: 0; border-bottom: 0; }
+.reg-bottom-right { bottom: 2rem; right: 2rem; border-left: 0; border-top: 0; }
 
-.label { color: var(--fg); opacity: 0.9; }
+.axis-line {
+  position: absolute;
+  background: var(--accent);
+  opacity: 0.15;
+}
+.axis-y { left: var(--gutter); top: 0; width: 1px; height: 100%; }
+.axis-x-tick { left: calc(var(--gutter) - 4px); width: 9px; height: 1px; }
 
-/* Layout Framework */
-.canvas {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: 1.5rem;
-  width: 100%;
-  max-width: 1800px;
-  margin: 0 auto;
-  padding: 0 var(--gutter);
+.grain {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.04; pointer-events: none; z-index: 9999;
 }
 
 /* Navigation */
@@ -55,352 +65,210 @@ nav {
   justify-content: space-between;
   align-items: center;
   z-index: 1000;
-  mix-blend-mode: difference;
 }
+.logo { font-weight: 900; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; }
+.mono { font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.2em; color: var(--muted); }
 
-.logo { font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
-
-/* Ghost Typography */
-.ghost-type {
-  position: absolute;
-  font-size: 30vw;
-  font-weight: 900;
-  color: var(--fg);
-  opacity: 0.03;
-  pointer-events: none;
-  line-height: 0.8;
-  z-index: 0;
-  white-space: nowrap;
-}
-
-/* Scene 1: Brand Entry */
-.scene-entry {
+/* Scene Transitions */
+.scene {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-bottom: 8vh;
-  position: relative;
-}
-
-.hero-title {
-  grid-column: 1 / 13;
-  font-size: clamp(4rem, 18vw, 18rem);
-  font-weight: 900;
-  letter-spacing: -0.08em;
-  line-height: 0.75;
-  text-transform: uppercase;
-  margin-left: -0.06em;
-  z-index: 2;
-  position: relative;
-}
-
-.entry-visual {
-  position: absolute;
-  top: 15vh;
-  right: 0;
-  width: 55%;
-  height: 60vh;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.entry-visual img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: grayscale(1) contrast(1.2) brightness(0.8);
-  opacity: 0.9;
-}
-
-/* Entry Protocol (Decision Dock) */
-.entry-protocol {
-  grid-column: 1 / 13;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1px;
-  background: var(--border);
-  margin-top: 4rem;
-  border: 1px solid var(--border);
-}
-
-.protocol-tile {
-  background: var(--bg);
-  padding: 2rem 1.5rem;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  transition: background 0.4s var(--ease-editorial);
-}
-
-.protocol-tile:hover {
-  background: var(--surface);
-}
-
-.protocol-tile .label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--fg);
-}
-
-.entry-footer {
-  grid-column: 1 / 13;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-top: 2rem;
-  padding-top: 2rem;
-}
-
-/* Scene 2: The Stance */
-.scene-stance {
-  padding: 30vh 0;
-  position: relative;
-}
-
-.stance-text {
-  grid-column: 1 / 10;
-  font-size: clamp(2rem, 5vw, 5rem);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  z-index: 2;
-}
-
-.stance-sub {
-  grid-column: 7 / 12;
-  margin-top: 5rem;
-  font-size: 1.15rem;
-  line-height: 1.6;
-  color: var(--muted);
-  max-width: 35ch;
-  z-index: 2;
-}
-
-.annotation {
-  position: absolute;
-  font-size: 10px;
-  color: var(--accent);
-  opacity: 0.5;
-  font-family: var(--font-mono);
-}
-
-.stance-material-spread {
-  grid-column: 1 / 7;
-  display: flex;
-  gap: 2rem;
-  margin-top: 4rem;
-}
-
-.material-detail {
-  width: 120px;
-}
-
-.material-detail img {
-  width: 100%;
-  aspect-ratio: 1;
-  object-fit: cover;
-  filter: grayscale(1) brightness(0.7);
-  margin-bottom: 1rem;
-}
-
-/* Scene 3: The Archive */
-.scene-archive {
-  padding: 10vh 0;
-}
-
-.exhibit-header {
-  grid-column: 1 / 13;
-  margin-bottom: 12vh;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 1.5rem;
-}
-
-.exhibit-flow {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 15vh 1.5rem;
-}
-
-.plate { position: relative; }
-.plate-scream { grid-column: 1 / 10; z-index: 2; }
-.plate-whisper-1 { grid-column: 9 / 13; z-index: 3; }
-.plate-whisper-2 { grid-column: 2 / 7; z-index: 1; }
-.plate-anchor { grid-column: 5 / 13; margin-top: 10vh; }
-
-.plate-box {
-  background: var(--surface);
-  overflow: hidden;
   width: 100%;
   position: relative;
-}
-
-.plate-box img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: grayscale(1);
-  display: block;
-  transition: filter 0.8s var(--ease-editorial), transform 2s var(--ease-editorial);
-}
-
-.plate-box::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,0.4) 0%, transparent 40%);
-  opacity: 0.6;
-}
-
-.plate:hover img { filter: grayscale(0.4); transform: scale(1.05); }
-
-.plate-meta {
-  margin-top: 1.2rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.plate-tag {
-  position: absolute;
-  top: 1rem; left: 1rem;
-  background: var(--accent);
-  color: var(--fg);
-  font-size: 9px;
-  padding: 2px 6px;
-  font-family: var(--font-mono);
-}
-
-/* Scene 4: The Ritual */
-.scene-ritual {
-  padding: 25vh 0;
-  border-top: 1px solid var(--border);
-  background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
-}
-
-.ledger {
-  grid-column: 3 / 11;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.ledger-line {
-  position: absolute;
-  left: 0; top: 0; width: 1px; height: 100%;
-  background: var(--border);
-}
-
-.ledger-row {
-  padding: 4rem 0 6rem 4rem;
-  position: relative;
-  border-bottom: 1px solid var(--border);
-}
-
-.ledger-row:last-child { border-bottom: none; }
-
-.ledger-row::before {
-  content: '';
-  position: absolute;
-  left: -4px; top: 4.5rem;
-  width: 9px; height: 9px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-
-.ledger-row .mono { margin-bottom: 2rem; display: block; color: var(--accent); }
-.ledger-row h3 {
-  font-size: 2.2rem;
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  margin-bottom: 1.5rem;
-}
-.ledger-row p { color: var(--muted); line-height: 1.6; max-width: 45ch; font-size: 1.1rem; }
-
-/* Scene 5: Inquiry (The Portal) - Redesigned Dark Finish */
-.scene-inquiry {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--surface);
-  color: var(--fg);
-  border-top: 1px solid var(--border);
-  position: relative;
-  overflow: hidden;
+  padding: 15vh 0 10vh var(--gutter);
 }
 
-.inquiry-content { grid-column: 2 / 12; z-index: 2; }
-.inquiry-title {
-  font-size: clamp(3rem, 14vw, 14rem);
+/* Scene 1: Brand Entry */
+.brand-threshold { justify-content: flex-end; padding-bottom: 5vh; }
+.brand-title {
+  font-size: clamp(4rem, 20vw, 18rem);
+  font-weight: 900;
+  letter-spacing: -0.07em;
+  line-height: 0.78;
+  text-transform: uppercase;
+  z-index: 2;
+  position: relative;
+  margin-left: -0.06em;
+}
+.material-shield {
+  position: absolute;
+  top: 10vh; right: 0;
+  width: clamp(300px, 55vw, 900px);
+  height: 60vh;
+  background: var(--surface);
+  z-index: 1;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+}
+.material-shield img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.1);
+  opacity: 0.8;
+  transition: transform 1.5s var(--ease);
+}
+.brand-meta {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 5rem;
+  padding-top: 2rem;
+  padding-right: var(--gutter);
+  border-top: 1px solid var(--border);
+}
+
+/* Scene 2: The Stance */
+.technical-stance { padding-right: var(--gutter); }
+.stance-body {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+.stance-heading {
+  grid-column: 2 / 11;
+  font-size: clamp(2rem, 6.5vw, 6.5rem);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  position: relative;
+}
+.stance-details {
+  grid-column: 7 / 13;
+  margin-top: 6rem;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--muted);
+  border-left: 1px solid var(--accent);
+  padding-left: 2rem;
+  max-width: 35ch;
+}
+
+/* Scene 3: The Exhibit (Curated Story-Scroll) */
+.exhibit-archive {
+  padding-left: 0;
+  min-height: auto;
+}
+.exhibit-header { padding-left: calc(var(--gutter) + 2rem); margin-bottom: 6rem; }
+
+.story-track {
+  display: flex;
+  gap: 12vw;
+  padding: 0 calc(var(--gutter) + 2rem) 10vh;
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  align-items: center;
+  touch-action: pan-x;
+}
+.story-track::-webkit-scrollbar { display: none; }
+
+.exhibit-plate {
+  flex: 0 0 clamp(320px, 48vw, 750px);
+  scroll-snap-align: start;
+  position: relative;
+  transition: transform 0.8s var(--ease);
+}
+.plate-surface {
+  width: 100%;
+  aspect-ratio: 4/5;
+  background: var(--surface);
+  overflow: hidden;
+  position: relative;
+}
+.plate-surface img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  transition: filter 0.6s var(--ease), transform 1.5s var(--ease);
+}
+.exhibit-plate:hover .plate-surface img { filter: grayscale(0.4); transform: scale(1.05); }
+
+.plate-meta {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.6;
+}
+
+/* Scene 4: The Ritual (Technical Ledger) */
+.protocol-ritual { padding-right: var(--gutter); }
+.ledger-container {
+  margin-left: clamp(2rem, 10vw, 8rem);
+  max-width: 1000px;
+}
+.ledger-item {
+  padding: 5rem 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 2rem;
+  position: relative;
+  transition: background 0.4s var(--ease);
+}
+.ledger-item:hover { background: rgba(255,255,255,0.02); }
+.ledger-num { color: var(--accent); }
+.ledger-title { font-size: clamp(1.8rem, 4vw, 3.2rem); text-transform: uppercase; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
+.ledger-copy { color: var(--muted); font-size: 1.05rem; line-height: 1.7; max-width: 45ch; }
+
+/* Scene 5: The Threshold (Portal) */
+.portal-threshold {
+  min-height: 100vh;
+  background: var(--bg);
+  justify-content: center;
+  padding-right: var(--gutter);
+  border-top: 1px solid var(--border);
+}
+.portal-heading {
+  font-size: clamp(3rem, 15vw, 15rem);
   font-weight: 900;
   letter-spacing: -0.08em;
-  line-height: 0.8;
+  line-height: 0.82;
   text-transform: uppercase;
   margin-bottom: 6rem;
+  position: relative;
+}
+.portal-heading::before {
+  content: 'REF. INQUIRY';
+  position: absolute;
+  top: -2rem; left: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
 }
 
-.inquiry-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 4rem;
-  margin-top: 4rem;
-}
-
-.inquiry-portal {
-  display: flex;
+.portal-action {
+  display: inline-flex;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
   text-decoration: none;
   color: var(--fg);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 1.5rem;
-  transition: gap 0.5s var(--ease-editorial);
+  border-bottom: 3px solid var(--accent);
+  padding-bottom: 1.2rem;
+  transition: gap 0.4s var(--ease);
+  width: fit-content;
 }
+.portal-action:hover { gap: 6rem; }
+.portal-action span { font-size: clamp(1.2rem, 3.5vw, 3rem); font-weight: 700; }
 
-.inquiry-portal:hover { gap: 4rem; border-bottom-color: var(--fg); }
-.inquiry-portal span { font-size: clamp(1.2rem, 2vw, 2rem); font-weight: 700; letter-spacing: -0.02em; }
-
-.inquiry-context {
-  margin-top: 4rem;
-  padding-top: 2rem;
-  border-top: 1px solid var(--border);
-  display: flex;
-  gap: 4rem;
-}
-
-/* Material Polish */
-.grain {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background: url('https://grainy-gradients.vercel.app/noise.svg');
-  opacity: 0.04; pointer-events: none; z-index: 9999;
-}
-
-/* Mobile: Authored Asymmetry */
+/* Mobile Adaptations */
 @media (max-width: 768px) {
-  .canvas { grid-template-columns: 1fr; padding: 0 1.2rem; }
-  .hero-title { font-size: 20vw; line-height: 0.8; }
-  .entry-visual { width: 85%; height: 45vh; top: 10vh; right: -5%; }
-  .entry-protocol { grid-template-columns: 1fr; margin-top: 2rem; }
-  .protocol-tile { padding: 1.5rem; }
-  .stance-text { grid-column: 1; font-size: 2.2rem; }
-  .stance-sub { grid-column: 1; margin-top: 3rem; }
-  .exhibit-flow { display: flex; flex-direction: column; gap: 4rem; }
-  .plate-anchor { margin-top: 0; }
-  .ledger { grid-column: 1; }
-  .ledger-row { padding-left: 2rem; }
-  .inquiry-title { font-size: 14vw; }
-  .inquiry-grid { grid-template-columns: 1fr; gap: 2rem; }
-  .inquiry-portal { gap: 1rem; }
-  .inquiry-context { flex-direction: column; gap: 1rem; }
-  nav { padding: 1.5rem; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-  .reveal-initial { opacity: 1 !important; transform: none !important; }
+  .axis-y { left: 1rem; }
+  .scene { padding-left: 2.5rem; }
+  .brand-title { font-size: 20vw; line-height: 0.8; }
+  .material-shield { width: 90%; height: 45vh; top: 12vh; clip-path: none; opacity: 0.6; }
+  .stance-body { grid-template-columns: 1fr; }
+  .stance-heading { grid-column: 1; font-size: 2.5rem; }
+  .stance-details { grid-column: 1; margin-top: 3rem; padding-left: 1.5rem; }
+  .story-track { gap: 2rem; padding-left: 0; padding-right: var(--gutter); }
+  .exhibit-plate { flex: 0 0 85vw; }
+  .ledger-container { margin-left: 0; }
+  .ledger-item { grid-template-columns: 1fr; gap: 1rem; padding: 3.5rem 0; }
+  .ledger-title { font-size: 1.8rem; }
+  .portal-heading { font-size: 16vw; }
+  .portal-action { gap: 1rem; border-bottom-width: 2px; }
+  .portal-action:hover { gap: 2rem; }
+  nav { padding: 1.5rem 1rem; }
 }
