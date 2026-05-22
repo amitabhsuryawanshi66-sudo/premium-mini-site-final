@@ -72,7 +72,6 @@ export const PRIVATE_LEDGER = [
 export const MATERIAL_PLATES = {
   ink: "https://images.unsplash.com/photo-1598112972545-843f96634320?q=80&w=800", // Dark Ink
   steel: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800", // Steel/Clinical
-  texture: "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=800", // Abstract Texture
 };
 
 // Kept for backward compatibility if needed

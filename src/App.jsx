@@ -1,17 +1,18 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
-import { STUDIO_INFO, EXHIBIT_ARCHIVE, PRIVATE_LEDGER, INTAKE_PROTOCOL } from './data/demoData';
+import { motion, useScroll, useTransform, useInView, useReducedMotion } from 'framer-motion';
+import { STUDIO_INFO, EXHIBIT_ARCHIVE, PRIVATE_LEDGER, INTAKE_PROTOCOL, MATERIAL_PLATES } from './data/demoData';
 import { getWhatsAppUrl } from './lib/whatsapp';
 
 const Reveal = ({ children, className = "", stagger = 0, amount = 0.1 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount });
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+      animate={shouldReduceMotion ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : {})}
       transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: stagger }}
       className={className}
     >
@@ -73,6 +74,17 @@ const SceneStance = () => (
     <Reveal className="stance-text">
       The artist leads the dialogue. Pigment as a <span style={{ color: 'var(--accent)' }}>technical instrument</span>.
     </Reveal>
+
+    <div className="stance-material-spread">
+      <Reveal className="material-detail" stagger={0.4}>
+        <img src={MATERIAL_PLATES.ink} alt="Ink Plate" />
+        <span className="mono">Technical Pigment</span>
+      </Reveal>
+      <Reveal className="material-detail" stagger={0.5}>
+        <img src={MATERIAL_PLATES.steel} alt="Steel Plate" />
+        <span className="mono">Clinical Steel</span>
+      </Reveal>
+    </div>
 
     <Reveal className="stance-sub" stagger={0.2}>
       Obsidian Ink is a sanctuary for style-conscious collectors. We treat tattooing as an anatomical dialogue, mapping every composition to the unique architecture of the body with absolute restraint.

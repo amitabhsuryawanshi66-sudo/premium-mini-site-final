@@ -185,6 +185,25 @@ nav {
   font-family: var(--font-mono);
 }
 
+.stance-material-spread {
+  grid-column: 1 / 7;
+  display: flex;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.material-detail {
+  width: 120px;
+}
+
+.material-detail img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.7);
+  margin-bottom: 1rem;
+}
+
 /* Scene 3: The Archive */
 .scene-archive {
   padding: 10vh 0;
