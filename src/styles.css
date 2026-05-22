@@ -60,7 +60,20 @@ nav {
 
 .logo { font-weight: 800; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; }
 
-/* Scene 1: Brand Entry (Material Allure) */
+/* Ghost Typography */
+.ghost-type {
+  position: absolute;
+  font-size: 30vw;
+  font-weight: 900;
+  color: var(--fg);
+  opacity: 0.03;
+  pointer-events: none;
+  line-height: 0.8;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+/* Scene 1: Brand Entry */
 .scene-entry {
   min-height: 100vh;
   display: flex;
@@ -82,7 +95,6 @@ nav {
   position: relative;
 }
 
-/* Macro-Material Visual Interruption */
 .entry-visual {
   position: absolute;
   top: 15vh;
@@ -100,19 +112,50 @@ nav {
   opacity: 0.9;
 }
 
+/* Entry Protocol (Decision Dock) */
+.entry-protocol {
+  grid-column: 1 / 13;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  margin-top: 4rem;
+  border: 1px solid var(--border);
+}
+
+.protocol-tile {
+  background: var(--bg);
+  padding: 2rem 1.5rem;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: background 0.4s var(--ease-editorial);
+}
+
+.protocol-tile:hover {
+  background: var(--surface);
+}
+
+.protocol-tile .label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
 .entry-footer {
   grid-column: 1 / 13;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  margin-top: 4rem;
+  margin-top: 2rem;
   padding-top: 2rem;
-  border-top: 1px solid var(--border);
 }
 
-/* Scene 2: The Stance (Tension & Staggered Text) */
+/* Scene 2: The Stance */
 .scene-stance {
   padding: 30vh 0;
+  position: relative;
 }
 
 .stance-text {
@@ -121,6 +164,7 @@ nav {
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1;
+  z-index: 2;
 }
 
 .stance-sub {
@@ -130,9 +174,37 @@ nav {
   line-height: 1.6;
   color: var(--muted);
   max-width: 35ch;
+  z-index: 2;
 }
 
-/* Scene 3: The Archive (Vertical Digital Exhibit) */
+.annotation {
+  position: absolute;
+  font-size: 10px;
+  color: var(--accent);
+  opacity: 0.5;
+  font-family: var(--font-mono);
+}
+
+.stance-material-spread {
+  grid-column: 1 / 7;
+  display: flex;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.material-detail {
+  width: 120px;
+}
+
+.material-detail img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.7);
+  margin-bottom: 1rem;
+}
+
+/* Scene 3: The Archive */
 .scene-archive {
   padding: 10vh 0;
 }
@@ -150,7 +222,6 @@ nav {
   gap: 15vh 1.5rem;
 }
 
-/* Screams and Whispers */
 .plate { position: relative; }
 .plate-scream { grid-column: 1 / 10; z-index: 2; }
 .plate-whisper-1 { grid-column: 9 / 13; z-index: 3; }
@@ -161,6 +232,7 @@ nav {
   background: var(--surface);
   overflow: hidden;
   width: 100%;
+  position: relative;
 }
 
 .plate-box img {
@@ -171,19 +243,37 @@ nav {
   transition: filter 0.8s var(--ease-editorial), transform 2s var(--ease-editorial);
 }
 
+.plate-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.4) 0%, transparent 40%);
+  opacity: 0.6;
+}
+
 .plate:hover img { filter: grayscale(0.4); transform: scale(1.05); }
 
 .plate-meta {
   margin-top: 1.2rem;
   display: flex;
   justify-content: space-between;
-  opacity: 0.6;
 }
 
-/* Scene 4: The Ritual (The Private Ledger) */
+.plate-tag {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  background: var(--accent);
+  color: var(--fg);
+  font-size: 9px;
+  padding: 2px 6px;
+  font-family: var(--font-mono);
+}
+
+/* Scene 4: The Ritual */
 .scene-ritual {
   padding: 25vh 0;
   border-top: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
 }
 
 .ledger {
@@ -202,7 +292,10 @@ nav {
 .ledger-row {
   padding: 4rem 0 6rem 4rem;
   position: relative;
+  border-bottom: 1px solid var(--border);
 }
+
+.ledger-row:last-child { border-bottom: none; }
 
 .ledger-row::before {
   content: '';
@@ -221,20 +314,22 @@ nav {
   letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
 }
-.ledger-row p { color: var(--muted); line-height: 1.6; max-width: 40ch; font-size: 1.05rem; }
+.ledger-row p { color: var(--muted); line-height: 1.6; max-width: 45ch; font-size: 1.1rem; }
 
-/* Scene 5: Inquiry (The Portal) */
+/* Scene 5: Inquiry (The Portal) - Redesigned Dark Finish */
 .scene-inquiry {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: var(--fg);
-  color: var(--bg);
-  margin-top: 10vh;
+  background: var(--surface);
+  color: var(--fg);
+  border-top: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
 }
 
-.inquiry-content { grid-column: 1 / 13; }
+.inquiry-content { grid-column: 2 / 12; z-index: 2; }
 .inquiry-title {
   font-size: clamp(3rem, 14vw, 14rem);
   font-weight: 900;
@@ -244,19 +339,34 @@ nav {
   margin-bottom: 6rem;
 }
 
+.inquiry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4rem;
+  margin-top: 4rem;
+}
+
 .inquiry-portal {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: 2rem;
   text-decoration: none;
-  color: var(--bg);
-  border-bottom: 4px solid var(--bg);
-  padding-bottom: 1rem;
+  color: var(--fg);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 1.5rem;
   transition: gap 0.5s var(--ease-editorial);
 }
 
-.inquiry-portal:hover { gap: 6rem; }
-.inquiry-portal span { font-size: clamp(1.5rem, 3vw, 3rem); font-weight: 700; letter-spacing: -0.02em; }
+.inquiry-portal:hover { gap: 4rem; border-bottom-color: var(--fg); }
+.inquiry-portal span { font-size: clamp(1.2rem, 2vw, 2rem); font-weight: 700; letter-spacing: -0.02em; }
+
+.inquiry-context {
+  margin-top: 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 4rem;
+}
 
 /* Material Polish */
 .grain {
@@ -268,16 +378,20 @@ nav {
 /* Mobile: Authored Asymmetry */
 @media (max-width: 768px) {
   .canvas { grid-template-columns: 1fr; padding: 0 1.2rem; }
-  .hero-title { font-size: 22vw; line-height: 0.8; }
+  .hero-title { font-size: 20vw; line-height: 0.8; }
   .entry-visual { width: 85%; height: 45vh; top: 10vh; right: -5%; }
-  .stance-text { grid-column: 1; font-size: 2.4rem; }
+  .entry-protocol { grid-template-columns: 1fr; margin-top: 2rem; }
+  .protocol-tile { padding: 1.5rem; }
+  .stance-text { grid-column: 1; font-size: 2.2rem; }
   .stance-sub { grid-column: 1; margin-top: 3rem; }
-  .exhibit-flow { display: flex; flex-direction: column; gap: 6rem; }
+  .exhibit-flow { display: flex; flex-direction: column; gap: 4rem; }
   .plate-anchor { margin-top: 0; }
   .ledger { grid-column: 1; }
   .ledger-row { padding-left: 2rem; }
-  .inquiry-title { font-size: 15vw; }
-  .inquiry-portal { gap: 1.5rem; border-bottom-width: 2px; }
+  .inquiry-title { font-size: 14vw; }
+  .inquiry-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .inquiry-portal { gap: 1rem; }
+  .inquiry-context { flex-direction: column; gap: 1rem; }
   nav { padding: 1.5rem; }
 }
 
@@ -288,4 +402,5 @@ nav {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+  .reveal-initial { opacity: 1 !important; transform: none !important; }
 }
