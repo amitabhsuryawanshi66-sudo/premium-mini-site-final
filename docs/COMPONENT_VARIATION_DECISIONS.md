@@ -1,22 +1,22 @@
-# Component Variation Decisions - Editorial Reset
+# Component Variation Decisions - Technical Artifact Engine Reset
 
-This document outlines the structural choices made to move Obsidian Ink from a "website" to a "cinematic portfolio."
+This document outlines the structural choices for the experimental 'Technical Artifact' candidate, which moves beyond editorial layouts into an architectural blueprint aesthetic.
 
-## Direction 1: The Editorial Magazine Spread (SELECTED)
-- **Concept**: High-contrast typography and overlapping media containers that behave like a physical portfolio.
-- **Selection Reason**: It is the strongest rejection of template-slop. It creates immediate status authority for a premium studio.
-- **Implementation**: Asymmetric grid, image bleeds, and vertical marginalia.
+## Direction: The Technical Artifact (SELECTED CANDIDATE)
+- **Concept**: A browser-native authored object that feels like a curated technical reference desk or blueprint.
+- **Selection Reason**: It achieves the highest level of 'High Conviction' and 'Technical Authority' for the Obsidian Ink Studio. It breaks away from generic website patterns.
+- **Implementation**:
+    - Structural oxide-red axis lines and registration marks.
+    - Horizontal story-scroll exhibit mapping vertical progress.
+    - Oversized display typography with technical mono marginalia.
 
-## Direction 2: The Studio Narrative Reel (REJECTED)
-- **Concept**: Full-screen horizontal segments.
-- **Rejection Reason**: Higher friction on mobile; feels too "marketing" and less like a "craftsman's studio."
+## Rejected: The Editorial Magazine Spread (PREVIOUSLY SELECTED)
+- **Concept**: Asymmetric grid and overlapping media.
+- **Rejection Reason**: While high-quality, it still felt too much like a premium 'website' rather than a unique 'technical artifact'.
 
-## Direction 3: The Interactive Dashboard (REJECTED)
-- **Concept**: Functional console with persistent sidebars.
-- **Rejection Reason**: Too clinical. Misses the visceral emotion of high-end tattoo art.
-
-## Summary of Key Changes
-- **Hero**: Multi-layer graphic unit where imagery and brand overlap.
-- **Pathways**: Asymmetric strips with 'Protocol' metadata.
-- **Concept Wall**: 'Reference Spread' with physical layering (z-index and rotation).
-- **CTA**: Minimalist 'Private Invitation' screen.
+## Summary of Implementation
+- **Brand Arrival**: Massive display type with a technical material shield.
+- **The Stance**: Clinical anatomical flow description anchored by a structural oxide system.
+- **The Exhibit**: Horizontal record archive simulating a technical drafting session.
+- **The Protocol Ledger**: Clean, clinical grid for trust and conversion.
+- **The Portal Threshold**: High-contrast, dark finish for private inquiry.

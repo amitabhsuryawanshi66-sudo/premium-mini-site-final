@@ -1,41 +1,23 @@
-# Skill to Code Trace
+# Skill to Code Trace: Technical Artifact Engine Reset
 
-This document tracks how the 5 core skills were used as strict rejection gates to transform the Obsidian Ink Studio demo into a pitch-worthy editorial experience.
+This document tracks how the core skills were applied to the experimental 'Technical Artifact' candidate.
 
-## 1. UI UX Pro Max (Flow & Clarity)
-- **Rule**: Obvious conversion hierarchy and decision support.
-- **Issue**: Previous linear stack had high cognitive load; trust was a separate section.
-- **Action**:
-    - Consolidated the Decision Dock into a "Protocol Entry" grid in the Hero.
-    - Embedded "Decision Support" (FOR, SEND, NEXT) directly into pathway strips.
-    - Trust markers (Hospital Grade, Recovery Support) are now marginalia near CTAs.
+## 1. UI UX Pro Max (Blueprint Flow)
+- **Rule**: Conversion points must feel like logical technical checkpoints.
+- **Action**: Transformed the inquiry process into a 'Protocol Ledger' and 'Inquiry Portal', making the decision to contact the studio feel like initiating a professional dialogue.
 
-## 2. Impeccable (Polish & Hierarchy)
-- **Rule**: Typography is UI; 8px grid precision.
-- **Issue**: Standard card layout felt "safe" and template-like.
-- **Action**:
-    - Implemented extreme scale contrasts in Hero brand mark.
-    - Used vertical writing modes for editorial markers.
-    - Applied high-stiffness spring constants (mechanical) to interactions.
+## 2. Impeccable (Architectural Polish)
+- **Rule**: Alignment and hierarchy must be clinical.
+- **Action**: Implemented an axis-based structural system (Oxide Red ticks) and registration marks to anchor all content to a technical grid.
 
-## 3. Taste (Composition & Originality)
-- **Rule**: Reject generic skeletons; editorial imagery as structural material.
-- **Issue**: Images were just background-covers for standard blocks.
-- **Action**:
-    - Created an asymmetric "Magazine Spread" skeleton.
-    - Used image overlaps and bleeds to break the section-block feel.
-    - Updated `demoData.js` with process-focused, high-contrast craft imagery.
+## 3. Taste (The Artifact Rejector)
+- **Rule**: Reject 'premium website' tropes.
+- **Action**: Replaced the vertical hero/card stack with a horizontal 'Record Archive' and blueprint-style typography, moving toward a 'browser-native authored object'.
 
-## 4. Emil Design Engineering (Interaction)
-- **Rule**: Mechanical precision and sequenced storytelling.
-- **Issue**: Decorative fades; floaty motion.
-- **Action**:
-    - Implemented `mechanical` spring constants (260/20) for tactile feedback.
-    - Staggered child entries to guide the user's eye through the editorial grid.
-    - Added `whileTap` scale effects (0.98) to simulate physical button clicks.
+## 4. Emil Design Engineering (Tactile Progress)
+- **Rule**: Motion must feel mechanical.
+- **Action**: Rebuilt horizontal scroll to map precisely to vertical scroll progress, creating a stable and tactile story-scroll experience.
 
-## 5. 21st.dev (Component Variation)
-- **Rule**: Reject weak defaults; compare compositions.
-- **Action**:
-    - Evaluated "Editorial Spread" (Selected) vs. "Dashboard" (Rejected).
-    - Adapted the "Physical Desk" pattern for the Concept Wall, using rotations and asymmetric spans to simulate a real studio spread.
+## 5. 21st.dev (Component Evolution)
+- **Rule**: Compare and adapt.
+- **Action**: Evaluated the 'Technical Artifact' HTML prototype and adapted it into a robust React implementation with stable interaction hooks.
