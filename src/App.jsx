@@ -3,6 +3,27 @@ import { motion, useScroll, useTransform, useInView, useReducedMotion } from 'fr
 import { STUDIO_INFO, EXHIBIT_ARCHIVE, PRIVATE_LEDGER, INTAKE_PROTOCOL } from './data/demoData';
 import { getWhatsAppUrl } from './lib/whatsapp';
 
+const SmartImage = ({ src, alt, className = "", style = {} }) => {
+  const [error, setError] = useState(false);
+  return (
+    <div className={`smart-image-container ${className}`} style={style}>
+      {error ? (
+        <div className="material-fallback">
+          <div className="fallback-grid"></div>
+          <span className="mono">MATERIAL_MISSING</span>
+        </div>
+      ) : (
+        <img
+          src={src}
+          alt={alt}
+          onError={() => setError(true)}
+          loading="lazy"
+        />
+      )}
+    </div>
+  );
+};
+
 const Reveal = ({ children, className = "", stagger = 0, amount = 0.1 }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount });
@@ -35,7 +56,7 @@ const TechnicalOverlay = () => (
 const Nav = () => (
   <nav>
     <div className="logo">Obsidian</div>
-    <div className="mono">Pune — KP Studio 07</div>
+    <div className="mono">Pune — Koregaon Park — Studio 07</div>
   </nav>
 );
 
@@ -47,16 +68,17 @@ const SceneArrival = () => {
   return (
     <section className="scene brand-threshold">
       <div className="material-shield">
-        <motion.img
-          src={STUDIO_INFO.heroImage}
-          alt="Material Tension"
-          style={{ y, scale }}
-        />
+        <motion.div style={{ y, scale, height: '100%' }}>
+          <SmartImage src={STUDIO_INFO.heroImage} alt="Premium Tattoo Process" className="hero-img" />
+        </motion.div>
       </div>
-      <h1 className="brand-title">Obsidian</h1>
+      <div className="hero-content">
+        <span className="annotation">[ Premium Appointment-Only Studio ]</span>
+        <h1 className="brand-title">Obsidian</h1>
+      </div>
       <Reveal className="brand-meta">
-        <div className="mono">Private Access: Studio 07</div>
-        <div className="mono" style={{ color: 'var(--accent)' }}>[ Appointment Only ]</div>
+        <div className="mono">Pune / Studio 07 / India</div>
+        <div className="mono" style={{ color: 'var(--accent)' }}>[ Custom Design • Artist-Led ]</div>
       </Reveal>
     </section>
   );
@@ -66,33 +88,42 @@ const SceneStance = () => (
   <section className="scene technical-stance">
     <div className="stance-body">
       <Reveal className="stance-heading">
-        Technical dialogue. Anatomical flow. <span style={{ color: 'var(--accent)' }}>High-conviction</span> ink.
+        Clinical precision. <span style={{ color: 'var(--accent)' }}>Anatomical dialogue</span>. Selective commissions only.
       </Reveal>
-      <Reveal className="stance-details" stagger={0.2}>
-        Obsidian Ink is an artist-led collective for the style-conscious. We treat pigment as a structural instrument, mapping every line to the architecture of the human body with absolute restraint and clinical precision.
-      </Reveal>
+      <div className="stance-details-grid">
+        <Reveal className="stance-details" stagger={0.2}>
+          Every project begins with a concept audit. We treat pigment as a technical material, mapping custom compositions to the architecture of the body with absolute restraint. No rushed walk-ins.
+        </Reveal>
+        <Reveal className="stance-marks" stagger={0.3}>
+          <div className="mark-fragment">
+            <span className="mono">Studio Access</span>
+            <p>Private Studio, KP</p>
+          </div>
+          <div className="mark-fragment">
+            <span className="mono">Safety Protocol</span>
+            <p>Hospital-Grade Sterile</p>
+          </div>
+        </Reveal>
+      </div>
     </div>
   </section>
 );
 
 const SceneExhibit = () => {
   const trackRef = useRef(null);
-  const { scrollY } = useScroll();
 
-  // Custom horizontal scroll logic based on vertical scroll
   useEffect(() => {
     const handleScroll = () => {
       if (!trackRef.current) return;
       const rect = trackRef.current.parentElement.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
-      // If the section is in view, map vertical scroll to horizontal
       if (rect.top < viewportHeight && rect.bottom > 0) {
         const scrolled = viewportHeight - rect.top;
         const total = viewportHeight + rect.height;
         const percentage = scrolled / total;
         const maxScroll = trackRef.current.scrollWidth - trackRef.current.clientWidth;
-        trackRef.current.scrollLeft = maxScroll * percentage;
+        trackRef.current.scrollLeft = maxScroll * Math.min(1.2, percentage);
       }
     };
 
@@ -103,7 +134,7 @@ const SceneExhibit = () => {
   return (
     <section className="scene exhibit-archive">
       <div className="exhibit-header">
-        <div className="mono">Exhibit 02 — Record Archive</div>
+        <div className="mono">Exhibit 02 — Portfolio / Process Archive</div>
       </div>
       <div className="story-track" ref={trackRef}>
         {EXHIBIT_ARCHIVE.map((item, i) => (
@@ -114,11 +145,15 @@ const SceneExhibit = () => {
             stagger={i * 0.1}
           >
             <div className="plate-surface">
-              <img src={item.image} alt={item.title} />
+              <SmartImage src={item.image} alt={item.title} />
+              <div className="plate-stencil-mark"></div>
             </div>
             <div className="plate-meta">
-              <span className="mono">{item.title}</span>
-              <span className="mono">{item.location || '2024'}</span>
+              <div className="plate-info">
+                <span className="mono">{item.meta}</span>
+                <h3>{item.title}</h3>
+              </div>
+              <span className="mono">{item.location}</span>
             </div>
           </Reveal>
         ))}
@@ -130,9 +165,10 @@ const SceneExhibit = () => {
 const SceneRitual = () => (
   <section className="scene protocol-ritual">
     <div className="ledger-container">
+      <div className="mono" style={{ marginBottom: '4rem', color: 'var(--accent)' }}>[ The Intake Protocol ]</div>
       {PRIVATE_LEDGER.map((item, i) => (
         <Reveal key={i} className="ledger-item" stagger={i * 0.1}>
-          <span className="ledger-num mono">{item.index || `Protocol 0${i+1}`}</span>
+          <span className="ledger-num mono">{item.index}</span>
           <div className="ledger-content">
             <h3 className="ledger-title">{item.title}</h3>
             <p className="ledger-copy">{item.description}</p>
@@ -143,10 +179,37 @@ const SceneRitual = () => (
   </section>
 );
 
+const SceneIntake = () => (
+  <section className="scene scene-intake">
+    <div className="intake-portal">
+      <Reveal>
+        <span className="mono" style={{ color: 'var(--accent)' }}>Technical Intake</span>
+        <h2 className="intake-title">Initiate<br />Dialogue.</h2>
+      </Reveal>
+
+      <div className="intake-grid">
+        {INTAKE_PROTOCOL.map((intent, i) => (
+          <Reveal key={intent.id} stagger={i * 0.1}>
+            <a href={getWhatsAppUrl(intent.message)} className="intake-card">
+              <div className="intake-card-top">
+                <span className="mono">0{i+1}</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+              <span className="intake-card-label">{intent.label}</span>
+            </a>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const SceneThreshold = () => (
   <section className="scene portal-threshold">
     <div className="portal-body">
-      <Reveal className="portal-heading">Initiate the<br />Dialogue.</Reveal>
+      <Reveal className="portal-heading">Secure Your<br />Session.</Reveal>
       <Reveal stagger={0.2}>
         <a href={getWhatsAppUrl(INTAKE_PROTOCOL[0].message)} className="portal-action">
           <span>Start a private concept review</span>
@@ -155,7 +218,10 @@ const SceneThreshold = () => (
           </svg>
         </a>
       </Reveal>
-      <div className="mono" style={{ marginTop: '8rem', opacity: 0.5 }}>Obsidian Ink — Pune / India</div>
+      <div className="footer-meta">
+        <div className="mono">Pune / Studio 07 / India</div>
+        <div className="mono" style={{ opacity: 0.3 }}>By Appointment Only • No Walk-Ins</div>
+      </div>
     </div>
   </section>
 );
@@ -171,6 +237,7 @@ export default function App() {
         <SceneStance />
         <SceneExhibit />
         <SceneRitual />
+        <SceneIntake />
         <SceneThreshold />
       </main>
       <footer style={{ padding: '5rem 0', textAlign: 'center', opacity: 0.3 }}>
