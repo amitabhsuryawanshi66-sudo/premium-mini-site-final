@@ -75,21 +75,32 @@ const SceneArrival = () => {
         <motion.div style={{ y, scale, height: '100%' }}>
           <SmartImage src={STUDIO_INFO.heroImage} alt="Premium Tattoo Process" className="hero-img" />
         </motion.div>
+        <div className="shield-annotation mono">[ ARCHIVE_REF_01 ]</div>
       </div>
       <div className="hero-content">
         <div className="redacted-note-fragment">
-          <span className="mono">[ Artist-Led / Private Studio ]</span>
+          <span className="mono">[ Artist-Led / Private Studio / 18.53°N 73.89°E ]</span>
         </div>
         <h1 className="brand-title">Obsidian</h1>
         <div className="status-plate">
-          <span className="mono">Koregaon Park, Pune</span>
-          <span className="mono">Premium Appointment-Only Studio</span>
+          <div className="plate-item">
+            <span className="mono">Location</span>
+            <p>Koregaon Park, Pune</p>
+          </div>
+          <div className="plate-item">
+            <span className="mono">Access</span>
+            <p>Premium Appointment-Only</p>
+          </div>
         </div>
       </div>
       <Reveal className="brand-meta">
-        <div className="mono">Pune / Studio 07</div>
+        <div className="mono">Archive: Studio 07 / Pune</div>
         <div className="mono" style={{ color: 'var(--accent)' }}>[ Fine-Line • Blackwork • Custom Design ]</div>
       </Reveal>
+      <div className="hero-marginalia mono">
+        <div>PROTOCOL: ENTRY_VALIDATED</div>
+        <div className="registration-tick"></div>
+      </div>
     </section>
   );
 };
@@ -177,10 +188,16 @@ const SceneExhibit = () => {
 const SceneRitual = () => (
   <section className="scene protocol-ritual">
     <div className="ledger-container">
-      <div className="mono" style={{ marginBottom: '4rem', color: 'var(--accent)' }}>[ Professional Intake Ritual ]</div>
+      <div className="mono" style={{ marginBottom: '4rem', color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <span>[ Professional Intake Ritual ]</span>
+        <div style={{ height: '1px', flex: 1, background: 'var(--accent)', opacity: 0.2 }}></div>
+      </div>
       {PRIVATE_LEDGER.map((item, i) => (
         <Reveal key={i} className="ledger-item" stagger={i * 0.1}>
-          <span className="ledger-num mono">{item.index}</span>
+          <div className="ledger-sidebar">
+            <span className="ledger-num mono">{item.index}</span>
+            <div className="registration-tick" style={{ marginTop: '1rem', opacity: 0.3 }}></div>
+          </div>
           <div className="ledger-content">
             <h3 className="ledger-title">{item.title}</h3>
             <p className="ledger-copy">{item.description}</p>

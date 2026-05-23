@@ -135,10 +135,13 @@ nav {
   padding-left: 1rem;
 }
 .status-plate {
-  margin-top: 1.5rem;
+  margin-top: 3rem;
   display: flex;
-  gap: 2rem;
+  gap: 4rem;
 }
+.plate-item span { display: block; margin-bottom: 0.5rem; color: var(--accent); }
+.plate-item p { font-weight: 600; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.05em; }
+
 .brand-title {
   font-size: clamp(4rem, 20vw, 18rem);
   font-weight: 900;
@@ -146,16 +149,22 @@ nav {
   line-height: 0.78;
   text-transform: uppercase;
   margin-left: -0.06em;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 .material-shield {
   position: absolute;
   top: 10vh; right: 0;
   width: clamp(300px, 55vw, 900px);
-  height: 60vh;
+  height: 65vh;
   z-index: 1;
   overflow: hidden;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 15% 100%);
+}
+.shield-annotation {
+  position: absolute;
+  bottom: 2rem; left: 2rem;
+  z-index: 2;
+  opacity: 0.5;
 }
 .brand-meta {
   display: flex;
@@ -165,6 +174,14 @@ nav {
   padding-top: 2rem;
   padding-right: var(--gutter);
   border-top: 1px solid var(--border);
+}
+.hero-marginalia {
+  position: absolute;
+  bottom: 2rem; left: var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0.4;
 }
 
 /* Scene 2: The Stance */
@@ -244,6 +261,10 @@ nav {
   position: relative;
   transition: background 0.4s var(--ease);
 }
+.ledger-sidebar {
+  display: flex;
+  flex-direction: column;
+}
 .ledger-item:hover { background: rgba(255,255,255,0.02); }
 .ledger-num { color: var(--accent); }
 .ledger-title { font-size: clamp(1.8rem, 4vw, 3.2rem); text-transform: uppercase; font-weight: 800; letter-spacing: -0.04em; margin-bottom: 1.5rem; }
@@ -252,7 +273,7 @@ nav {
 /* Scene 5: Intake Portal */
 .scene-intake { padding-right: var(--gutter); background: var(--surface); }
 .intake-portal { grid-column: 1 / 13; }
-.intake-title { font-size: clamp(4rem, 12vw, 12rem); font-weight: 900; line-height: 0.85; text-transform: uppercase; margin: 2rem 0 6rem; overflow-wrap: break-word; }
+.intake-title { font-size: clamp(4rem, 12vw, 12rem); font-weight: 900; line-height: 0.85; text-transform: uppercase; margin: 2rem 0 6rem; overflow-wrap: anywhere; }
 .intake-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -279,7 +300,7 @@ nav {
 
 /* Scene 6: Threshold */
 .portal-threshold { min-height: 100vh; background: var(--bg); justify-content: center; padding-right: var(--gutter); border-top: 1px solid var(--border); }
-.portal-heading { font-size: clamp(3rem, 15vw, 15rem); font-weight: 900; letter-spacing: -0.08em; line-height: 0.82; text-transform: uppercase; margin-bottom: 6rem; position: relative; overflow-wrap: break-word; }
+.portal-heading { font-size: clamp(3rem, 15vw, 15rem); font-weight: 900; letter-spacing: -0.08em; line-height: 0.82; text-transform: uppercase; margin-bottom: 6rem; position: relative; overflow-wrap: anywhere; }
 .portal-action { display: inline-flex; align-items: center; gap: 3rem; text-decoration: none; color: var(--fg); border-bottom: 3px solid var(--accent); padding-bottom: 1.2rem; transition: gap 0.4s var(--ease); width: fit-content; }
 .portal-action:hover { gap: 6rem; }
 .portal-action span { font-size: clamp(1.2rem, 3.5vw, 3rem); font-weight: 700; }
@@ -289,8 +310,10 @@ nav {
 @media (max-width: 768px) {
   .axis-y { left: 1rem; }
   .scene { padding-left: 2.5rem; }
-  .brand-title { font-size: 20vw; line-height: 0.8; }
-  .material-shield { width: 90%; height: 45vh; top: 12vh; clip-path: none; opacity: 0.6; }
+  .brand-title { font-size: 22vw; line-height: 0.8; }
+  .material-shield { width: 100%; height: 50vh; top: 8vh; left: 0; right: auto; clip-path: none; opacity: 0.4; }
+  .status-plate { flex-direction: column; gap: 2rem; margin-top: 2rem; }
+  .hero-marginalia { display: none; }
   .stance-body { grid-template-columns: 1fr; }
   .stance-heading { grid-column: 1; font-size: 2.5rem; }
   .stance-details-grid { grid-column: 1; margin-top: 3rem; }
