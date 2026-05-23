@@ -76,12 +76,19 @@ body::-webkit-scrollbar { display: none; }
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
+  background: linear-gradient(135deg, var(--surface) 0%, var(--bg) 100%);
+  position: relative;
 }
 .fallback-grid {
-  width: 60%; height: 60%;
+  position: absolute;
+  inset: 0;
   background-image: radial-gradient(var(--border) 1px, transparent 1px);
-  background-size: 20px 20px;
+  background-size: 32px 32px;
+  opacity: 0.2;
+}
+.fallback-marks {
+  position: absolute;
+  inset: 0;
   opacity: 0.3;
 }
 
@@ -117,12 +124,15 @@ nav {
   z-index: 2;
   position: relative;
 }
-.annotation {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--accent);
-  margin-bottom: 1rem;
-  display: block;
+.redacted-note-fragment {
+  margin-bottom: 1.5rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+}
+.status-plate {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 2rem;
 }
 .brand-title {
   font-size: clamp(4rem, 20vw, 18rem);
@@ -203,13 +213,12 @@ nav {
 .story-track::-webkit-scrollbar { display: none; }
 .exhibit-plate { flex: 0 0 clamp(320px, 48vw, 750px); scroll-snap-align: start; position: relative; }
 .plate-surface { width: 100%; aspect-ratio: 4/5; position: relative; }
-.plate-stencil-mark {
+.plate-technical-mark {
   position: absolute;
   top: 1rem; right: 1rem;
-  width: 40px; height: 40px;
   border: 1px solid var(--accent);
-  opacity: 0.2;
-  border-radius: 50%;
+  padding: 4px 8px;
+  opacity: 0.4;
   pointer-events: none;
 }
 .exhibit-plate:hover img { filter: grayscale(0.4); transform: scale(1.05); }
@@ -252,11 +261,13 @@ nav {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 4rem;
+  gap: 5rem;
   transition: background 0.4s var(--ease);
 }
 .intake-card:hover { background: var(--surface); }
 .intake-card-top { display: flex; justify-content: space-between; align-items: center; color: var(--accent); }
+.registration-tick { width: 12px; height: 12px; border: 1px solid currentColor; border-radius: 2px; }
+.intake-card-content { display: flex; justify-content: space-between; align-items: center; }
 .intake-card-label { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
 
 /* Scene 6: Threshold */

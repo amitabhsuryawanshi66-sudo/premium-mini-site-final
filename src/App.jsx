@@ -10,7 +10,12 @@ const SmartImage = ({ src, alt, className = "", style = {} }) => {
       {error ? (
         <div className="material-fallback">
           <div className="fallback-grid"></div>
-          <span className="mono">MATERIAL_MISSING</span>
+          <div className="fallback-marks">
+            <div className="axis-line axis-y" style={{ left: '15%' }}></div>
+            <div className="axis-line axis-x-tick" style={{ top: '30%', left: '10%' }}></div>
+            <div className="axis-line axis-x-tick" style={{ top: '70%', left: '10%' }}></div>
+          </div>
+          <span className="mono" style={{ opacity: 0.2 }}>TECHNICAL_SURFACE_01</span>
         </div>
       ) : (
         <img
@@ -73,12 +78,18 @@ const SceneArrival = () => {
         </motion.div>
       </div>
       <div className="hero-content">
-        <span className="annotation">[ Premium Appointment-Only Studio ]</span>
+        <div className="redacted-note-fragment">
+          <span className="mono">[ Artist-Led / Private Studio ]</span>
+        </div>
         <h1 className="brand-title">Obsidian</h1>
+        <div className="status-plate">
+          <span className="mono">Location: Koregaon Park</span>
+          <span className="mono">Status: Appointment Only</span>
+        </div>
       </div>
       <Reveal className="brand-meta">
         <div className="mono">Pune / Studio 07 / India</div>
-        <div className="mono" style={{ color: 'var(--accent)' }}>[ Custom Design • Artist-Led ]</div>
+        <div className="mono" style={{ color: 'var(--accent)' }}>[ Premium Tattoo Design ]</div>
       </Reveal>
     </section>
   );
@@ -88,20 +99,20 @@ const SceneStance = () => (
   <section className="scene technical-stance">
     <div className="stance-body">
       <Reveal className="stance-heading">
-        Clinical precision. <span style={{ color: 'var(--accent)' }}>Anatomical dialogue</span>. Selective commissions only.
+        Custom design. <span style={{ color: 'var(--accent)' }}>Anatomical Mapping</span>. No rushed walk-ins.
       </Reveal>
       <div className="stance-details-grid">
         <Reveal className="stance-details" stagger={0.2}>
-          Every project begins with a concept audit. We treat pigment as a technical material, mapping custom compositions to the architecture of the body with absolute restraint. No rushed walk-ins.
+          Obsidian Ink is a technical pigment studio for style-conscious collectors. Every custom project begins with a mandatory concept audit to map intent to the body's unique architecture.
         </Reveal>
         <Reveal className="stance-marks" stagger={0.3}>
           <div className="mark-fragment">
-            <span className="mono">Studio Access</span>
-            <p>Private Studio, KP</p>
+            <span className="mono">Pricing Logic</span>
+            <p>Size / Detail / Session Time</p>
           </div>
           <div className="mark-fragment">
-            <span className="mono">Safety Protocol</span>
-            <p>Hospital-Grade Sterile</p>
+            <span className="mono">Clinic Standard</span>
+            <p>Hospital-Grade Sterilization</p>
           </div>
         </Reveal>
       </div>
@@ -134,7 +145,7 @@ const SceneExhibit = () => {
   return (
     <section className="scene exhibit-archive">
       <div className="exhibit-header">
-        <div className="mono">Exhibit 02 — Portfolio / Process Archive</div>
+        <div className="mono">Exhibit 02 — Record Archive / Value Study</div>
       </div>
       <div className="story-track" ref={trackRef}>
         {EXHIBIT_ARCHIVE.map((item, i) => (
@@ -146,11 +157,13 @@ const SceneExhibit = () => {
           >
             <div className="plate-surface">
               <SmartImage src={item.image} alt={item.title} />
-              <div className="plate-stencil-mark"></div>
+              <div className="plate-technical-mark">
+                <span className="mono">Study Ref: {i+1}</span>
+              </div>
             </div>
             <div className="plate-meta">
               <div className="plate-info">
-                <span className="mono">{item.meta}</span>
+                <span className="mono" style={{ color: 'var(--accent)' }}>{item.meta}</span>
                 <h3>{item.title}</h3>
               </div>
               <span className="mono">{item.location}</span>
@@ -165,7 +178,7 @@ const SceneExhibit = () => {
 const SceneRitual = () => (
   <section className="scene protocol-ritual">
     <div className="ledger-container">
-      <div className="mono" style={{ marginBottom: '4rem', color: 'var(--accent)' }}>[ The Intake Protocol ]</div>
+      <div className="mono" style={{ marginBottom: '4rem', color: 'var(--accent)' }}>[ Professional Intake Ritual ]</div>
       {PRIVATE_LEDGER.map((item, i) => (
         <Reveal key={i} className="ledger-item" stagger={i * 0.1}>
           <span className="ledger-num mono">{item.index}</span>
@@ -183,7 +196,7 @@ const SceneIntake = () => (
   <section className="scene scene-intake">
     <div className="intake-portal">
       <Reveal>
-        <span className="mono" style={{ color: 'var(--accent)' }}>Technical Intake</span>
+        <span className="mono" style={{ color: 'var(--accent)' }}>Selection Portal</span>
         <h2 className="intake-title">Initiate<br />Dialogue.</h2>
       </Reveal>
 
@@ -193,11 +206,14 @@ const SceneIntake = () => (
             <a href={getWhatsAppUrl(intent.message)} className="intake-card">
               <div className="intake-card-top">
                 <span className="mono">0{i+1}</span>
+                <div className="registration-tick"></div>
+              </div>
+              <div className="intake-card-content">
+                <span className="intake-card-label">{intent.label}</span>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </div>
-              <span className="intake-card-label">{intent.label}</span>
             </a>
           </Reveal>
         ))}
@@ -209,7 +225,7 @@ const SceneIntake = () => (
 const SceneThreshold = () => (
   <section className="scene portal-threshold">
     <div className="portal-body">
-      <Reveal className="portal-heading">Secure Your<br />Session.</Reveal>
+      <Reveal className="portal-heading">Secure Your<br />Consultation.</Reveal>
       <Reveal stagger={0.2}>
         <a href={getWhatsAppUrl(INTAKE_PROTOCOL[0].message)} className="portal-action">
           <span>Start a private concept review</span>
@@ -219,8 +235,8 @@ const SceneThreshold = () => (
         </a>
       </Reveal>
       <div className="footer-meta">
-        <div className="mono">Pune / Studio 07 / India</div>
-        <div className="mono" style={{ opacity: 0.3 }}>By Appointment Only • No Walk-Ins</div>
+        <div className="mono">Pune / Koregaon Park Studio 07</div>
+        <div className="mono" style={{ opacity: 0.3 }}>Technical Dialogue Required • Reference Peer-Review</div>
       </div>
     </div>
   </section>
