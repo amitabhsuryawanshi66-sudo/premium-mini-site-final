@@ -15,7 +15,6 @@ const SmartImage = ({ src, alt, className = "", style = {} }) => {
             <div className="axis-line axis-x-tick" style={{ top: '30%', left: '10%' }}></div>
             <div className="axis-line axis-x-tick" style={{ top: '70%', left: '10%' }}></div>
           </div>
-          <span className="mono" style={{ opacity: 0.2 }}>TECHNICAL_SURFACE_01</span>
         </div>
       ) : (
         <img
@@ -61,7 +60,7 @@ const TechnicalOverlay = () => (
 const Nav = () => (
   <nav>
     <div className="logo">Obsidian</div>
-    <div className="mono">Pune — Koregaon Park — Studio 07</div>
+    <div className="mono nav-meta">Pune — Studio 07</div>
   </nav>
 );
 
@@ -83,13 +82,13 @@ const SceneArrival = () => {
         </div>
         <h1 className="brand-title">Obsidian</h1>
         <div className="status-plate">
-          <span className="mono">Location: Koregaon Park</span>
-          <span className="mono">Status: Appointment Only</span>
+          <span className="mono">Koregaon Park, Pune</span>
+          <span className="mono">Premium Appointment-Only Studio</span>
         </div>
       </div>
       <Reveal className="brand-meta">
-        <div className="mono">Pune / Studio 07 / India</div>
-        <div className="mono" style={{ color: 'var(--accent)' }}>[ Premium Tattoo Design ]</div>
+        <div className="mono">Pune / Studio 07</div>
+        <div className="mono" style={{ color: 'var(--accent)' }}>[ Fine-Line • Blackwork • Custom Design ]</div>
       </Reveal>
     </section>
   );
@@ -99,20 +98,20 @@ const SceneStance = () => (
   <section className="scene technical-stance">
     <div className="stance-body">
       <Reveal className="stance-heading">
-        Custom design. <span style={{ color: 'var(--accent)' }}>Anatomical Mapping</span>. No rushed walk-ins.
+        Custom design. <span style={{ color: 'var(--accent)' }}>Technical Precision</span>. No rushed walk-ins.
       </Reveal>
       <div className="stance-details-grid">
         <Reveal className="stance-details" stagger={0.2}>
-          Obsidian Ink is a technical pigment studio for style-conscious collectors. Every custom project begins with a mandatory concept audit to map intent to the body's unique architecture.
+          Obsidian Ink is a premium tattoo studio in Koregaon Park for style-conscious collectors. Every project begins with a mandatory reference review to ensure technical excellence and custom alignment.
         </Reveal>
         <Reveal className="stance-marks" stagger={0.3}>
           <div className="mark-fragment">
             <span className="mono">Pricing Logic</span>
-            <p>Size / Detail / Session Time</p>
+            <p>Size / Detail / Time</p>
           </div>
           <div className="mark-fragment">
             <span className="mono">Clinic Standard</span>
-            <p>Hospital-Grade Sterilization</p>
+            <p>Hospital-Grade Sterile</p>
           </div>
         </Reveal>
       </div>
@@ -125,7 +124,7 @@ const SceneExhibit = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!trackRef.current) return;
+      if (!trackRef.current || window.innerWidth < 768) return;
       const rect = trackRef.current.parentElement.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
@@ -145,20 +144,20 @@ const SceneExhibit = () => {
   return (
     <section className="scene exhibit-archive">
       <div className="exhibit-header">
-        <div className="mono">Exhibit 02 — Record Archive / Value Study</div>
+        <div className="mono">Exhibit 02 — Portfolio / Process Archive</div>
       </div>
       <div className="story-track" ref={trackRef}>
         {EXHIBIT_ARCHIVE.map((item, i) => (
           <Reveal
             key={i}
             className="exhibit-plate"
-            style={{ marginTop: i % 2 === 1 ? '15vh' : i === 3 ? '-10vh' : '0' }}
+            style={{ marginTop: (i % 2 === 1 && window.innerWidth >= 768) ? '15vh' : (i === 3 && window.innerWidth >= 768) ? '-10vh' : '0' }}
             stagger={i * 0.1}
           >
             <div className="plate-surface">
               <SmartImage src={item.image} alt={item.title} />
               <div className="plate-technical-mark">
-                <span className="mono">Study Ref: {i+1}</span>
+                <span className="mono">Ref: {i+1}</span>
               </div>
             </div>
             <div className="plate-meta">
@@ -235,8 +234,8 @@ const SceneThreshold = () => (
         </a>
       </Reveal>
       <div className="footer-meta">
-        <div className="mono">Pune / Koregaon Park Studio 07</div>
-        <div className="mono" style={{ opacity: 0.3 }}>Technical Dialogue Required • Reference Peer-Review</div>
+        <div className="mono">Pune / Koregaon Park</div>
+        <div className="mono" style={{ opacity: 0.3 }}>Technical Dialogue Required</div>
       </div>
     </div>
   </section>
