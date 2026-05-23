@@ -1,22 +1,24 @@
-# Component Variation Decisions - Technical Artifact Engine Reset
+# Component Variation Decisions: Obsidian Ink
 
-This document outlines the structural choices for the experimental 'Technical Artifact' candidate, which moves beyond editorial layouts into an architectural blueprint aesthetic.
+## Considered Directions
 
-## Direction: The Technical Artifact (SELECTED CANDIDATE)
-- **Concept**: A browser-native authored object that feels like a curated technical reference desk or blueprint.
-- **Selection Reason**: It achieves the highest level of 'High Conviction' and 'Technical Authority' for the Obsidian Ink Studio. It breaks away from generic website patterns.
-- **Implementation**:
-    - Structural oxide-red axis lines and registration marks.
-    - Horizontal story-scroll exhibit mapping vertical progress.
-    - Oversized display typography with technical mono marginalia.
+### 1. The "Minimal Glass" Direction (Rejected)
+- **Concept:** Lean into ultra-refined transparency, blur, and thin borders.
+- **Why Rejected:** Still felt too much like a "SaaS dashboard" or a tech template. Failed the **Taste Skill** gate for a premium tattoo studio.
+- **Visual Failure:** No physical weight; lacked the "ink and skin" grit required for a tattoo brand.
 
-## Rejected: The Editorial Magazine Spread (PREVIOUSLY SELECTED)
-- **Concept**: Asymmetric grid and overlapping media.
-- **Rejection Reason**: While high-quality, it still felt too much like a premium 'website' rather than a unique 'technical artifact'.
+### 2. The "Dark Editorial" Direction (Rejected)
+- **Concept:** Standard high-end fashion layout with large images and serif typography.
+- **Why Rejected:** Felt like a portfolio for a photographer rather than a tattoo studio. Lacked technical authority.
+- **Visual Failure:** Too "soft"; didn't communicate the precision/sterility of the Obsidian process.
 
-## Summary of Implementation
-- **Brand Arrival**: Massive display type with a technical material shield.
-- **The Stance**: Clinical anatomical flow description anchored by a structural oxide system.
-- **The Exhibit**: Horizontal record archive simulating a technical drafting session.
-- **The Protocol Ledger**: Clean, clinical grid for trust and conversion.
-- **The Portal Threshold**: High-contrast, dark finish for private inquiry.
+### 3. The "Technical Artifact" Direction (Selected)
+- **Concept:** A "blueprint" or "folder" aesthetic. UI elements look like physical artifacts (reference slips, placement maps, material plates) on a studio table.
+- **Why Selected:** Immediately establishes technical authority and a "concierge" feeling. It feels authored and bespoke—the core of the Obsidian brand.
+- **Winning Elements:**
+    - SVG-driven `PlacementMap` for anatomical context.
+    - `ReferenceSlip` for appointment validation.
+    - Grayscale `MaterialPlate` for process imagery.
+
+## Implemented Variation
+The **Technical Artifact Engine** was chosen as the primary design system. It uses a combination of high-contrast typography, procedural noise, and clinical layout structures to ensure the site feels "pitch-worthy" within 3 seconds.

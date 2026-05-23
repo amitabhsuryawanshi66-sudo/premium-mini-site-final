@@ -1,23 +1,15 @@
-# Skill to Code Trace: Technical Artifact Engine Reset
+# Skill-to-Code Trace: Obsidian Ink Visual Pass
 
-This document tracks how the core skills were applied to the experimental 'Technical Artifact' candidate.
+| Skill | Rule Extracted | Issue Found | File Changed | Decision Made |
+| :--- | :--- | :--- | :--- | :--- |
+| **Taste** | Reject "safe black-card UI" and "template-marketplace" designs. | Site felt like a generic tech template with floating cards on black. | `src/App.jsx`, `src/styles.css` | Pivoted to a **Component-Driven Artifact Engine**. Replaced cards with technical objects (slips, maps, plates). |
+| **Impeccable** | Reject flat typography and weak hierarchy. | Brand title lacked impact; spacing was too uniform. | `src/styles.css`, `src/App.jsx` | Implemented ultra-oversized display type (`clamp(5rem, 20vw, 18rem)`) and asymmetric bipartite layouts. |
+| **Emil Design** | Use tactile motion for intentionality, not just decorative fades. | Previous motion was safe fade-ins only. | `src/App.jsx`, `src/lib/motion.js` | Added spring-based parallax to `MaterialPlate` and layout-triggered `ReferenceSlip` transforms. |
+| **UI UX Pro Max** | 5-second clarity: location, premium status, and immediate action. | "Appointment-only" and "Koregaon Park" were buried in small text. | `src/App.jsx` | Elevated status markers to the Hero section via the `status-plate` artifact. |
+| **21st.dev** | Compare directions and implement the strongest component variation. | Generic list-based CTA dock felt "app-like" rather than "studio-like". | `src/App.jsx` | Implemented `IntakeProtocolPanel`, a clinical grid of 5 technical intents with hover artifacts. |
 
-## 1. UI UX Pro Max (Blueprint Flow)
-- **Rule**: Conversion points must feel like logical technical checkpoints.
-- **Action**: Transformed the inquiry process into a 5-intent 'Intake Protocol' portal (Idea, Availability, Quote, Consultation, Safety), making the decision to contact the studio feel like initiating a professional dialogue.
-
-## 2. Impeccable (Architectural Polish)
-- **Rule**: Alignment and hierarchy must be clinical.
-- **Action**: Implemented an axis-based structural system (Oxide Red ticks) and registration marks to anchor all content to a technical grid. Used aggressive clamping for zero horizontal overflow on mobile (360px-412px).
-
-## 3. Taste (The Artifact Rejector)
-- **Rule**: Reject 'premium website' tropes.
-- **Action**: Replaced the vertical hero/card stack with a horizontal 'Record Archive' (on desktop) and blueprint-style typography. Ensured tattoo-service clarity (Fine-line, Blackwork) is immediately visible.
-
-## 4. Emil Design Engineering (Tactile Progress)
-- **Rule**: Motion must feel mechanical.
-- **Action**: Rebuilt horizontal scroll to map precisely to vertical scroll progress, creating a stable and tactile story-scroll experience.
-
-## 5. 21st.dev (Component Evolution)
-- **Rule**: Compare and adapt.
-- **Action**: Evaluated the 'Technical Artifact' HTML prototype and adapted it into a robust React implementation with stable interaction hooks.
+## Visual Changes Summary
+- **Hero:** Asymmetric tripartite layout with `MaterialShield` and oversized title.
+- **Consultation:** Replaced generic cards with `ArchiveStudy` units featuring sticky horizontal scroll on desktop.
+- **Intake:** Converted the glass dock into a technical protocol grid with 5 WhatsApp intents.
+- **Tactile Details:** Added procedural noise, registration marks, and "approved" stamps to UI elements.

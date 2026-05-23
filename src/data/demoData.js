@@ -8,41 +8,69 @@ export const STUDIO_INFO = {
 };
 
 export const INTAKE_PROTOCOL = [
-  { id: "IDEA", label: "Share Idea / Reference", message: "Hi Obsidian Ink, I have a custom tattoo concept and reference images I'd like to discuss." },
-  { id: "AVAILABILITY", label: "Check Availability", message: "Hi Obsidian Ink, I'd like to check your current appointment availability for a session." },
-  { id: "PRICE", label: "Request Price Quote", message: "Hi Obsidian Ink, I'd like to request a price quote. I understand quotes are provided after a reference review." },
-  { id: "REFERENCE", label: "Book Consultation", message: "Hi Obsidian Ink, I'd like to book an artist-led consultation for my custom placement." },
-  { id: "SAFETY", label: "Safety / Aftercare Query", message: "Hi Obsidian Ink, I have a question regarding your clinical sterilization or aftercare protocol." },
+  {
+    id: "IDEA",
+    label: "Send My Tattoo Idea",
+    message: "Hi Obsidian Ink, I have a custom tattoo concept I'd like to discuss. Are you open for new projects?"
+  },
+  {
+    id: "AVAILABILITY",
+    label: "Check Availability",
+    message: "Hi Obsidian Ink, I'd like to check your current appointment availability for a session in Koregaon Park."
+  },
+  {
+    id: "PRICE",
+    label: "Ask Fine-Line Price",
+    message: "Hi Obsidian Ink, I'm interested in a fine-line piece. Could you guide me on your pricing logic for custom work?"
+  },
+  {
+    id: "REFERENCE",
+    label: "Share Reference",
+    message: "Hi Obsidian Ink, I have some reference images for a custom design. Can I share them for a technical review?"
+  },
+  {
+    id: "COVERUP",
+    label: "Ask Cover-Up Question",
+    message: "Hi Obsidian Ink, I have an existing tattoo I'd like to cover or rework. Do you handle technical cover-up projects?"
+  },
 ];
 
 export const EXHIBIT_ARCHIVE = [
   {
     title: "Precision Fine-Line",
-    location: "Technical Study",
     image: "https://images.unsplash.com/photo-1612459284970-e8f027596582?q=80&w=1200",
-    type: "scream",
-    meta: "Single Needle / Anatomical Flow"
+    meta: "Result / Anatomical Flow",
+    aspect: "4/5"
+  },
+  {
+    title: "Technical Stencil",
+    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800",
+    meta: "Process / Blueprinting",
+    aspect: "1/1"
   },
   {
     title: "Blackwork Contrast",
-    location: "Custom Placement",
     image: "https://images.unsplash.com/photo-1590246814883-57856322335b?q=80&w=800",
-    type: "whisper-1",
-    meta: "Technical Pigment / Graphite"
+    meta: "Result / Pigment Depth",
+    aspect: "3/4"
   },
   {
-    title: "Process Archive",
-    location: "Stencil Map",
-    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800",
-    type: "whisper-2",
-    meta: "Reference to Stencil"
+    title: "Clinical Environment",
+    image: "https://images.unsplash.com/photo-1562967914-6cbb685c2917?q=80&w=800",
+    meta: "Trust / Studio Standard",
+    aspect: "16/9"
   },
   {
-    title: "Healed Result",
-    location: "Long-term Trust",
-    image: "https://images.unsplash.com/photo-1550537687-c91072c4792d?q=80&w=1200",
-    type: "anchor",
-    meta: "Pigment Retention Check"
+    title: "Custom Placement",
+    image: "https://images.unsplash.com/photo-1560707303-4e980ce876ad?q=80&w=800",
+    meta: "Result / Body Architecture",
+    aspect: "4/5"
+  },
+  {
+    title: "Ink & Craft",
+    image: "https://images.unsplash.com/photo-1598112972545-843f96634320?q=80&w=800",
+    meta: "Process / Material Study",
+    aspect: "1/1"
   }
 ];
 
@@ -68,11 +96,6 @@ export const PRIVATE_LEDGER = [
     description: "Focused artist-led execution of your custom fine-line or blackwork design. Appointment-only access ensures absolute focus on your long-term healing result."
   }
 ];
-
-export const MATERIAL_PLATES = {
-  ink: "https://images.unsplash.com/photo-1598112972545-843f96634320?q=80&w=800", // Dark Ink
-  steel: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=800", // Clinical Steel
-};
 
 export const CONSULTATION_OPTIONS = INTAKE_PROTOCOL;
 export const REASSURANCES = PRIVATE_LEDGER;
