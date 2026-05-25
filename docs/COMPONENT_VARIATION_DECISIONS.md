@@ -22,12 +22,12 @@
 
 ## Asset Priority Strategy for Future Mini-Sites
 To ensure pitch-worthy reliability in generated sites, follow this visual priority:
-1. **Client-Provided Images:** High-authority primary source.
+1. **Client-Provided Photos:** High-authority primary source.
 2. **Generated Bespoke Visuals:** Technical artifacts or AI-generated brand imagery.
-3. **Licensed Free Stock:** Only if 100% semantically aligned with the service claim.
-4. **Designed Semantic Artifact Plates:** Deterministic fallbacks that guarantee visual quality and brand alignment (e.g., designed SVG stencil plates).
+3. **Properly Licensed Stock Images:** Only if 100% semantically aligned with the service claim.
+4. **Deterministic Semantic Artifact Visuals:** Guaranteed visual quality and brand alignment (e.g., designed SVG stencil plates).
 
-**Rule:** Never use random stock imagery for keyword matching. If no perfect semantic match exists, default to an `artifact` or `hybrid` plate.
+**Rule:** Never use random stock imagery just because a keyword matches. Every visual must pass an asset-to-message alignment check. If no perfect semantic match exists, default to a deterministic artifact visual.
 
 ## Implemented Variation
 The **Technical Artifact Engine** was chosen as the primary design system. It uses a combination of high-contrast typography, procedural noise, and clinical layout structures to ensure the site feels "pitch-worthy" within 3 seconds.

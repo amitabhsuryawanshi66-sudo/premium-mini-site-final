@@ -3,87 +3,87 @@ import { motion, useScroll, useTransform, useInView, useReducedMotion } from 'fr
 import { STUDIO_INFO, EXHIBIT_ARCHIVE, PRIVATE_LEDGER, INTAKE_PROTOCOL } from './data/demoData';
 import { getWhatsAppUrl } from './lib/whatsapp';
 
-const MaterialPlate = ({ src, alt, type = "ink", mode = "photo", className = "", style = {} }) => {
+const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", className = "", style = {} }) => {
   const [error, setError] = useState(false);
   const isArtifact = mode === "artifact" || !src;
   const isHybrid = mode === "hybrid" && src;
 
   const getDesignedPattern = () => {
-    switch(type) {
-      case "stencil":
-        return (
-          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <defs>
-              <pattern id="stencil-grid-v2" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.3"/>
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="#151515" />
-            <rect width="100" height="100" fill="url(#stencil-grid-v2)" />
-            <path d="M 10 10 L 90 90 M 90 10 L 10 90" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
-            <circle cx="50" cy="50" r="35" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeDasharray="2,2" opacity="0.4" />
-            <path d="M 20 50 Q 50 20 80 50 T 20 50" fill="none" stroke="var(--accent)" strokeWidth="0.8" strokeDasharray="1,1" opacity="0.6" />
-            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3.5" fontWeight="900" opacity="0.8">STENCIL_PROTOCOL_v.09</text>
-            <rect x="5" y="5" width="20" height="10" fill="var(--accent)" opacity="0.1" />
-            <text x="7" y="12" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="2" opacity="0.6">TRANS_REF:001</text>
-          </svg>
-        );
-      case "skin":
-      case "fine-line":
-        return (
-          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <rect width="100" height="100" fill="#121212" />
-            <filter id="dermal-noise">
-              <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-              <feColorMatrix type="saturate" values="0" />
-            </filter>
-            <rect width="100" height="100" filter="url(#dermal-noise)" opacity="0.1" />
-            <path d="M 10 50 L 90 50 M 50 10 L 50 90" stroke="var(--accent)" strokeWidth="0.05" opacity="0.3" />
-            <path d="M 30 30 L 70 70 M 70 30 L 30 70" stroke="var(--accent)" strokeWidth="0.05" opacity="0.3" />
-            <text x="5" y="10" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.7">DERMAL_PRECISION_MAPPING</text>
-            <circle cx="50" cy="50" r="1" fill="var(--accent)" />
-          </svg>
-        );
-      case "clinical":
-        return (
-          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <rect width="100" height="100" fill="#0A0A0A" />
-            <defs>
-              <pattern id="clinic-cross" width="8" height="8" patternUnits="userSpaceOnUse">
-                <path d="M 4 2 L 4 6 M 2 4 L 6 4" stroke="var(--accent)" strokeWidth="0.2" opacity="0.2" />
-              </pattern>
-            </defs>
-            <rect width="100" height="100" fill="url(#clinic-cross)" />
-            <rect x="10" y="10" width="80" height="80" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.4" />
-            <path d="M 10 10 L 25 10 M 10 10 L 10 25" stroke="var(--accent)" strokeWidth="0.5" />
-            <path d="M 75 90 L 90 90 M 90 75 L 90 90" stroke="var(--accent)" strokeWidth="0.5" />
-            <text x="50" y="55" textAnchor="middle" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="4" fontWeight="900" opacity="0.9">STERILE_ENVIRONMENT_ACTIVE</text>
-            <text x="50" y="62" textAnchor="middle" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="2" opacity="0.5">PROTOCOL:HOSPITAL_GRADE_STATION_07</text>
-          </svg>
-        );
-      case "placement":
+    switch(variant) {
+      case "fineLine":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect width="100" height="100" fill="#0D0D0D" />
-            <path d="M 50 0 L 50 100 M 0 50 L 100 50" stroke="var(--accent)" strokeWidth="0.1" opacity="0.3" />
-            <circle cx="50" cy="50" r="40" fill="none" stroke="var(--accent)" strokeWidth="0.2" strokeDasharray="2,4" opacity="0.5" />
-            <rect x="35" y="35" width="30" height="30" fill="none" stroke="var(--accent)" strokeWidth="0.5" opacity="0.8" />
-            <path d="M 35 35 L 25 25 M 65 35 L 75 25 M 35 65 L 25 75 M 65 65 L 75 75" stroke="var(--accent)" strokeWidth="0.5" opacity="0.8" />
-            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="4" fontWeight="900">BODY_MAPPING_PROTOCOL</text>
-            <text x="5" y="10" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="2" opacity="0.6">AREA:CUSTOM_ARCHITECTURE</text>
+            <filter id="fine-line-noise">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch" />
+              <feColorMatrix type="saturate" values="0" />
+            </filter>
+            <rect width="100" height="100" filter="url(#fine-line-noise)" opacity="0.05" />
+            <path d="M 10 20 Q 50 10 90 20 T 10 40 T 90 60 T 10 80" fill="none" stroke="var(--accent)" strokeWidth="0.05" opacity="0.4" />
+            <path d="M 50 0 L 50 100 M 0 50 L 100 50" stroke="var(--accent)" strokeWidth="0.02" opacity="0.2" />
+            <text x="5" y="10" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.7">DERMAL_PRECISION_V07</text>
+            <circle cx="50" cy="50" r="1.5" fill="var(--accent)" opacity="0.5" />
+            <path d="M 30 30 L 70 70 M 70 30 L 30 70" stroke="var(--accent)" strokeWidth="0.05" opacity="0.3" />
+          </svg>
+        );
+      case "stencil":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#1A1A1A" />
+            <defs>
+              <pattern id="stencil-blueprint" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2"/>
+              </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#stencil-blueprint)" />
+            <path d="M 20 20 L 80 20 L 80 80 L 20 80 Z" fill="none" stroke="var(--accent)" strokeWidth="0.2" strokeDasharray="2,2" opacity="0.4" />
+            <path d="M 50 10 L 50 90 M 10 50 L 90 50" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
+            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="4" fontWeight="900" opacity="0.9">STENCIL_TRANSFER_AUTH</text>
+            <rect x="5" y="5" width="25" height="8" fill="var(--accent)" opacity="0.15" />
+            <text x="7" y="11" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="2" opacity="0.8">BATCH_REF: 772/XP</text>
           </svg>
         );
       case "blackwork":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect width="100" height="100" fill="#050505" />
-            <rect x="0" y="30" width="100" height="40" fill="var(--accent)" opacity="0.15" />
-            <path d="M 0 30 L 100 30 M 0 70 L 100 70" stroke="var(--accent)" strokeWidth="0.2" opacity="0.5" />
-            <text x="5" y="52" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="5" fontWeight="900" letterSpacing="2">PIGMENT_DEPTH_MAX</text>
-            <rect x="80" y="10" width="10" height="80" fill="var(--accent)" opacity="0.2" />
+            <rect x="10" y="20" width="30" height="60" fill="var(--accent)" opacity="0.2" />
+            <rect x="60" y="40" width="30" height="40" fill="var(--accent)" opacity="0.3" />
+            <path d="M 0 0 L 100 100 M 100 0 L 0 100" stroke="var(--accent)" strokeWidth="0.05" opacity="0.1" />
+            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="4" fontWeight="900">BLACK_PIGMENT_PROTOCOL</text>
+            <text x="5" y="10" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="2" opacity="0.5">DENSITY_CHECK: 100%</text>
           </svg>
         );
-      default: // ink
+      case "clinicalTattoo":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#0A0A0A" />
+            <defs>
+              <pattern id="clinical-hex" width="6" height="6.9" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
+                <path d="M 3 0 L 6 1.7 L 6 5.2 L 3 6.9 L 0 5.2 L 0 1.7 Z" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.1" />
+              </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#clinical-hex)" />
+            <circle cx="50" cy="50" r="40" fill="none" stroke="var(--accent)" strokeWidth="0.05" opacity="0.3" />
+            <path d="M 45 50 L 55 50 M 50 45 L 50 55" stroke="var(--accent)" strokeWidth="0.5" />
+            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3.5" fontWeight="900" opacity="0.8">STERILE_UNIT_ACTIVE</text>
+            <rect x="10" y="10" width="12" height="12" fill="var(--accent)" opacity="0.1" />
+            <text x="12" y="18" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.5" opacity="0.6">STATION_07</text>
+          </svg>
+        );
+      case "customPlacement":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#0E0E0E" />
+            <path d="M 50 10 L 50 90 M 10 50 L 90 50" stroke="var(--accent)" strokeWidth="0.05" opacity="0.3" />
+            <circle cx="50" cy="50" r="30" fill="none" stroke="var(--accent)" strokeWidth="0.1" strokeDasharray="1,2" opacity="0.5" />
+            <rect x="30" y="30" width="40" height="40" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.4" />
+            <path d="M 30 30 L 20 20 M 70 30 L 80 20 M 30 70 L 20 80 M 70 70 L 80 80" stroke="var(--accent)" strokeWidth="0.5" opacity="0.6" />
+            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="4" fontWeight="900">PLACEMENT_LOGIC_V2</text>
+            <text x="5" y="10" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="2" opacity="0.6">ANATOMICAL_MAP: 01A</text>
+          </svg>
+        );
+      case "inkCraft":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect width="100" height="100" fill="#0D0D0D" />
@@ -315,10 +315,10 @@ const ArchiveStudy = ({ item, index }) => (
         src={item.image}
         alt={item.title}
         mode={item.visualMode || "photo"}
-        type={item.fallbackType || (index % 2 === 0 ? "skin" : "stencil")}
+        variant={item.visualVariant || "inkCraft"}
       />
       <div className="study-annotation mono">STUDY_{String(index + 1).padStart(2, '0')}</div>
-      {item.visualMode === "artifact" && item.fallbackType === "stencil" && <PlacementMap area="TECHNICAL_STENCIL" />}
+      {item.visualVariant === "stencil" && <PlacementMap area="TECHNICAL_STENCIL" />}
     </div>
     <div className="study-meta">
       <div className="study-info">
@@ -344,13 +344,19 @@ const SceneExhibit = () => {
       const rect = containerRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
-      if (rect.top < viewportHeight && rect.bottom > 0) {
+      // We start mapping when the container hits the top of the viewport
+      // and end when the bottom of the container hits the bottom of the viewport.
+      if (rect.top <= 0 && rect.bottom >= viewportHeight) {
         const totalScrollableDist = rect.height - viewportHeight;
         const currentScrollPos = -rect.top;
         const percentage = Math.max(0, Math.min(1, currentScrollPos / totalScrollableDist));
 
         const maxScroll = trackRef.current.scrollWidth - trackRef.current.clientWidth;
         trackRef.current.scrollLeft = maxScroll * percentage;
+      } else if (rect.top > 0) {
+        trackRef.current.scrollLeft = 0;
+      } else if (rect.bottom < viewportHeight) {
+        trackRef.current.scrollLeft = trackRef.current.scrollWidth - trackRef.current.clientWidth;
       }
     };
 

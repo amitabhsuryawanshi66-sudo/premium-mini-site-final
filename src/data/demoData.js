@@ -42,9 +42,8 @@ export const EXHIBIT_ARCHIVE = [
     meta: "Result / Dermal Precision",
     aspect: "4/5",
     visualMode: "hybrid",
-    fallbackType: "skin",
+    visualVariant: "fineLine",
     serviceValue: "Single-needle excellence for delicate anatomical flow.",
-    imageSource: "Unsplash / @lucas_lenzi"
   },
   {
     title: "Technical Stencil",
@@ -52,7 +51,7 @@ export const EXHIBIT_ARCHIVE = [
     meta: "Process / Blueprinting",
     aspect: "1/1",
     visualMode: "artifact",
-    fallbackType: "stencil",
+    visualVariant: "stencil",
     serviceValue: "Rigorous placement planning and reference-to-skin transfer.",
   },
   {
@@ -61,9 +60,8 @@ export const EXHIBIT_ARCHIVE = [
     meta: "Result / Pigment Depth",
     aspect: "3/4",
     visualMode: "hybrid",
-    fallbackType: "blackwork",
+    visualVariant: "blackwork",
     serviceValue: "High-saturation ink work with stark value contrast.",
-    imageSource: "Unsplash / @p_f_p"
   },
   {
     title: "Clinical Environment",
@@ -71,7 +69,7 @@ export const EXHIBIT_ARCHIVE = [
     meta: "Trust / Studio Standard",
     aspect: "16/9",
     visualMode: "artifact",
-    fallbackType: "clinical",
+    visualVariant: "clinicalTattoo",
     serviceValue: "Hospital-grade sterilization and a private focused environment.",
   },
   {
@@ -80,7 +78,7 @@ export const EXHIBIT_ARCHIVE = [
     meta: "Result / Body Architecture",
     aspect: "4/5",
     visualMode: "artifact",
-    fallbackType: "placement",
+    visualVariant: "customPlacement",
     serviceValue: "Bespoke design logic tailored to your specific anatomy.",
   },
   {
@@ -89,9 +87,8 @@ export const EXHIBIT_ARCHIVE = [
     meta: "Process / Material Study",
     aspect: "1/1",
     visualMode: "hybrid",
-    fallbackType: "ink",
+    visualVariant: "inkCraft",
     serviceValue: "Premium vegan pigments and precision tool calibration.",
-    imageSource: "Unsplash / @jake_browne"
   }
 ];
 
