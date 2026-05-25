@@ -3,7 +3,7 @@ export const STUDIO_INFO = {
   location: "Koregaon Park, Pune",
   niche: "Premium Appointment-Only Tattoo Studio",
   tagline: "Custom Tattoo Design • Fine-Line • Blackwork • Artist-Led",
-  heroImage: "https://images.unsplash.com/photo-1612459284970-e8f027596582?q=80&w=1600", // Detail/Result
+  heroImage: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1600", // Detail/Result
   secondaryHeroImage: "https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=800", // Studio/Tools
 };
 
@@ -38,39 +38,57 @@ export const INTAKE_PROTOCOL = [
 export const EXHIBIT_ARCHIVE = [
   {
     title: "Precision Fine-Line",
-    image: "https://images.unsplash.com/photo-1612459284970-e8f027596582?q=80&w=1200",
-    meta: "Result / Anatomical Flow",
-    aspect: "4/5"
+    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1200",
+    meta: "Result / Dermal Precision",
+    aspect: "4/5",
+    fallbackType: "skin",
+    serviceValue: "Single-needle excellence for delicate anatomical flow.",
+    imageSource: "Unsplash / @lucas_lenzi"
   },
   {
     title: "Technical Stencil",
-    image: "https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=1200",
     meta: "Process / Blueprinting",
-    aspect: "1/1"
+    aspect: "1/1",
+    fallbackType: "stencil",
+    serviceValue: "Rigorous placement planning and reference-to-skin transfer.",
+    imageSource: "Unsplash / @hennary"
   },
   {
     title: "Blackwork Contrast",
-    image: "https://images.unsplash.com/photo-1590247813693-5541d1c609fd?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1200",
     meta: "Result / Pigment Depth",
-    aspect: "3/4"
+    aspect: "3/4",
+    fallbackType: "skin",
+    serviceValue: "High-saturation ink work with stark value contrast.",
+    imageSource: "Unsplash / @p_f_p"
   },
   {
     title: "Clinical Environment",
-    image: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200",
     meta: "Trust / Studio Standard",
-    aspect: "16/9"
+    aspect: "16/9",
+    fallbackType: "clinical",
+    serviceValue: "Hospital-grade sterilization and a private focused environment.",
+    imageSource: "Unsplash / @j_p_h"
   },
   {
     title: "Custom Placement",
-    image: "https://images.unsplash.com/photo-1560707303-4e980ce876ad?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1562967914-6c82c65293cb?q=80&w=1200",
     meta: "Result / Body Architecture",
-    aspect: "4/5"
+    aspect: "4/5",
+    fallbackType: "skin",
+    serviceValue: "Bespoke design logic tailored to your specific anatomy.",
+    imageSource: "Unsplash / @iam_os"
   },
   {
     title: "Ink & Craft",
-    image: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?q=80&w=1200",
     meta: "Process / Material Study",
-    aspect: "1/1"
+    aspect: "1/1",
+    fallbackType: "ink",
+    serviceValue: "Premium vegan pigments and precision tool calibration.",
+    imageSource: "Unsplash / @jake_browne"
   }
 ];
 

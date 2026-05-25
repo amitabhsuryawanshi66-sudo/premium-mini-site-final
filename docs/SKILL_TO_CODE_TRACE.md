@@ -7,6 +7,7 @@
 | **Emil Design** | Use tactile motion for intentionality, not just decorative fades. | Previous motion was safe fade-ins only. | `src/App.jsx`, `src/lib/motion.js` | Added spring-based parallax to `MaterialPlate` and layout-triggered `ReferenceSlip` transforms. |
 | **UI UX Pro Max** | 5-second clarity: location, premium status, and immediate action. | "Appointment-only" and "Koregaon Park" were buried in small text. | `src/App.jsx` | Elevated status markers to the Hero section via the `status-plate` artifact. |
 | **21st.dev** | Compare directions and implement the strongest component variation. | Generic list-based CTA dock felt "app-like" rather than "studio-like". | `src/App.jsx` | Implemented `IntakeProtocolPanel`, a clinical grid of 5 technical intents with hover artifacts. |
+| **Asset Alignment** | Visuals must semantically match titles and service values. | Some archive images were generic "mood" shots without specific meaning. | `src/data/demoData.js`, `src/App.jsx` | Conducted a semantic asset audit. Replaced images with verified Unsplash IDs matching "Stencil", "Blackwork", "Fine-Line", etc. Added technical SVG overrides. |
 
 ## Visual Changes Summary
 - **Hero:** Asymmetric tripartite layout with `MaterialShield` and oversized title.

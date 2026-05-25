@@ -43,6 +43,23 @@ const MaterialPlate = ({ src, alt, type = "ink", className = "", style = {} }) =
             <rect x="10" y="30" width="80" height="40" fill="none" stroke="var(--accent)" strokeWidth="0.1" strokeDasharray="1,1" opacity="0.2" />
           </svg>
         );
+      case "clinical":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#0F0F0F" />
+            <defs>
+              <pattern id="clinic-dots" width="4" height="4" patternUnits="userSpaceOnUse">
+                <circle cx="0.5" cy="0.5" r="0.5" fill="var(--accent)" opacity="0.1" />
+              </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#clinic-dots)" />
+            <path d="M 10 10 L 10 30 M 10 10 L 30 10" stroke="var(--accent)" strokeWidth="0.2" />
+            <rect x="40" y="40" width="20" height="20" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.3" />
+            <path d="M 45 50 L 55 50 M 50 45 L 50 55" stroke="var(--accent)" strokeWidth="0.5" opacity="0.4" />
+            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.5">CLINICAL_PROTOCOL_v.01</text>
+            <rect x="70" y="10" width="20" height="5" fill="var(--accent)" opacity="0.1" />
+          </svg>
+        );
       default: // ink
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -253,9 +270,9 @@ const ArchiveStudy = ({ item, index }) => (
     stagger={index * 0.1}
   >
     <div className="study-surface">
-      <MaterialPlate src={item.image} alt={item.title} type={index % 2 === 0 ? "skin" : "stencil"} />
+      <MaterialPlate src={item.image} alt={item.title} type={item.fallbackType || (index % 2 === 0 ? "skin" : "stencil")} />
       <div className="study-annotation mono">STUDY_{String(index + 1).padStart(2, '0')}</div>
-      {index === 1 && <PlacementMap area="TECHNICAL_STENCIL" />}
+      {item.fallbackType === "stencil" && <PlacementMap area="TECHNICAL_STENCIL" />}
     </div>
     <div className="study-meta">
       <div className="study-info">
@@ -270,8 +287,12 @@ const ArchiveStudy = ({ item, index }) => (
 const SceneExhibit = () => {
   const trackRef = useRef(null);
   const containerRef = useRef(null);
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   useEffect(() => {
+    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener('resize', handleResize);
+
     const handleScroll = () => {
       if (!trackRef.current || !containerRef.current || window.innerWidth < 768) return;
       const rect = containerRef.current.getBoundingClientRect();
@@ -288,11 +309,14 @@ const SceneExhibit = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   return (
-    <section className="scene-container-exhibit" ref={containerRef} style={{ height: window.innerWidth >= 768 ? '300vh' : 'auto' }}>
+    <section className="scene-container-exhibit" ref={containerRef} style={{ height: isDesktop ? '300vh' : 'auto' }}>
       <section className="scene exhibit-archive">
         <div className="exhibit-header">
           <div className="mono">[ Exhibit 02 — Portfolio / Process Archive ]</div>
