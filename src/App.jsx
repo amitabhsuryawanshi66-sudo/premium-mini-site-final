@@ -3,61 +3,84 @@ import { motion, useScroll, useTransform, useInView, useReducedMotion } from 'fr
 import { STUDIO_INFO, EXHIBIT_ARCHIVE, PRIVATE_LEDGER, INTAKE_PROTOCOL } from './data/demoData';
 import { getWhatsAppUrl } from './lib/whatsapp';
 
-const MaterialPlate = ({ src, alt, type = "ink", className = "", style = {} }) => {
+const MaterialPlate = ({ src, alt, type = "ink", mode = "photo", className = "", style = {} }) => {
   const [error, setError] = useState(false);
+  const isArtifact = mode === "artifact" || !src;
+  const isHybrid = mode === "hybrid" && src;
 
-  const getFallbackPattern = () => {
+  const getDesignedPattern = () => {
     switch(type) {
       case "stencil":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
-              <pattern id="stencil-grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <pattern id="stencil-grid-v2" width="10" height="10" patternUnits="userSpaceOnUse">
                 <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.3"/>
               </pattern>
             </defs>
             <rect width="100" height="100" fill="#151515" />
-            <rect width="100" height="100" fill="url(#stencil-grid)" />
+            <rect width="100" height="100" fill="url(#stencil-grid-v2)" />
             <path d="M 10 10 L 90 90 M 90 10 L 10 90" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
-            <path d="M 20 20 Q 50 10 80 40 T 20 80" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeDasharray="1,1" opacity="0.4" />
-            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.5">TECHNICAL_STENCIL_v.07</text>
-            <circle cx="50" cy="50" r="30" fill="none" stroke="var(--accent)" strokeWidth="0.1" strokeDasharray="2,2" opacity="0.3" />
+            <circle cx="50" cy="50" r="35" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeDasharray="2,2" opacity="0.4" />
+            <path d="M 20 50 Q 50 20 80 50 T 20 50" fill="none" stroke="var(--accent)" strokeWidth="0.8" strokeDasharray="1,1" opacity="0.6" />
+            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3.5" fontWeight="900" opacity="0.8">STENCIL_PROTOCOL_v.09</text>
+            <rect x="5" y="5" width="20" height="10" fill="var(--accent)" opacity="0.1" />
+            <text x="7" y="12" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="2" opacity="0.6">TRANS_REF:001</text>
           </svg>
         );
       case "skin":
+      case "fine-line":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect width="100" height="100" fill="#121212" />
-            <filter id="skin-noise-heavy">
-              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
+            <filter id="dermal-noise">
+              <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
               <feColorMatrix type="saturate" values="0" />
-              <feComponentTransfer>
-                <feFuncR type="linear" slope="0.2" />
-                <feFuncG type="linear" slope="0.2" />
-                <feFuncB type="linear" slope="0.2" />
-              </feComponentTransfer>
             </filter>
-            <rect width="100" height="100" filter="url(#skin-noise-heavy)" opacity="0.15" />
-            <path d="M 0 20 L 100 20 M 0 80 L 100 80" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
-            <text x="5" y="10" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.5">DERMAL_ARCHIVE_REF</text>
-            <rect x="10" y="30" width="80" height="40" fill="none" stroke="var(--accent)" strokeWidth="0.1" strokeDasharray="1,1" opacity="0.2" />
+            <rect width="100" height="100" filter="url(#dermal-noise)" opacity="0.1" />
+            <path d="M 10 50 L 90 50 M 50 10 L 50 90" stroke="var(--accent)" strokeWidth="0.05" opacity="0.3" />
+            <path d="M 30 30 L 70 70 M 70 30 L 30 70" stroke="var(--accent)" strokeWidth="0.05" opacity="0.3" />
+            <text x="5" y="10" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.7">DERMAL_PRECISION_MAPPING</text>
+            <circle cx="50" cy="50" r="1" fill="var(--accent)" />
           </svg>
         );
       case "clinical":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <rect width="100" height="100" fill="#0F0F0F" />
+            <rect width="100" height="100" fill="#0A0A0A" />
             <defs>
-              <pattern id="clinic-dots" width="4" height="4" patternUnits="userSpaceOnUse">
-                <circle cx="0.5" cy="0.5" r="0.5" fill="var(--accent)" opacity="0.1" />
+              <pattern id="clinic-cross" width="8" height="8" patternUnits="userSpaceOnUse">
+                <path d="M 4 2 L 4 6 M 2 4 L 6 4" stroke="var(--accent)" strokeWidth="0.2" opacity="0.2" />
               </pattern>
             </defs>
-            <rect width="100" height="100" fill="url(#clinic-dots)" />
-            <path d="M 10 10 L 10 30 M 10 10 L 30 10" stroke="var(--accent)" strokeWidth="0.2" />
-            <rect x="40" y="40" width="20" height="20" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.3" />
-            <path d="M 45 50 L 55 50 M 50 45 L 50 55" stroke="var(--accent)" strokeWidth="0.5" opacity="0.4" />
-            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.5">CLINICAL_PROTOCOL_v.01</text>
-            <rect x="70" y="10" width="20" height="5" fill="var(--accent)" opacity="0.1" />
+            <rect width="100" height="100" fill="url(#clinic-cross)" />
+            <rect x="10" y="10" width="80" height="80" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.4" />
+            <path d="M 10 10 L 25 10 M 10 10 L 10 25" stroke="var(--accent)" strokeWidth="0.5" />
+            <path d="M 75 90 L 90 90 M 90 75 L 90 90" stroke="var(--accent)" strokeWidth="0.5" />
+            <text x="50" y="55" textAnchor="middle" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="4" fontWeight="900" opacity="0.9">STERILE_ENVIRONMENT_ACTIVE</text>
+            <text x="50" y="62" textAnchor="middle" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="2" opacity="0.5">PROTOCOL:HOSPITAL_GRADE_STATION_07</text>
+          </svg>
+        );
+      case "placement":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#0D0D0D" />
+            <path d="M 50 0 L 50 100 M 0 50 L 100 50" stroke="var(--accent)" strokeWidth="0.1" opacity="0.3" />
+            <circle cx="50" cy="50" r="40" fill="none" stroke="var(--accent)" strokeWidth="0.2" strokeDasharray="2,4" opacity="0.5" />
+            <rect x="35" y="35" width="30" height="30" fill="none" stroke="var(--accent)" strokeWidth="0.5" opacity="0.8" />
+            <path d="M 35 35 L 25 25 M 65 35 L 75 25 M 35 65 L 25 75 M 65 65 L 75 75" stroke="var(--accent)" strokeWidth="0.5" opacity="0.8" />
+            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="4" fontWeight="900">BODY_MAPPING_PROTOCOL</text>
+            <text x="5" y="10" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="2" opacity="0.6">AREA:CUSTOM_ARCHITECTURE</text>
+          </svg>
+        );
+      case "blackwork":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#050505" />
+            <rect x="0" y="30" width="100" height="40" fill="var(--accent)" opacity="0.15" />
+            <path d="M 0 30 L 100 30 M 0 70 L 100 70" stroke="var(--accent)" strokeWidth="0.2" opacity="0.5" />
+            <text x="5" y="52" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="5" fontWeight="900" letterSpacing="2">PIGMENT_DEPTH_MAX</text>
+            <rect x="80" y="10" width="10" height="80" fill="var(--accent)" opacity="0.2" />
           </svg>
         );
       default: // ink
@@ -75,19 +98,37 @@ const MaterialPlate = ({ src, alt, type = "ink", className = "", style = {} }) =
     }
   };
 
+  const ArtifactOverlay = () => (
+    <div className="plate-overlay">
+      <div className="artifact-designed-content" style={{ position: 'absolute', inset: 0 }}>
+        {getDesignedPattern()}
+      </div>
+    </div>
+  );
+
   return (
-    <div className={`material-plate ${className}`} style={style}>
-      {error ? (
-        <div className="material-fallback-svg">
-          {getFallbackPattern()}
-        </div>
+    <div className={`material-plate ${className} mode-${mode}`} style={style}>
+      {isArtifact ? (
+        <ArtifactOverlay />
       ) : (
         <div className="plate-img-wrap">
           <img src={src} alt={alt} onError={() => setError(true)} loading="lazy" />
-          <div className="plate-overlay">
-            <div className="reg-mark reg-top-left" style={{ top: '1rem', left: '1rem' }}></div>
-            <div className="reg-mark reg-bottom-right" style={{ bottom: '1rem', right: '1rem' }}></div>
-          </div>
+          {error && <ArtifactOverlay />}
+          {!error && isHybrid && (
+            <div className="hybrid-overlay" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
+               <div style={{ position: 'absolute', inset: 0, opacity: 0.4, mixBlendMode: 'overlay' }}>
+                 {getDesignedPattern()}
+               </div>
+               <div className="reg-mark reg-top-left" style={{ top: '1rem', left: '1rem' }}></div>
+               <div className="reg-mark reg-bottom-right" style={{ bottom: '1rem', right: '1rem' }}></div>
+            </div>
+          )}
+          {!error && !isHybrid && (
+            <div className="plate-overlay">
+              <div className="reg-mark reg-top-left" style={{ top: '1rem', left: '1rem' }}></div>
+              <div className="reg-mark reg-bottom-right" style={{ bottom: '1rem', right: '1rem' }}></div>
+            </div>
+          )}
         </div>
       )}
     </div>
@@ -270,9 +311,14 @@ const ArchiveStudy = ({ item, index }) => (
     stagger={index * 0.1}
   >
     <div className="study-surface">
-      <MaterialPlate src={item.image} alt={item.title} type={item.fallbackType || (index % 2 === 0 ? "skin" : "stencil")} />
+      <MaterialPlate
+        src={item.image}
+        alt={item.title}
+        mode={item.visualMode || "photo"}
+        type={item.fallbackType || (index % 2 === 0 ? "skin" : "stencil")}
+      />
       <div className="study-annotation mono">STUDY_{String(index + 1).padStart(2, '0')}</div>
-      {item.fallbackType === "stencil" && <PlacementMap area="TECHNICAL_STENCIL" />}
+      {item.visualMode === "artifact" && item.fallbackType === "stencil" && <PlacementMap area="TECHNICAL_STENCIL" />}
     </div>
     <div className="study-meta">
       <div className="study-info">

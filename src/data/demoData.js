@@ -41,51 +41,54 @@ export const EXHIBIT_ARCHIVE = [
     image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1200",
     meta: "Result / Dermal Precision",
     aspect: "4/5",
+    visualMode: "hybrid",
     fallbackType: "skin",
     serviceValue: "Single-needle excellence for delicate anatomical flow.",
     imageSource: "Unsplash / @lucas_lenzi"
   },
   {
     title: "Technical Stencil",
-    image: "https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=1200",
+    image: null,
     meta: "Process / Blueprinting",
     aspect: "1/1",
+    visualMode: "artifact",
     fallbackType: "stencil",
     serviceValue: "Rigorous placement planning and reference-to-skin transfer.",
-    imageSource: "Unsplash / @hennary"
   },
   {
     title: "Blackwork Contrast",
     image: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1200",
     meta: "Result / Pigment Depth",
     aspect: "3/4",
-    fallbackType: "skin",
+    visualMode: "hybrid",
+    fallbackType: "blackwork",
     serviceValue: "High-saturation ink work with stark value contrast.",
     imageSource: "Unsplash / @p_f_p"
   },
   {
     title: "Clinical Environment",
-    image: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1200",
+    image: null,
     meta: "Trust / Studio Standard",
     aspect: "16/9",
+    visualMode: "artifact",
     fallbackType: "clinical",
     serviceValue: "Hospital-grade sterilization and a private focused environment.",
-    imageSource: "Unsplash / @j_p_h"
   },
   {
     title: "Custom Placement",
-    image: "https://images.unsplash.com/photo-1562967914-6c82c65293cb?q=80&w=1200",
+    image: null,
     meta: "Result / Body Architecture",
     aspect: "4/5",
-    fallbackType: "skin",
+    visualMode: "artifact",
+    fallbackType: "placement",
     serviceValue: "Bespoke design logic tailored to your specific anatomy.",
-    imageSource: "Unsplash / @iam_os"
   },
   {
     title: "Ink & Craft",
     image: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?q=80&w=1200",
     meta: "Process / Material Study",
     aspect: "1/1",
+    visualMode: "hybrid",
     fallbackType: "ink",
     serviceValue: "Premium vegan pigments and precision tool calibration.",
     imageSource: "Unsplash / @jake_browne"
