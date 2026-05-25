@@ -148,6 +148,14 @@ const HeroArtifact = () => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 1000], [0, 150]);
   const scale = useTransform(scrollY, [0, 1000], [1, 1.1]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section className="scene hero-artifact">
@@ -168,7 +176,12 @@ const HeroArtifact = () => {
         </div>
 
         <div className="hero-content">
-          <h1 className="brand-title">Obsidian</h1>
+          <h1 className="brand-title-desktop">Obsidian</h1>
+          <h1 className="brand-title-mobile-forced">
+            <span className="title-part">OBSID</span>
+            <span className="title-part">IAN</span>
+            <span className="title-suffix">INK STUDIO</span>
+          </h1>
           <div className="status-plate">
             <div className="plate-item">
               <span className="mono">Location</span>
@@ -223,9 +236,8 @@ const SceneStance = () => (
 
 const ArchiveStudy = ({ item, index }) => (
   <Reveal
-    className="archive-study"
+    className={`archive-study ${index % 2 === 1 ? 'study-odd' : ''}`}
     style={{
-      marginTop: (index % 2 === 1 && window.innerWidth >= 768) ? '15vh' : '0',
       '--aspect': item.aspect || '4/5'
     }}
     stagger={index * 0.1}
@@ -351,7 +363,7 @@ const IntakeProtocolPanel = () => (
 const SceneThreshold = () => (
   <section className="scene portal-threshold">
     <div className="portal-body">
-      <Reveal className="portal-heading">Secure Your<br />Consultation.</Reveal>
+      <Reveal className="portal-heading">Secure<br />Session.</Reveal>
       <Reveal stagger={0.2}>
         <a href={getWhatsAppUrl(INTAKE_PROTOCOL[0].message)} className="portal-action">
           <span>Start a private concept review</span>
@@ -369,15 +381,6 @@ const SceneThreshold = () => (
 );
 
 export default function App() {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
   return (
     <div className="app-root">
       <div className="grain"></div>
