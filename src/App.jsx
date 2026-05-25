@@ -13,36 +13,46 @@ const MaterialPlate = ({ src, alt, type = "ink", className = "", style = {} }) =
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <defs>
               <pattern id="stencil-grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2"/>
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.3"/>
               </pattern>
             </defs>
-            <rect width="100" height="100" fill="var(--surface)" />
+            <rect width="100" height="100" fill="#151515" />
             <rect width="100" height="100" fill="url(#stencil-grid)" />
-            <path d="M 20 20 Q 50 10 80 40 T 20 80" fill="none" stroke="var(--accent)" strokeWidth="0.2" strokeDasharray="2,2" opacity="0.3" />
-            <circle cx="20" cy="20" r="1" fill="var(--accent)" opacity="0.5" />
-            <circle cx="80" cy="40" r="1" fill="var(--accent)" opacity="0.5" />
+            <path d="M 10 10 L 90 90 M 90 10 L 10 90" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
+            <path d="M 20 20 Q 50 10 80 40 T 20 80" fill="none" stroke="var(--accent)" strokeWidth="0.5" strokeDasharray="1,1" opacity="0.4" />
+            <text x="5" y="95" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.5">TECHNICAL_STENCIL_v.07</text>
+            <circle cx="50" cy="50" r="30" fill="none" stroke="var(--accent)" strokeWidth="0.1" strokeDasharray="2,2" opacity="0.3" />
           </svg>
         );
       case "skin":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <rect width="100" height="100" fill="var(--surface)" />
-            <filter id="skin-noise">
-              <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+            <rect width="100" height="100" fill="#121212" />
+            <filter id="skin-noise-heavy">
+              <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" />
               <feColorMatrix type="saturate" values="0" />
+              <feComponentTransfer>
+                <feFuncR type="linear" slope="0.2" />
+                <feFuncG type="linear" slope="0.2" />
+                <feFuncB type="linear" slope="0.2" />
+              </feComponentTransfer>
             </filter>
-            <rect width="100" height="100" filter="url(#skin-noise)" opacity="0.05" />
-            <line x1="10" y1="0" x2="10" y2="100" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
-            <line x1="0" y1="90" x2="100" y2="90" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
+            <rect width="100" height="100" filter="url(#skin-noise-heavy)" opacity="0.15" />
+            <path d="M 0 20 L 100 20 M 0 80 L 100 80" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
+            <text x="5" y="10" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.5">DERMAL_ARCHIVE_REF</text>
+            <rect x="10" y="30" width="80" height="40" fill="none" stroke="var(--accent)" strokeWidth="0.1" strokeDasharray="1,1" opacity="0.2" />
           </svg>
         );
       default: // ink
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <rect width="100" height="100" fill="var(--bg)" />
-            <circle cx="50" cy="50" r="40" fill="var(--accent)" opacity="0.05" />
-            <path d="M 0 50 L 100 50" stroke="var(--accent)" strokeWidth="0.05" opacity="0.1" />
-            <path d="M 50 0 L 50 100" stroke="var(--accent)" strokeWidth="0.05" opacity="0.1" />
+            <rect width="100" height="100" fill="#0D0D0D" />
+            <circle cx="50" cy="50" r="45" fill="none" stroke="var(--accent)" strokeWidth="0.05" opacity="0.2" />
+            <path d="M 0 50 L 100 50 M 50 0 L 50 100" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
+            <rect x="45" y="45" width="10" height="10" fill="var(--accent)" opacity="0.1" />
+            <text x="50" y="95" textAnchor="middle" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="3" opacity="0.5">MATERIAL_LEDGER_DATA</text>
+            <path d="M 20 20 L 30 20 M 20 20 L 20 30" stroke="var(--accent)" strokeWidth="0.5" opacity="0.4" />
+            <path d="M 80 80 L 70 80 M 80 80 L 80 70" stroke="var(--accent)" strokeWidth="0.5" opacity="0.4" />
           </svg>
         );
     }

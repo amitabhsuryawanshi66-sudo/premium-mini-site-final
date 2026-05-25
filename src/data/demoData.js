@@ -3,8 +3,8 @@ export const STUDIO_INFO = {
   location: "Koregaon Park, Pune",
   niche: "Premium Appointment-Only Tattoo Studio",
   tagline: "Custom Tattoo Design • Fine-Line • Blackwork • Artist-Led",
-  heroImage: "https://images.unsplash.com/photo-1598112972545-843f96634320?q=80&w=1600", // Process/Ink
-  secondaryHeroImage: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800", // Stencil/Precision
+  heroImage: "https://images.unsplash.com/photo-1612459284970-e8f027596582?q=80&w=1600", // Detail/Result
+  secondaryHeroImage: "https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=800", // Studio/Tools
 };
 
 export const INTAKE_PROTOCOL = [
@@ -44,19 +44,19 @@ export const EXHIBIT_ARCHIVE = [
   },
   {
     title: "Technical Stencil",
-    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1542332213-31f87348057f?q=80&w=800",
     meta: "Process / Blueprinting",
     aspect: "1/1"
   },
   {
     title: "Blackwork Contrast",
-    image: "https://images.unsplash.com/photo-1590246814883-57856322335b?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1590247813693-5541d1c609fd?q=80&w=800",
     meta: "Result / Pigment Depth",
     aspect: "3/4"
   },
   {
     title: "Clinical Environment",
-    image: "https://images.unsplash.com/photo-1562967914-6cbb685c2917?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=800",
     meta: "Trust / Studio Standard",
     aspect: "16/9"
   },
@@ -68,7 +68,7 @@ export const EXHIBIT_ARCHIVE = [
   },
   {
     title: "Ink & Craft",
-    image: "https://images.unsplash.com/photo-1598112972545-843f96634320?q=80&w=800",
+    image: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?q=80&w=800",
     meta: "Process / Material Study",
     aspect: "1/1"
   }
