@@ -38,10 +38,10 @@ export const INTAKE_PROTOCOL = [
 export const EXHIBIT_ARCHIVE = [
   {
     title: "Precision Fine-Line",
-    image: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1200",
+    image: null,
     meta: "Result / Dermal Precision",
     aspect: "4/5",
-    visualMode: "hybrid",
+    visualMode: "artifact",
     visualVariant: "fineLine",
     serviceValue: "Single-needle excellence for delicate anatomical flow.",
   },
@@ -56,10 +56,10 @@ export const EXHIBIT_ARCHIVE = [
   },
   {
     title: "Blackwork Contrast",
-    image: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?q=80&w=1200",
+    image: null,
     meta: "Result / Pigment Depth",
     aspect: "3/4",
-    visualMode: "hybrid",
+    visualMode: "artifact",
     visualVariant: "blackwork",
     serviceValue: "High-saturation ink work with stark value contrast.",
   },
@@ -83,10 +83,10 @@ export const EXHIBIT_ARCHIVE = [
   },
   {
     title: "Ink & Craft",
-    image: "https://images.unsplash.com/photo-1584432810601-6c7f27d2362b?q=80&w=1200",
+    image: null,
     meta: "Process / Material Study",
     aspect: "1/1",
-    visualMode: "hybrid",
+    visualMode: "artifact",
     visualVariant: "inkCraft",
     serviceValue: "Premium vegan pigments and precision tool calibration.",
   }
