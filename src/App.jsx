@@ -224,7 +224,7 @@ const PlacementMap = ({ area = "BODY_MAPPING" }) => (
   </div>
 );
 
-const Reveal = ({ children, className = "", stagger = 0, amount = 0.1 }) => {
+const Reveal = ({ children, className = "", stagger = 0, amount = 0.1, style }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount });
   const shouldReduceMotion = useReducedMotion();
@@ -236,6 +236,7 @@ const Reveal = ({ children, className = "", stagger = 0, amount = 0.1 }) => {
       animate={shouldReduceMotion ? { opacity: 1, y: 0 } : (isInView ? { opacity: 1, y: 0 } : {})}
       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: stagger }}
       className={className}
+      style={style}
     >
       {children}
     </motion.div>
@@ -440,12 +441,9 @@ const SceneExhibit = () => {
           <div className="mono">[ Exhibit 02 — Portfolio / Process Archive ]</div>
         </div>
         <div className="story-track" ref={trackRef}>
-          {/* Padding spacers for desktop horizontal scroll centering */}
-          {isDesktop && <div style={{ minWidth: '10vw' }} />}
           {EXHIBIT_ARCHIVE.map((item, i) => (
             <ArchiveStudy key={i} item={item} index={i} />
           ))}
-          {isDesktop && <div style={{ minWidth: '20vw' }} />}
         </div>
         <div className="exhibit-footer">
           <div className="scroll-indicator-track">
