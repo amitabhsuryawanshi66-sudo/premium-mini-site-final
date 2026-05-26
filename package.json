@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "qa:links": "node scripts/qa-links.js",
     "qa:source": "node scripts/qa-source-gates.js",
-    "qa:report": "node scripts/qa-report.js"
+    "qa:report": "node scripts/qa-report.js",
+    "qa:visual": "node scripts/qa-visual.js"
   },
   "dependencies": {
     "framer-motion": "^11.0.0",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
+    "playwright": "^1.60.0",
     "vite": "^5.1.4"
   }
 }
