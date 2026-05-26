@@ -4,6 +4,7 @@ No change is ready for merge without build proof and visual proof. Do not claim 
 
 ## Required Commands
 - Run `npm run build` before saying ready.
+- Run `npm run qa:report` for cheap static link/source gates before saying ready.
 - If a dev server is needed for visual checks, run `npm run dev` and inspect the rendered site.
 
 ## Required Viewports
