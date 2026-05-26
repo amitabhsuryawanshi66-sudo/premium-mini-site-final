@@ -13,50 +13,49 @@ const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", classNa
       case "fineLine":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <rect width="100" height="100" fill="#0D0D0D" />
-            <filter id="skin-grain">
-              <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="4" />
-              <feColorMatrix type="saturate" values="0" />
-            </filter>
-            <rect width="100" height="100" filter="url(#skin-grain)" opacity="0.03" />
+            <rect width="100" height="100" fill="#0A0A0A" />
+            {/* Skin flow mapping */}
+            <path d="M 20 0 Q 30 50 20 100" fill="none" stroke="var(--accent)" strokeWidth="0.05" opacity="0.1" />
+            <path d="M 80 0 Q 70 50 80 100" fill="none" stroke="var(--accent)" strokeWidth="0.05" opacity="0.1" />
 
-            {/* Delicate Linework */}
-            <path d="M 20 20 Q 30 50 20 80" fill="none" stroke="var(--accent)" strokeWidth="0.08" opacity="0.6" />
-            <path d="M 25 25 Q 35 50 25 75" fill="none" stroke="var(--accent)" strokeWidth="0.04" opacity="0.4" />
-            <path d="M 70 10 C 90 40 10 60 40 90" fill="none" stroke="var(--accent)" strokeWidth="0.06" opacity="0.5" />
-
-            {/* Precision Dots */}
-            {[...Array(12)].map((_, i) => (
-              <circle key={i} cx={40 + i * 2} cy={30 + Math.sin(i) * 10} r="0.15" fill="var(--accent)" opacity="0.8" />
-            ))}
-
-            {/* Flow Guide */}
-            <path d="M 0 0 L 100 100" stroke="var(--accent)" strokeWidth="0.02" opacity="0.1" />
-            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.5" opacity="0.4">REF_FLOW_07_DERMAL</text>
+            {/* Illustrative Fine-Line Study */}
+            <g transform="translate(50, 45) scale(0.8)">
+              <path d="M -15 -15 C -5 -15 5 -25 15 -25 C 25 -25 35 -15 25 -5 C 15 5 -15 5 -25 15 C -35 25 -25 35 -15 35 C -5 35 5 25 15 25"
+                    fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.8" />
+              <circle cx="-15" cy="-15" r="0.5" fill="var(--accent)" />
+              <circle cx="15" cy="25" r="0.5" fill="var(--accent)" />
+              <path d="M 0 -10 L 0 10 M -10 0 L 10 0" stroke="var(--accent)" strokeWidth="0.05" opacity="0.3" />
+              {/* Precision stippling */}
+              {[...Array(20)].map((_, i) => (
+                <circle key={i} cx={Math.cos(i) * 20} cy={Math.sin(i) * 20} r="0.1" fill="var(--accent)" opacity="0.4" />
+              ))}
+            </g>
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.3">STUDY_FL_V.07 / PRECISION_PATH</text>
           </svg>
         );
       case "stencil":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <rect width="100" height="100" fill="#151515" />
+            <rect width="100" height="100" fill="#0D0D12" />
+            {/* Stencil blue tint overlay */}
+            <rect width="100" height="100" fill="#3B82F6" opacity="0.02" />
             <defs>
-              <pattern id="stencil-grid" width="8" height="8" patternUnits="userSpaceOnUse">
-                <path d="M 8 0 L 0 0 0 8" fill="none" stroke="var(--accent)" strokeWidth="0.05" opacity="0.15"/>
+              <pattern id="stencil-dot-grid" width="4" height="4" patternUnits="userSpaceOnUse">
+                <circle cx="0.5" cy="0.5" r="0.2" fill="var(--accent)" opacity="0.1" />
               </pattern>
             </defs>
-            <rect width="100" height="100" fill="url(#stencil-grid)" />
+            <rect width="100" height="100" fill="url(#stencil-dot-grid)" />
 
-            {/* Stencil Elements */}
-            <rect x="25" y="25" width="50" height="50" fill="none" stroke="var(--accent)" strokeWidth="0.15" opacity="0.3" strokeDasharray="1,1" />
-            <path d="M 45 45 L 55 55 M 55 45 L 45 55" stroke="var(--accent)" strokeWidth="0.2" opacity="0.6" />
-
-            {/* Red Alignment Marks */}
-            <path d="M 10 10 L 15 10 M 10 10 L 10 15" stroke="var(--accent)" strokeWidth="0.4" />
-            <path d="M 90 90 L 85 90 M 90 90 L 90 85" stroke="var(--accent)" strokeWidth="0.4" />
-
-            {/* Transfer Reference */}
-            <circle cx="50" cy="50" r="35" fill="none" stroke="var(--accent)" strokeWidth="0.05" opacity="0.2" />
-            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.8" opacity="0.5">STENCIL_AUTH_PUNE</text>
+            {/* Stencil Transfer Graphic */}
+            <g transform="translate(50, 45) scale(0.9)">
+              <rect x="-25" y="-30" width="50" height="60" rx="1" fill="none" stroke="#3B82F6" strokeWidth="0.1" opacity="0.3" />
+              <path d="M -20 -20 L 20 -20 L 20 20 L -20 20 Z" fill="none" stroke="#3B82F6" strokeWidth="0.2" opacity="0.5" strokeDasharray="1,1" />
+              <path d="M -15 0 L 15 0 M 0 -15 L 0 15" stroke="#3B82F6" strokeWidth="0.1" opacity="0.4" />
+              {/* Registration Marks */}
+              <circle cx="-25" cy="-30" r="1" stroke="#3B82F6" strokeWidth="0.1" fill="none" />
+              <circle cx="25" cy="30" r="1" stroke="#3B82F6" strokeWidth="0.1" fill="none" />
+            </g>
+            <text x="4" y="96" fill="#3B82F6" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.4">STENCIL_TRANSFER_REF_3B82</text>
           </svg>
         );
       case "blackwork":
@@ -64,17 +63,17 @@ const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", classNa
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect width="100" height="100" fill="#050505" />
 
-            {/* Bold Black Masses */}
-            <path d="M 0 40 L 40 0 L 100 0 L 100 100 L 60 100 Z" fill="var(--accent)" opacity="0.15" />
-            <rect x="15" y="15" width="25" height="70" fill="var(--accent)" opacity="0.25" />
-
-            {/* Contrast Intersections */}
-            <path d="M 0 0 L 100 100" stroke="var(--accent)" strokeWidth="0.03" opacity="0.2" />
-            <path d="M 100 0 L 0 100" stroke="var(--accent)" strokeWidth="0.03" opacity="0.2" />
-
-            {/* Density Marks */}
-            <rect x="80" y="20" width="4" height="60" fill="var(--accent)" opacity="0.4" />
-            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.8" opacity="0.6">PIGMENT_SATURATION_100%</text>
+            {/* Bold Blackwork Study */}
+            <g transform="translate(50, 50)">
+              <path d="M -40 -40 L 0 -40 L 40 40 L 0 40 Z" fill="var(--accent)" opacity="0.3" />
+              <path d="M -20 -40 L 20 -40 L 40 -20 L 40 20 L 20 40 L -20 40 L -40 20 L -40 -20 Z" fill="none" stroke="var(--accent)" strokeWidth="1" opacity="0.4" />
+              <rect x="-10" y="-10" width="20" height="20" fill="var(--accent)" opacity="0.2" />
+              {/* Density Gradient Check */}
+              {[...Array(5)].map((_, i) => (
+                <rect key={i} x={-35 + i * 15} y="35" width="10" height="2" fill="var(--accent)" opacity={0.1 + i * 0.15} />
+              ))}
+            </g>
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.4">BW_SATURATION_CHECK / 100%_DEPTH</text>
           </svg>
         );
       case "clinicalTattoo":
@@ -82,21 +81,22 @@ const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", classNa
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect width="100" height="100" fill="#0A0A0A" />
 
-            {/* Sterile Layout / Tray */}
-            <rect x="10" y="10" width="80" height="80" rx="2" fill="none" stroke="var(--accent)" strokeWidth="0.05" opacity="0.2" />
+            {/* Sterile Tray Layout */}
+            <g transform="translate(50, 45) scale(0.8)">
+              <rect x="-40" y="-35" width="80" height="70" rx="3" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
+              {/* Ink Caps */}
+              <circle cx="-25" cy="-20" r="4" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.6" />
+              <circle cx="-15" cy="-20" r="4" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.6" />
+              <circle cx="-5" cy="-20" r="4" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.6" />
 
-            {/* Glove/Needle Silhouettes (Abstract) */}
-            <rect x="20" y="30" width="20" height="40" rx="10" fill="var(--accent)" opacity="0.08" />
-            <rect x="45" y="30" width="5" height="50" fill="var(--accent)" opacity="0.15" />
+              {/* Needle Pack (Simplified) */}
+              <rect x="10" y="-20" width="25" height="40" rx="1" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.3" />
+              <path d="M 15 -10 L 30 -10 M 15 0 L 30 0" stroke="var(--accent)" strokeWidth="0.05" opacity="0.2" />
 
-            {/* Ink Caps */}
-            <circle cx="70" cy="40" r="3" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.4" />
-            <circle cx="78" cy="40" r="3" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.4" />
-            <circle cx="74" cy="48" r="3" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.4" />
-
-            {/* Station Marks */}
-            <path d="M 0 50 L 100 50" stroke="var(--accent)" strokeWidth="0.02" opacity="0.1" />
-            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.5" opacity="0.5">STERILE_STATION_07_KP</text>
+              {/* Tool Silhouette */}
+              <rect x="-30" y="5" width="30" height="20" rx="2" fill="var(--accent)" opacity="0.05" stroke="var(--accent)" strokeWidth="0.1" />
+            </g>
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.3">STERILE_STATION_SETUP_PROTOCOL</text>
           </svg>
         );
       case "customPlacement":
@@ -104,18 +104,18 @@ const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", classNa
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect width="100" height="100" fill="#0D0D0D" />
 
-            {/* Body Mapping / Anatomical Lines */}
-            <path d="M 50 0 L 50 100 M 0 50 L 100 50" stroke="var(--accent)" strokeWidth="0.03" opacity="0.15" />
-            <ellipse cx="50" cy="40" rx="15" ry="25" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.3" />
-            <path d="M 35 65 L 50 90 L 65 65" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.2" />
-
-            {/* Placement regions */}
-            <rect x="30" y="30" width="40" height="40" stroke="var(--accent)" strokeWidth="0.05" opacity="0.2" fill="none" />
-
-            {/* Flow Arrows */}
-            <path d="M 40 20 L 50 10 L 60 20" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.4" />
-
-            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.8" opacity="0.5">ANATOMY_MAPPING_V07</text>
+            {/* Anatomical Wireframe (Forearm/Arm focus) */}
+            <g transform="translate(50, 50) scale(0.9)">
+              <path d="M -15 -50 C -20 -20 -20 20 -15 50 L 15 50 C 20 20 20 -20 15 -50 Z"
+                    fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.3" />
+              {/* Flow Arrows */}
+              <path d="M -10 -30 L 0 -40 L 10 -30" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.5" />
+              <path d="M -10 30 L 0 40 L 10 30" fill="none" stroke="var(--accent)" strokeWidth="0.2" opacity="0.5" />
+              {/* Placement Zone */}
+              <rect x="-10" y="-15" width="20" height="30" rx="2" fill="var(--accent)" opacity="0.1" stroke="var(--accent)" strokeWidth="0.1" strokeDasharray="1,1" />
+              <path d="M -25 0 L 25 0" stroke="var(--accent)" strokeWidth="0.05" opacity="0.2" />
+            </g>
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.3">ANATOMY_MAPPING_V.07_LIMB</text>
           </svg>
         );
       case "inkCraft":
@@ -123,19 +123,24 @@ const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", classNa
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
             <rect width="100" height="100" fill="#0D0D0D" />
 
-            {/* Pigment Drops / Calibration */}
-            <circle cx="30" cy="30" r="5" fill="var(--accent)" opacity="0.1" />
-            <circle cx="30" cy="30" r="1" fill="var(--accent)" opacity="0.6" />
+            {/* Material Study: Pigment & Tool Calibration */}
+            <g transform="translate(50, 45) scale(0.85)">
+              {/* Ink Bottle Silhouette */}
+              <path d="M -10 20 L -10 -15 L -5 -20 L 5 -20 L 10 -15 L 10 20 Z" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.4" />
+              <rect x="-4" y="-28" width="8" height="8" rx="0.5" fill="none" stroke="var(--accent)" strokeWidth="0.1" opacity="0.4" />
 
-            <rect x="60" y="20" width="20" height="2" fill="var(--accent)" opacity="0.4" />
-            <rect x="60" y="25" width="15" height="2" fill="var(--accent)" opacity="0.3" />
-            <rect x="60" y="30" width="10" height="2" fill="var(--accent)" opacity="0.2" />
+              {/* Calibration Scale */}
+              <path d="M 20 -20 L 20 20" stroke="var(--accent)" strokeWidth="0.1" opacity="0.3" />
+              {[...Array(9)].map((_, i) => (
+                <path key={i} d={`M 20 ${-20 + i * 5} L 24 ${-20 + i * 5}`} stroke="var(--accent)" strokeWidth="0.1" opacity="0.3" />
+              ))}
 
-            {/* Tool / Material Study */}
-            <path d="M 10 70 L 90 70" stroke="var(--accent)" strokeWidth="0.05" opacity="0.3" />
-            <path d="M 20 65 L 20 75 M 40 68 L 40 72 M 60 68 L 60 72 M 80 65 L 80 75" stroke="var(--accent)" strokeWidth="0.1" opacity="0.5" />
-
-            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.5" opacity="0.5">MATERIAL_LEDGER_STUDIO_07</text>
+              {/* Pigment Drop */}
+              <path d="M -25 10 C -25 15 -20 20 -15 20 C -10 20 -5 15 -5 10 C -5 5 -15 -10 -15 -10 C -15 -10 -25 5 -25 10 Z"
+                    fill="var(--accent)" opacity="0.2" />
+              <circle cx="-15" cy="15" r="1" fill="var(--accent)" opacity="0.6" />
+            </g>
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.3">MATERIAL_LEDGER_CRAFT_STUDY</text>
           </svg>
         );
     }
@@ -345,33 +350,48 @@ const SceneStance = () => (
   </section>
 );
 
-const ArchiveStudy = ({ item, index }) => (
-  <Reveal
-    className={`archive-study ${index % 2 === 1 ? 'study-odd' : ''}`}
-    style={{
-      '--aspect': item.aspect || '4/5'
-    }}
-    stagger={index * 0.1}
-  >
-    <div className="study-surface">
-      <MaterialPlate
-        src={item.image}
-        alt={item.title}
-        mode={item.visualMode || "photo"}
-        variant={item.visualVariant || "inkCraft"}
-      />
-      <div className="study-annotation mono">STUDY_{String(index + 1).padStart(2, '0')}</div>
-      {item.visualVariant === "stencil" && <PlacementMap area="TECHNICAL_STENCIL" />}
-    </div>
-    <div className="study-meta">
-      <div className="study-info">
-        <span className="mono study-tag">{item.meta}</span>
-        <h3 className="study-title">{item.title}</h3>
+const ArchiveStudy = ({ item, index }) => {
+  const isLarge = index === 0 || index === 3;
+  const isSmall = index === 1 || index === 4;
+
+  return (
+    <Reveal
+      className={`archive-study study-rank-${index} ${isLarge ? 'study-large' : ''} ${isSmall ? 'study-small' : ''}`}
+      style={{
+        '--aspect': item.aspect || '4/5',
+        '--rotation': `${(index % 2 === 0 ? 1 : -1) * (index * 0.5)}deg`
+      }}
+      stagger={index * 0.1}
+    >
+      <div className="study-surface">
+        <MaterialPlate
+          src={item.image}
+          alt={item.title}
+          mode={item.visualMode || "hybrid"}
+          variant={item.visualVariant || "inkCraft"}
+        />
+        <div className="study-annotation mono">ARCHIVE_ITEM_{String(index + 1).padStart(2, '0')}</div>
+        {item.visualVariant === "stencil" && <PlacementMap area="TECHNICAL_STENCIL" />}
+        {item.visualVariant === "customPlacement" && <PlacementMap area="BODY_FLOW" />}
+
+        <div className="study-surface-meta">
+          <span className="mono">ENTRY_{String(index + 1).padStart(2, '0')} // {item.meta}</span>
+        </div>
       </div>
-      <ReferenceSlip index={String(index + 1).padStart(2, '0')} label="ARCHIVE_DATA" />
-    </div>
-  </Reveal>
-);
+
+      <div className="study-meta-editorial">
+        <div className="study-info">
+          <h3 className="study-title">{item.title}</h3>
+          <p className="study-value mono">{item.serviceValue}</p>
+        </div>
+        <div className="archive-badge-clinical mono">
+          <div className="registration-tick"></div>
+          <span>AUTHENTICATED</span>
+        </div>
+      </div>
+    </Reveal>
+  );
+};
 
 const SceneExhibit = () => {
   const trackRef = useRef(null);
@@ -387,12 +407,15 @@ const SceneExhibit = () => {
       const rect = containerRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
-      // We start mapping when the container hits the top of the viewport
-      // and end when the bottom of the container hits the bottom of the viewport.
+      // Enhanced precision scroll mapping for editorial track
       if (rect.top <= 0 && rect.bottom >= viewportHeight) {
         const totalScrollableDist = rect.height - viewportHeight;
         const currentScrollPos = -rect.top;
-        const percentage = Math.max(0, Math.min(1, currentScrollPos / totalScrollableDist));
+
+        // Use a slightly expanded range to ensure the last item is fully revealed
+        // before the container exits the sticky state.
+        const scrollRange = totalScrollableDist * 0.98;
+        const percentage = Math.max(0, Math.min(1, currentScrollPos / scrollRange));
 
         const maxScroll = trackRef.current.scrollWidth - trackRef.current.clientWidth;
         trackRef.current.scrollLeft = maxScroll * percentage;
@@ -411,15 +434,18 @@ const SceneExhibit = () => {
   }, []);
 
   return (
-    <section className="scene-container-exhibit" ref={containerRef} style={{ height: isDesktop ? '300vh' : 'auto' }}>
+    <section className="scene-container-exhibit" ref={containerRef} style={{ height: isDesktop ? '350vh' : 'auto' }}>
       <section className="scene exhibit-archive">
         <div className="exhibit-header">
           <div className="mono">[ Exhibit 02 — Portfolio / Process Archive ]</div>
         </div>
         <div className="story-track" ref={trackRef}>
+          {/* Padding spacers for desktop horizontal scroll centering */}
+          {isDesktop && <div style={{ minWidth: '10vw' }} />}
           {EXHIBIT_ARCHIVE.map((item, i) => (
             <ArchiveStudy key={i} item={item} index={i} />
           ))}
+          {isDesktop && <div style={{ minWidth: '20vw' }} />}
         </div>
         <div className="exhibit-footer">
           <div className="scroll-indicator-track">
