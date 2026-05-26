@@ -16,7 +16,7 @@ The council is a review harness for this mini-site generator. It prevents broad 
 ## When To Ask Council
 Ask council before implementation when a task changes layout, copy hierarchy, imagery, motion, CTAs, responsive behavior, data structure, or visual direction. Small mechanical fixes may use the relevant reviewers only, but the builder must still state scope and acceptance criteria before editing.
 
-Ask the full council when a prompt includes "premium", "polish", "visual", "homepage", "story", "asset", "mobile", "desktop", "conversion", or any request that could become a redesign.
+Use the full council for risky or cross-surface changes, especially when a prompt includes "premium", "polish", "visual", "homepage", "story", "asset", "mobile", "desktop", "conversion", or any request that could become a redesign. For narrow scoped fixes, use only the relevant reviewers.
 
 ## Prompt Review
 Before implementation, the council reviews the prompt for:

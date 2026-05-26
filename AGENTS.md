@@ -21,7 +21,7 @@ This repo is a repeatable workflow/tool for generating premium, mobile-first min
 - Reviewer skills: `agent-skills/*.md`
 
 ## Existing Foundation Rules
-- Keep source files at the repository root; do not create nested app projects.
+- Keep the project at the repository root; do not create nested app folders. Preserve the existing `src/` structure.
 - `index.html`, `src/main.jsx`, and `src/App.jsx` must always remain valid and renderable.
 - Do not commit broken JSX, empty returns, placeholders, or fallback-looking visuals.
 - Vercel deploys from the repository root.
