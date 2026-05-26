@@ -295,14 +295,14 @@ nav {
 .exhibit-archive {
   position: sticky; top: 0; height: 100vh;
   display: flex; flex-direction: column; justify-content: center;
-  padding-left: 0; overflow: hidden;
+  padding: 10vh 0 8vh; overflow: hidden;
   background: var(--bg);
   z-index: 5;
 }
-.exhibit-header { padding-left: var(--gutter); margin-bottom: 3vh; }
+.exhibit-header { padding-left: var(--gutter); margin-bottom: 2vh; }
 .story-track {
   display: flex;
-  gap: clamp(1.5rem, 4vw, 4rem);
+  gap: clamp(1.25rem, 3vw, 3rem);
   padding: 0 var(--gutter);
   align-items: center;
   scroll-behavior: auto;

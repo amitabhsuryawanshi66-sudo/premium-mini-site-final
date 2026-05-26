@@ -413,9 +413,7 @@ const SceneExhibit = () => {
         const totalScrollableDist = rect.height - viewportHeight;
         const currentScrollPos = -rect.top;
 
-        // Use a slightly expanded range to ensure the last item is fully revealed
-        // before the container exits the sticky state.
-        const scrollRange = totalScrollableDist * 0.98;
+        const scrollRange = Math.max(totalScrollableDist, 1);
         const percentage = Math.max(0, Math.min(1, currentScrollPos / scrollRange));
 
         const maxScroll = trackRef.current.scrollWidth - trackRef.current.clientWidth;
@@ -435,7 +433,7 @@ const SceneExhibit = () => {
   }, []);
 
   return (
-    <section className="scene-container-exhibit" ref={containerRef} style={{ height: isDesktop ? '350vh' : 'auto' }}>
+    <section className="scene-container-exhibit" ref={containerRef} style={{ height: isDesktop ? '250vh' : 'auto' }}>
       <section className="scene exhibit-archive">
         <div className="exhibit-header">
           <div className="mono">[ Exhibit 02 — Portfolio / Process Archive ]</div>
