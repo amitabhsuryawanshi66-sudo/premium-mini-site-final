@@ -330,6 +330,20 @@ nav {
   overflow: hidden;
 }
 
+.archive-material .plate-img-wrap img {
+  filter: grayscale(0.25) contrast(1.15) brightness(0.72);
+  opacity: 0.82;
+}
+
+.archive-material .hybrid-pattern {
+  opacity: 0.82 !important;
+  mix-blend-mode: screen !important;
+}
+
+.archive-material.mode-artifact .artifact-designed-content {
+  opacity: 1;
+}
+
 .study-annotation {
   position: absolute;
   top: 1rem; left: 1rem;
