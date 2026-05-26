@@ -1,26 +1,27 @@
-# Obsidian Ink Studio - Project Foundation
+# Premium Mini-Site Council Harness
 
-## Project Purpose
-To provide a premium, mobile-first mini-website for Obsidian Ink Studio, a luxury tattoo concierge in Pune. This project serves as a clean, high-performance React foundation for future agentic development.
+## Project Goal
+This repo is a repeatable workflow/tool for generating premium, mobile-first mini-sites with disciplined AI assistance. The current demo site is Obsidian Ink Studio, a luxury tattoo concierge in Pune.
 
-## Setup Commands
-**Note**: Build and dependency installation is handled by Vercel.
-- Local Dev (after install): `npm run dev`
-- Build: `npm run build`
+## Operating Rules
+1. **Council before implementation**: Before non-trivial UI, copy, asset, motion, or conversion work, run the council process in `docs/COUNCIL_WORKFLOW.md`.
+2. **One builder after decision**: Reviewers decide scope and gates; one builder implements the approved change. Do not let multiple agents independently rewrite the same surface.
+3. **No broad redesigns**: Preserve the existing site direction unless the user explicitly requests a redesign.
+4. **No merge without proof**: A PR is not ready until `npm run build` passes and visual proof covers the required desktop and mobile states in `docs/QA_PLAYBOOK.md`.
+5. **No random stock imagery**: Assets must follow `docs/ASSET_STRATEGY.md`; random keyword stock is a rejection.
+6. **Preserve mobile and desktop separately**: Mobile fixes must not degrade desktop, and desktop polish must not create mobile overflow or clipping.
+7. **Prompt hygiene and small PRs**: Keep branch, task, constraints, acceptance criteria, and exclusions explicit. Avoid broad "make it better" prompts. See `docs/PROMPT_PROTOCOL.md`.
 
-## Core Rules
-1. **Root-Only Files**: All project source files must reside directly at the repository root. Never create nested app folders (e.g., `my-app/`).
-2. **Skill-Gated Development**: Use `agent-skills/` and `docs/` as active build gates. Map every design decision to a specific skill principle.
-3. **Validity**: `index.html`, `src/main.jsx`, and `src/App.jsx` must always be valid and renderable.
-4. **No Broken JSX**: Never commit code with empty returns or syntax errors.
-5. **No MCPs**: MCP tools (Stitch, Context7) are not to be used for this foundation. Stitch may be used sparingly later for visual direction only.
-6. **Vercel Deploy**: The project is configured to deploy from the repository root.
+## Required References
+- Council workflow: `docs/COUNCIL_WORKFLOW.md`
+- Prompt protocol: `docs/PROMPT_PROTOCOL.md`
+- QA playbook: `docs/QA_PLAYBOOK.md`
+- Asset strategy: `docs/ASSET_STRATEGY.md`
+- Failure log: `docs/FAILURE_LOG.md`
+- Reviewer skills: `agent-skills/*.md`
 
-## Active Skills
-- Emil Kowalski (Motion)
-- Impeccable (Polish)
-- Taste (Curation)
-- UI UX Pro Max (Flow)
-- 21st.dev (Component Variation)
-
-Refer to `docs/` for detailed workflow protocols and design criteria.
+## Existing Foundation Rules
+- Keep the project at the repository root; do not create nested app folders. Preserve the existing `src/` structure.
+- `index.html`, `src/main.jsx`, and `src/App.jsx` must always remain valid and renderable.
+- Do not commit broken JSX, empty returns, placeholders, or fallback-looking visuals.
+- Vercel deploys from the repository root.
