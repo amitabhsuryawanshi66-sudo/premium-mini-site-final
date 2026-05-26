@@ -3,6 +3,8 @@
 No change is ready for merge without build proof and visual proof. Do not claim preview proof unless the site was actually opened and checked.
 
 ## Required Commands
+On Windows/Codex, follow `docs/CODEX_LOCAL_ENV.md` for the local setup and use `npm.cmd` command variants.
+
 - Run `npm run build` before saying ready.
 - Run `npm run qa:report` for cheap static link/source gates before saying ready.
 - Run `npm run qa:visual` after build to create browser screenshots and objective layout checks in `qa-artifacts/visual/`.

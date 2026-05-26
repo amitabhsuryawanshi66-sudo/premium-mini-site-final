@@ -16,6 +16,7 @@ This repo is a repeatable workflow/tool for generating premium, mobile-first min
 - Council workflow: `docs/COUNCIL_WORKFLOW.md`
 - Prompt protocol: `docs/PROMPT_PROTOCOL.md`
 - QA playbook: `docs/QA_PLAYBOOK.md`
+- Codex local environment: `docs/CODEX_LOCAL_ENV.md`
 - Asset strategy: `docs/ASSET_STRATEGY.md`
 - Failure log: `docs/FAILURE_LOG.md`
 - Reviewer skills: `agent-skills/*.md`
