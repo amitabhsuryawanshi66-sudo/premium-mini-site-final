@@ -86,7 +86,7 @@ export const EXHIBIT_ARCHIVE = [
     image: "https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=1000",
     meta: "Process / Material Study",
     aspect: "1/1",
-    visualMode: "hybrid",
+    visualMode: "artifact",
     visualVariant: "inkCraft",
     serviceValue: "Premium vegan pigments and precision tool calibration.",
   }
