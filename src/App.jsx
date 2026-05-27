@@ -405,40 +405,55 @@ const SceneExhibit = () => {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
 
   useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 768);
-    window.addEventListener('resize', handleResize);
+    let animationFrame = null;
 
-    const handleScroll = () => {
-      if (!trackRef.current || !containerRef.current || window.innerWidth < 768) return;
+    const syncStoryTrack = () => {
+      if (!trackRef.current || !containerRef.current) return;
+
+      if (window.innerWidth < 768) {
+        trackRef.current.scrollLeft = 0;
+        return;
+      }
+
       const rect = containerRef.current.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
+      const totalScrollableDist = Math.max(rect.height - viewportHeight, 1);
+      const currentScrollPos = Math.max(0, Math.min(totalScrollableDist, -rect.top));
+      const percentage = currentScrollPos / totalScrollableDist;
+      const maxScroll = Math.max(0, trackRef.current.scrollWidth - trackRef.current.clientWidth);
 
-      // Enhanced precision scroll mapping for editorial track
-      if (rect.top <= 0 && rect.bottom >= viewportHeight) {
-        const totalScrollableDist = rect.height - viewportHeight;
-        const currentScrollPos = -rect.top;
-
-        const scrollRange = Math.max(totalScrollableDist, 1);
-        const percentage = Math.max(0, Math.min(1, currentScrollPos / scrollRange));
-
-        const maxScroll = trackRef.current.scrollWidth - trackRef.current.clientWidth;
-        trackRef.current.scrollLeft = maxScroll * percentage;
-      } else if (rect.top > 0) {
+      if (rect.top > 0) {
         trackRef.current.scrollLeft = 0;
       } else if (rect.bottom < viewportHeight) {
-        trackRef.current.scrollLeft = trackRef.current.scrollWidth - trackRef.current.clientWidth;
+        trackRef.current.scrollLeft = maxScroll;
+      } else {
+        trackRef.current.scrollLeft = maxScroll * percentage;
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const scheduleStoryTrackSync = () => {
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      animationFrame = window.requestAnimationFrame(syncStoryTrack);
+    };
+
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+      scheduleStoryTrackSync();
+    };
+
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', scheduleStoryTrackSync, { passive: true });
+    scheduleStoryTrackSync();
+
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      if (animationFrame) window.cancelAnimationFrame(animationFrame);
+      window.removeEventListener('scroll', scheduleStoryTrackSync);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   return (
-    <section className="scene-container-exhibit" ref={containerRef} style={{ height: isDesktop ? '250vh' : 'auto' }}>
+    <section className="scene-container-exhibit" ref={containerRef} style={{ height: isDesktop ? '260vh' : 'auto' }}>
       <section className="scene exhibit-archive">
         <div className="exhibit-header">
           <div className="mono">[ Exhibit 02 — Portfolio / Process Archive ]</div>
