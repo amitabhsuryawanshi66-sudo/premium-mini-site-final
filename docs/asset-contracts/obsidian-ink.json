@@ -91,15 +91,16 @@
       "serviceValue": "Premium vegan pigments and precision tool calibration.",
       "requiredSubject": "tattoo ink materials, machine tools, pigment setup, or craft preparation",
       "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
-      "assetSourceType": "licensed-stock",
-      "assetSource": "https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=1000",
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "MaterialPlate inkCraft artifact showing pigment, ink bottle, tool calibration scale, and craft preparation cues",
       "assetBinding": {
-        "image": "https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=1000"
+        "visualMode": "artifact",
+        "visualVariant": "inkCraft"
       },
-      "semanticFit": "The visual must show tattoo materials or calibrated craft preparation rather than generic ambience.",
-      "fallbackMode": "hybrid",
-      "fallbackSubject": "ink and tool craft plate with pigment and calibration cues",
-      "visualProofNote": "Verify the visual reads as tattoo materials and craft preparation at desktop and mobile sizes."
+      "semanticFit": "The deterministic inkCraft artifact is acceptable because it visibly communicates pigment materials, an ink bottle, calibration marks, and tattoo tool preparation without relying on stock ambience.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led ink material and tool calibration plate with pigment cues",
+      "visualProofNote": "Verify the artifact reads as tattoo ink materials and tool calibration at desktop and mobile sizes."
     }
   ]
 }
