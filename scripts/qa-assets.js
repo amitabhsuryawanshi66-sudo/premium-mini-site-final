@@ -19,6 +19,7 @@ const requiredFields = [
   'forbiddenSubjects',
   'assetSourceType',
   'assetSource',
+  'assetBinding',
   'semanticFit',
   'fallbackMode',
   'fallbackSubject',
@@ -81,6 +82,10 @@ const isNonEmpty = (value) => {
     return value.length > 0 && value.every((item) => typeof item === 'string' && item.trim().length > 0);
   }
 
+  if (value && typeof value === 'object') {
+    return Object.keys(value).length > 0;
+  }
+
   return typeof value === 'string' && value.trim().length > 0;
 };
 
@@ -127,10 +132,21 @@ const missingContracts = EXHIBIT_ARCHIVE
   .filter((item) => !contractsByTitle.has(item.title))
   .map((item) => item.title);
 
+const archiveTitles = new Set(EXHIBIT_ARCHIVE.map((item) => item.title));
+const orphanContracts = visualItems
+  .filter((item) => typeof item.title === 'string' && !archiveTitles.has(item.title))
+  .map((item) => item.title);
+
 if (missingContracts.length === 0) {
   pass('Every EXHIBIT_ARCHIVE item has an asset contract');
 } else {
   fail('Every EXHIBIT_ARCHIVE item has an asset contract', summarizeItems(missingContracts));
+}
+
+if (orphanContracts.length === 0) {
+  pass('Asset contract has no orphan visual items');
+} else {
+  fail('Asset contract has no orphan visual items', summarizeItems(orphanContracts));
 }
 
 const missingFields = [];
@@ -140,6 +156,7 @@ const weakStockFits = [];
 const labelReliance = [];
 const forbiddenPositiveClaims = [];
 const serviceValueMismatches = [];
+const assetBindingMismatches = [];
 
 for (const archiveItem of EXHIBIT_ARCHIVE) {
   const contractItem = contractsByTitle.get(archiveItem.title);
@@ -160,6 +177,19 @@ for (const archiveItem of EXHIBIT_ARCHIVE) {
 
   if (contractItem.serviceValue !== archiveItem.serviceValue) {
     serviceValueMismatches.push(archiveItem.title);
+  }
+
+  const binding = contractItem.assetBinding;
+  if (binding && typeof binding === 'object' && !Array.isArray(binding)) {
+    if (contractItem.assetSourceType === 'deterministic-artifact') {
+      if (binding.visualMode !== archiveItem.visualMode || binding.visualVariant !== archiveItem.visualVariant) {
+        assetBindingMismatches.push(
+          `${archiveItem.title}: expected visualMode=${archiveItem.visualMode}, visualVariant=${archiveItem.visualVariant}`,
+        );
+      }
+    } else if (binding.image !== archiveItem.image) {
+      assetBindingMismatches.push(`${archiveItem.title}: expected image=${archiveItem.image}`);
+    }
   }
 
   const claimedText = claimedVisualFields.map((field) => contractItem[field]).join(' ');
@@ -224,6 +254,12 @@ if (serviceValueMismatches.length === 0) {
   pass('Asset contracts match archive service values');
 } else {
   fail('Asset contracts match archive service values', summarizeItems(serviceValueMismatches));
+}
+
+if (assetBindingMismatches.length === 0) {
+  pass('Asset bindings match current archive data');
+} else {
+  fail('Asset bindings match current archive data', summarizeItems(assetBindingMismatches));
 }
 
 if (forbiddenPositiveClaims.length === 0) {

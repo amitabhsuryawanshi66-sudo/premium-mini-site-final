@@ -10,7 +10,10 @@
       "requiredSubject": "fine-line tattoo result, controlled needle detail, or delicate skin-level linework",
       "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
       "assetSourceType": "licensed-stock",
-      "assetSource": "EXHIBIT_ARCHIVE image URL for Precision Fine-Line",
+      "assetSource": "https://images.unsplash.com/photo-1620336655055-088d06e76fd0?q=80&w=1000",
+      "assetBinding": {
+        "image": "https://images.unsplash.com/photo-1620336655055-088d06e76fd0?q=80&w=1000"
+      },
       "semanticFit": "The visual must read as precise fine-line tattoo craft and support the promise of delicate anatomical flow.",
       "fallbackMode": "hybrid",
       "fallbackSubject": "fine-line craft plate with readable skin-level linework cues",
@@ -24,6 +27,10 @@
       "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
       "assetSourceType": "deterministic-artifact",
       "assetSource": "MaterialPlate stencil artifact with PlacementMap TECHNICAL_STENCIL overlay",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "stencil"
+      },
       "semanticFit": "The deterministic stencil artifact is acceptable only because it visibly communicates planning, transfer logic, and placement preparation.",
       "fallbackMode": "artifact",
       "fallbackSubject": "subject-led tattoo stencil and transfer blueprint",
@@ -36,7 +43,10 @@
       "requiredSubject": "blackwork tattoo result, dense pigment area, or high-contrast ink composition",
       "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
       "assetSourceType": "licensed-stock",
-      "assetSource": "EXHIBIT_ARCHIVE image URL for Blackwork Contrast",
+      "assetSource": "https://images.unsplash.com/photo-1590201135242-26168e826725?q=80&w=1000",
+      "assetBinding": {
+        "image": "https://images.unsplash.com/photo-1590201135242-26168e826725?q=80&w=1000"
+      },
       "semanticFit": "The visual must clearly show blackwork density and contrast through the image subject itself.",
       "fallbackMode": "hybrid",
       "fallbackSubject": "blackwork contrast plate with dense pigment and clear value separation",
@@ -49,7 +59,10 @@
       "requiredSubject": "sterile tattoo setup, clean studio tools, protective setup, or hygienic preparation surface",
       "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
       "assetSourceType": "licensed-stock",
-      "assetSource": "EXHIBIT_ARCHIVE image URL for Clinical Environment",
+      "assetSource": "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1000",
+      "assetBinding": {
+        "image": "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?q=80&w=1000"
+      },
       "semanticFit": "The visual must communicate tattoo hygiene or sterile setup, not a general medical or administrative setting.",
       "fallbackMode": "hybrid",
       "fallbackSubject": "clinical tattoo setup plate with sterile tools and preparation cues",
@@ -63,6 +76,10 @@
       "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
       "assetSourceType": "deterministic-artifact",
       "assetSource": "MaterialPlate customPlacement artifact with PlacementMap BODY_FLOW overlay",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "customPlacement"
+      },
       "semanticFit": "The deterministic placement artifact is acceptable only because it shows anatomical mapping and placement logic.",
       "fallbackMode": "artifact",
       "fallbackSubject": "subject-led anatomical placement map with body-flow planning",
@@ -75,7 +92,10 @@
       "requiredSubject": "tattoo ink materials, machine tools, pigment setup, or craft preparation",
       "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
       "assetSourceType": "licensed-stock",
-      "assetSource": "EXHIBIT_ARCHIVE image URL for Ink & Craft",
+      "assetSource": "https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=1000",
+      "assetBinding": {
+        "image": "https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=1000"
+      },
       "semanticFit": "The visual must show tattoo materials or calibrated craft preparation rather than generic ambience.",
       "fallbackMode": "hybrid",
       "fallbackSubject": "ink and tool craft plate with pigment and calibration cues",
