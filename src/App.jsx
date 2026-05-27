@@ -10,6 +10,87 @@ const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", classNa
 
   const getDesignedPattern = () => {
     switch(variant) {
+      case "spatialLight":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#090909" />
+            <rect x="14" y="16" width="72" height="64" fill="#151311" stroke="#CFC4B6" strokeWidth="0.22" opacity="0.7" />
+            <path d="M 58 16 L 86 16 L 64 80 L 34 80 Z" fill="#CFC4B6" opacity="0.16" />
+            <path d="M 20 72 L 76 72" stroke="#CFC4B6" strokeWidth="0.35" opacity="0.48" />
+            <rect x="24" y="28" width="18" height="44" fill="#6E6257" opacity="0.52" />
+            <rect x="48" y="42" width="18" height="30" fill="#A88F78" opacity="0.28" />
+            <path d="M 18 84 C 34 78 50 78 82 84" fill="none" stroke="var(--accent)" strokeWidth="0.24" opacity="0.5" />
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.2">LIGHT_WELL_SPATIAL_STUDY</text>
+          </svg>
+        );
+      case "materialStudy":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#0B0A09" />
+            <rect x="12" y="15" width="22" height="70" fill="#B8AA99" opacity="0.34" stroke="#E7DED2" strokeWidth="0.2" />
+            <rect x="39" y="15" width="22" height="70" fill="#5B5047" opacity="0.72" stroke="#CFC4B6" strokeWidth="0.18" />
+            <rect x="66" y="15" width="22" height="70" fill="#D7D0C4" opacity="0.22" stroke="#E7DED2" strokeWidth="0.18" />
+            {[...Array(8)].map((_, i) => (
+              <path key={i} d={`M 14 ${22 + i * 7} C 22 ${20 + i * 7} 27 ${24 + i * 7} 34 ${22 + i * 7}`} stroke="#E7DED2" strokeWidth="0.12" opacity="0.28" fill="none" />
+            ))}
+            <circle cx="50" cy="50" r="15" fill="none" stroke="var(--accent)" strokeWidth="0.25" opacity="0.34" />
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.2">TACTILE_MATERIAL_BOARD</text>
+          </svg>
+        );
+      case "planGridInterior":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#080808" />
+            {[20, 40, 60, 80].map((line) => (
+              <g key={line} opacity="0.14">
+                <path d={`M ${line} 8 L ${line} 92`} stroke="#CFC4B6" strokeWidth="0.12" />
+                <path d={`M 8 ${line} L 92 ${line}`} stroke="#CFC4B6" strokeWidth="0.12" />
+              </g>
+            ))}
+            <path d="M 18 24 L 82 24 L 82 74 L 58 74 L 58 54 L 40 54 L 40 74 L 18 74 Z" fill="none" stroke="#E7DED2" strokeWidth="0.75" opacity="0.82" />
+            <path d="M 40 24 L 40 54 M 58 24 L 58 54 M 18 48 L 40 48 M 58 48 L 82 48" stroke="#E7DED2" strokeWidth="0.35" opacity="0.56" />
+            <path d="M 24 64 C 38 34 62 34 76 64" fill="none" stroke="var(--accent)" strokeWidth="0.45" opacity="0.7" />
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.2">INTERIOR_PLAN_FLOW_MAP</text>
+          </svg>
+        );
+      case "courtyardShadow":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#090908" />
+            <rect x="14" y="22" width="72" height="54" fill="#171513" stroke="#CFC4B6" strokeWidth="0.2" opacity="0.68" />
+            <rect x="24" y="32" width="18" height="34" fill="#5E554C" opacity="0.78" />
+            <rect x="46" y="26" width="28" height="40" fill="#302B26" opacity="0.88" />
+            <path d="M 14 22 L 86 22 L 56 76 L 14 76 Z" fill="#D8C9B8" opacity="0.12" />
+            <path d="M 24 66 L 78 66" stroke="#E7DED2" strokeWidth="0.18" opacity="0.38" />
+            <circle cx="74" cy="34" r="4" fill="var(--accent)" opacity="0.28" />
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.2">COURTYARD_LIGHT_SHADOW</text>
+          </svg>
+        );
+      case "joineryDetail":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#0A0908" />
+            <rect x="18" y="20" width="64" height="60" fill="#4A3A2F" opacity="0.72" stroke="#CFC4B6" strokeWidth="0.22" />
+            <path d="M 18 40 L 82 40 M 18 60 L 82 60 M 38 20 L 38 80 M 62 20 L 62 80" stroke="#CFC4B6" strokeWidth="0.2" opacity="0.48" />
+            <path d="M 38 40 L 50 52 L 62 40 M 38 60 L 50 48 L 62 60" fill="none" stroke="var(--accent)" strokeWidth="0.45" opacity="0.58" />
+            {[...Array(7)].map((_, i) => (
+              <path key={i} d={`M 22 ${27 + i * 7} C 34 ${24 + i * 7} 48 ${30 + i * 7} 78 ${26 + i * 7}`} stroke="#E7DED2" strokeWidth="0.1" opacity="0.22" fill="none" />
+            ))}
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.2">JOINERY_DETAIL_CRAFT</text>
+          </svg>
+        );
+      case "thresholdStudy":
+        return (
+          <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <rect width="100" height="100" fill="#080808" />
+            <rect x="20" y="16" width="60" height="68" fill="#11100F" stroke="#CFC4B6" strokeWidth="0.22" opacity="0.74" />
+            <rect x="35" y="26" width="30" height="58" fill="#28231F" stroke="#E7DED2" strokeWidth="0.2" opacity="0.72" />
+            <path d="M 65 26 L 80 16 L 80 84 L 65 84 Z" fill="#D8C9B8" opacity="0.16" />
+            <path d="M 35 84 L 78 84" stroke="#E7DED2" strokeWidth="0.28" opacity="0.42" />
+            <path d="M 28 52 L 72 52" stroke="var(--accent)" strokeWidth="0.24" opacity="0.54" />
+            <text x="4" y="96" fill="var(--accent)" fontFamily="var(--font-mono)" fontSize="1.2" opacity="0.2">THRESHOLD_LIGHT_SECTION</text>
+          </svg>
+        );
       case "fineLine":
         return (
           <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -570,7 +651,7 @@ export default function App() {
   const site = getInitialSitePreset();
 
   return (
-    <div className="app-root">
+    <div className="app-root" data-site={site.id}>
       <div className="grain"></div>
       <TechnicalOverlay />
       <Nav site={site} />
