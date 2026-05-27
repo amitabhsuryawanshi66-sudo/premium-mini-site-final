@@ -1,0 +1,85 @@
+{
+  "site": "Obsidian Ink Studio",
+  "version": 1,
+  "contractScope": "Current Obsidian demo archive visuals. Future mini-sites should create their own contract file.",
+  "visualItems": [
+    {
+      "section": "exhibitArchive",
+      "title": "Precision Fine-Line",
+      "serviceValue": "Single-needle excellence for delicate anatomical flow.",
+      "requiredSubject": "fine-line tattoo result, controlled needle detail, or delicate skin-level linework",
+      "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
+      "assetSourceType": "licensed-stock",
+      "assetSource": "EXHIBIT_ARCHIVE image URL for Precision Fine-Line",
+      "semanticFit": "The visual must read as precise fine-line tattoo craft and support the promise of delicate anatomical flow.",
+      "fallbackMode": "hybrid",
+      "fallbackSubject": "fine-line craft plate with readable skin-level linework cues",
+      "visualProofNote": "Verify the card reads as fine-line tattoo work on desktop and at 390px and 412px mobile widths."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Technical Stencil",
+      "serviceValue": "Rigorous placement planning and reference-to-skin transfer.",
+      "requiredSubject": "tattoo stencil planning, transfer marks, placement blueprint, or reference-to-skin mapping",
+      "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "MaterialPlate stencil artifact with PlacementMap TECHNICAL_STENCIL overlay",
+      "semanticFit": "The deterministic stencil artifact is acceptable only because it visibly communicates planning, transfer logic, and placement preparation.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led tattoo stencil and transfer blueprint",
+      "visualProofNote": "Verify the artifact reads as stencil planning rather than abstract decoration in desktop and mobile screenshots."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Blackwork Contrast",
+      "serviceValue": "High-saturation ink work with stark value contrast.",
+      "requiredSubject": "blackwork tattoo result, dense pigment area, or high-contrast ink composition",
+      "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
+      "assetSourceType": "licensed-stock",
+      "assetSource": "EXHIBIT_ARCHIVE image URL for Blackwork Contrast",
+      "semanticFit": "The visual must clearly show blackwork density and contrast through the image subject itself.",
+      "fallbackMode": "hybrid",
+      "fallbackSubject": "blackwork contrast plate with dense pigment and clear value separation",
+      "visualProofNote": "Verify the visual reads as blackwork contrast in the archive card without relying on the badge text."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Clinical Environment",
+      "serviceValue": "Hospital-grade sterilization and a private focused environment.",
+      "requiredSubject": "sterile tattoo setup, clean studio tools, protective setup, or hygienic preparation surface",
+      "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
+      "assetSourceType": "licensed-stock",
+      "assetSource": "EXHIBIT_ARCHIVE image URL for Clinical Environment",
+      "semanticFit": "The visual must communicate tattoo hygiene or sterile setup, not a general medical or administrative setting.",
+      "fallbackMode": "hybrid",
+      "fallbackSubject": "clinical tattoo setup plate with sterile tools and preparation cues",
+      "visualProofNote": "Verify the image reads as tattoo-specific hygiene and not generic healthcare or business imagery."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Custom Placement",
+      "serviceValue": "Bespoke design logic tailored to your specific anatomy.",
+      "requiredSubject": "body placement mapping, anatomical flow, stencil alignment, or skin-area composition",
+      "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "MaterialPlate customPlacement artifact with PlacementMap BODY_FLOW overlay",
+      "semanticFit": "The deterministic placement artifact is acceptable only because it shows anatomical mapping and placement logic.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led anatomical placement map with body-flow planning",
+      "visualProofNote": "Verify the card communicates body placement or anatomy mapping, not a random person, workspace, or label-led idea."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Ink & Craft",
+      "serviceValue": "Premium vegan pigments and precision tool calibration.",
+      "requiredSubject": "tattoo ink materials, machine tools, pigment setup, or craft preparation",
+      "forbiddenSubjects": ["laptop", "office", "doctor", "business meeting", "generic lifestyle"],
+      "assetSourceType": "licensed-stock",
+      "assetSource": "EXHIBIT_ARCHIVE image URL for Ink & Craft",
+      "semanticFit": "The visual must show tattoo materials or calibrated craft preparation rather than generic ambience.",
+      "fallbackMode": "hybrid",
+      "fallbackSubject": "ink and tool craft plate with pigment and calibration cues",
+      "visualProofNote": "Verify the visual reads as tattoo materials and craft preparation at desktop and mobile sizes."
+    }
+  ]
+}
