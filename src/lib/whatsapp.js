@@ -1,7 +1,6 @@
 export const getWhatsAppUrl = (message = "") => {
-  const phone = "910000000000"; // Placeholder for studio number
   const encodedMessage = encodeURIComponent(message);
-  return `https://wa.me/${phone}?text=${encodedMessage}`;
+  return `https://wa.me/?text=${encodedMessage}`;
 };
 
 export const WHATSAPP_MESSAGES = {

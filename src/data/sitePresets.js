@@ -12,7 +12,7 @@ export const OBSIDIAN_SITE_PRESET = {
   id: DEFAULT_SITE_ID,
   label: 'Obsidian Ink Studio',
   contractFile: 'obsidian-ink.json',
-  referenceAuthLabel: 'OBSIDIAN_AUTH',
+  referenceAuthLabel: 'STUDIO_REVIEW',
   studioInfo: STUDIO_INFO,
   exhibitArchive: EXHIBIT_ARCHIVE,
   privateLedger: PRIVATE_LEDGER,
@@ -26,7 +26,7 @@ export const OBSIDIAN_SITE_PRESET = {
       topNote: '[ ARTIST-LED / PRIVATE STUDIO / 18.53°N 73.89°E ]',
       referenceSlip: {
         index: '00',
-        label: 'STATION_INIT',
+        label: 'STUDIO_NOTE',
         variant: 'header',
       },
       materialAlt: 'Premium Tattoo Process',
@@ -47,15 +47,16 @@ export const OBSIDIAN_SITE_PRESET = {
           value: 'Premium Appointment-Only',
         },
       ],
+      inquiryLabel: 'Start a WhatsApp concept review',
       archiveLabel: 'Archive: Studio 07 / Pune',
-      protocolStatus: 'PROTOCOL: ENTRY_VALIDATED',
+      protocolStatus: 'Consultation path ready',
     },
     stance: {
       headingStart: 'Custom design.',
       headingAccent: 'Technical Precision',
       headingEnd: 'No rushed walk-ins.',
       description:
-        "Obsidian Ink is a premium tattoo studio in Koregaon Park for style-conscious collectors. Every project begins with a mandatory reference review to ensure technical excellence and custom alignment.",
+        "Obsidian Ink is a private tattoo studio in Koregaon Park for custom fine-line and blackwork projects. Every enquiry begins with a reference review, placement discussion, and clear session estimate.",
       marks: [
         {
           label: 'Pricing Logic',
@@ -71,22 +72,22 @@ export const OBSIDIAN_SITE_PRESET = {
       eyebrow: '[ Exhibit 02 — Portfolio / Process Archive ]',
     },
     ledger: {
-      eyebrow: '[ Studio Trust & Safety Protocol ]',
+      eyebrow: '[ Studio Trust & Safety ]',
     },
     intake: {
-      eyebrow: '[ Intake System V.07 ]',
+      eyebrow: '[ Client Intake ]',
       titleLines: ['Initiate', 'Dialogue.'],
       referenceSlip: {
         index: '05',
-        label: 'INTAKE_AUTH',
+        label: 'CONSULT_NOTE',
         variant: 'stamp',
       },
     },
     threshold: {
       headingLines: ['Secure', 'Session.'],
-      ctaLabel: 'Start a private concept review',
+      ctaLabel: 'Start a WhatsApp concept review',
       footerLocation: 'Pune / Koregaon Park',
-      footerNote: 'Technical Dialogue Required',
+      footerNote: 'Reference review before quote',
     },
     footer: {
       text: 'OBSIDIAN INK STUDIO • KOREGAON PARK • PUNE',
@@ -98,7 +99,7 @@ export const VELOUR_HOUSE_SITE_PRESET = {
   id: 'velour-house',
   label: 'Velour House',
   contractFile: 'velour-house.json',
-  referenceAuthLabel: 'VELOUR_AUTH',
+  referenceAuthLabel: 'VELOUR_REVIEW',
   studioInfo: VELOUR_STUDIO_INFO,
   exhibitArchive: VELOUR_EXHIBIT_ARCHIVE,
   privateLedger: VELOUR_PRIVATE_LEDGER,
@@ -112,7 +113,7 @@ export const VELOUR_HOUSE_SITE_PRESET = {
       topNote: '[ INTERIOR ARCHITECTURE / MATERIAL ATELIER / 19.06N 72.83E ]',
       referenceSlip: {
         index: '00',
-        label: 'ROOM_INIT',
+        label: 'ROOM_NOTE',
         variant: 'header',
       },
       materialAlt: 'Architectural material and light study',
@@ -133,15 +134,16 @@ export const VELOUR_HOUSE_SITE_PRESET = {
           value: 'Private Project Review',
         },
       ],
+      inquiryLabel: 'Start a WhatsApp brief review',
       archiveLabel: 'Archive: Material Room / Mumbai',
-      protocolStatus: 'PROTOCOL: BRIEF_VALIDATED',
+      protocolStatus: 'Brief review path ready',
     },
     stance: {
       headingStart: 'Spatial restraint.',
       headingAccent: 'Material precision',
-      headingEnd: 'No decorative noise.',
+      headingEnd: 'Built around use.',
       description:
-        'Velour House is a premium interior architecture studio for private residences and spatial design briefs. Each project begins with light, proportion, circulation, and material discipline before styling is considered.',
+        'Velour House is an interior architecture studio for residences, studios, and refined hospitality spaces. Each brief begins with light, proportion, circulation, material direction, and the way the room will be lived in.',
       marks: [
         {
           label: 'Design Logic',
@@ -157,22 +159,22 @@ export const VELOUR_HOUSE_SITE_PRESET = {
       eyebrow: '[ Exhibit 02 - Spatial / Material Archive ]',
     },
     ledger: {
-      eyebrow: '[ Studio Method & Detail Protocol ]',
+      eyebrow: '[ Studio Method & Detail ]',
     },
     intake: {
-      eyebrow: '[ Brief System V.01 ]',
+      eyebrow: '[ Project Intake ]',
       titleLines: ['Begin', 'Brief.'],
       referenceSlip: {
         index: '05',
-        label: 'BRIEF_AUTH',
+        label: 'BRIEF_NOTE',
         variant: 'stamp',
       },
     },
     threshold: {
       headingLines: ['Private', 'Rooms.'],
-      ctaLabel: 'Start a spatial brief review',
+      ctaLabel: 'Start a WhatsApp brief review',
       footerLocation: 'Mumbai / Private Studio',
-      footerNote: 'Material Dialogue Required',
+      footerNote: 'Site details before proposal',
     },
     footer: {
       text: 'VELOUR HOUSE - INTERIOR ARCHITECTURE - MUMBAI',

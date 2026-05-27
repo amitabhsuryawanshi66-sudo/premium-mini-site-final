@@ -68,49 +68,49 @@ export const VELOUR_PRIVATE_LEDGER = [
   {
     index: "STUDIO 01",
     title: "Spatial Brief",
-    description: "We begin with use, rhythm, and constraints before any visual direction. Each room is mapped for light, proportion, storage, and long-term daily movement.",
+    description: "The first conversation covers the site, daily routines, constraints, budget range, and what the space needs to do before any visual direction is proposed.",
   },
   {
     index: "STUDIO 02",
     title: "Material Register",
-    description: "Stone, timber, textile, metal, and plaster choices are studied as a system so the space feels quiet, tactile, and built rather than decorated.",
+    description: "Stone, timber, textile, metal, and plaster are studied together so finishes feel consistent, durable, and appropriate to the room.",
   },
   {
     index: "STUDIO 03",
     title: "Detail Coordination",
-    description: "Joinery, lighting, and finish transitions are resolved before execution, reducing site noise and protecting the intended spatial character.",
+    description: "Joinery, lighting, and finish transitions are resolved early so site decisions stay aligned with the intended spatial character.",
   },
   {
     index: "STUDIO 04",
     title: "Private Direction",
-    description: "A focused design lead manages the concept through documentation and site coordination for clients who want restraint, clarity, and finish.",
+    description: "A focused design lead carries the brief through concept, documentation, and site coordination for clients who want clarity and finish.",
   },
 ];
 
 export const VELOUR_INTAKE_PROTOCOL = [
   {
     id: "BRIEF",
-    label: "Share a Spatial Brief",
-    message: "Hi Velour House, I would like to discuss an interior architecture project and share the space brief.",
+    label: "Start a Project Brief",
+    message: "Hi Velour House, I would like to discuss an interior architecture project and share the site brief.",
   },
   {
     id: "RESIDENCE",
     label: "Discuss a Residence",
-    message: "Hi Velour House, I am planning a private residence and would like to understand your design process.",
+    message: "Hi Velour House, I am planning a residence and would like to understand your process for layout, materials, and site coordination.",
   },
   {
     id: "MATERIALS",
-    label: "Request Material Direction",
-    message: "Hi Velour House, I need guidance on material direction, finishes, and spatial mood for a project.",
+    label: "Discuss Materials",
+    message: "Hi Velour House, I need guidance on finishes, materials, and spatial mood for a project.",
   },
   {
     id: "SITE",
     label: "Review an Existing Site",
-    message: "Hi Velour House, I have an existing site and would like a spatial review before moving forward.",
+    message: "Hi Velour House, I have an existing site and would like a spatial review before deciding the design direction.",
   },
   {
     id: "CONSULT",
-    label: "Book a Design Dialogue",
-    message: "Hi Velour House, I would like to book a private design dialogue for an interior project.",
+    label: "Book a Design Call",
+    message: "Hi Velour House, I would like to book a design call for an interior project.",
   },
 ];

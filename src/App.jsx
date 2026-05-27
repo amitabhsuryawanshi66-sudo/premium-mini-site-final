@@ -268,7 +268,7 @@ const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", classNa
   );
 };
 
-const ReferenceSlip = ({ index = "01", label = "REF_SCAN", variant = "default", authLabel = "OBSIDIAN_AUTH" }) => (
+const ReferenceSlip = ({ index = "01", label = "REF_SCAN", variant = "default", authLabel = "STUDIO_REVIEW" }) => (
   <div className={`reference-slip mono slip-variant-${variant}`}>
     <div className="slip-header">
       <span className="slip-label" style={{ opacity: 0.5 }}>{label}</span>
@@ -280,7 +280,7 @@ const ReferenceSlip = ({ index = "01", label = "REF_SCAN", variant = "default", 
         <div className="redacted-line" style={{ width: '80%', opacity: 0.1 }}></div>
         <div className="redacted-line" style={{ width: '40%', opacity: 0.1 }}></div>
       </div>
-      <div className="slip-stamp" style={{ opacity: 0.7 }}>APPROVED</div>
+      <div className="slip-stamp" style={{ opacity: 0.7 }}>REVIEWED</div>
     </div>
     <div className="slip-footer">
       <span style={{ opacity: 0.3 }}>{authLabel}</span>
@@ -399,6 +399,9 @@ const HeroArtifact = ({ site }) => {
               </div>
             ))}
           </div>
+          <a href={getWhatsAppUrl(site.intakeProtocol[0].message)} className="hero-inquiry-link mono">
+            {hero.inquiryLabel || site.copy.threshold.ctaLabel}
+          </a>
         </div>
       </div>
 
@@ -480,7 +483,7 @@ const ArchiveStudy = ({ item, index }) => {
         </div>
         <div className="archive-badge-clinical mono">
           <div className="registration-tick"></div>
-          <span>AUTHENTICATED</span>
+          <span>Reviewed</span>
         </div>
       </div>
     </Reveal>
