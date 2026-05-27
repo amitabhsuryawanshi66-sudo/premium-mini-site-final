@@ -26,5 +26,8 @@ Ask builders for implementation rationale, tradeoffs, files changed, and proof. 
 ## Scope Discipline
 Keep the current branch and task scope explicit. A valid prompt names what is allowed to change and what must not change.
 
+## Council Selection
+Prompts should say whether the task needs a targeted reviewer pass, a Decision Council pass, both, or neither. Use targeted reviewers for PR/code work and `docs/DECISION_COUNCIL.md` for strategic choices with genuine uncertainty. Do not add a Decision Council pass to narrow implementation work unless the strategic choice is still unresolved.
+
 ## Banned Prompt Pattern
 Do not use "make it better", "premium it up", "improve the design", or similar open-ended prompts without specific gates. Rewrite them into scoped requests before implementation.
