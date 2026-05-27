@@ -29,5 +29,8 @@ Keep the current branch and task scope explicit. A valid prompt names what is al
 ## Council Selection
 Prompts should say whether the task needs a targeted reviewer pass, a Decision Council pass, both, or neither. Use targeted reviewers for PR/code work and `docs/DECISION_COUNCIL.md` for strategic choices with genuine uncertainty. Do not add a Decision Council pass to narrow implementation work unless the strategic choice is still unresolved.
 
+## Design Skills And References
+Before visual identity or taste-sensitive implementation, prompts should say whether approved Codex-native design skills, 21st.dev browser reference, or both are required. Follow `docs/REAL_DESIGN_SKILLS_INSTALL_PLAN.md`; do not treat repo-local approximations or 21st.dev as installed native skills.
+
 ## Banned Prompt Pattern
 Do not use "make it better", "premium it up", "improve the design", or similar open-ended prompts without specific gates. Rewrite them into scoped requests before implementation.

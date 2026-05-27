@@ -15,6 +15,7 @@ This repo is a repeatable workflow/tool for generating premium, mobile-first min
 ## Required References
 - Council workflow: `docs/COUNCIL_WORKFLOW.md`
 - Decision Council: `docs/DECISION_COUNCIL.md`
+- Real design skills install plan: `docs/REAL_DESIGN_SKILLS_INSTALL_PLAN.md`
 - Prompt protocol: `docs/PROMPT_PROTOCOL.md`
 - QA playbook: `docs/QA_PLAYBOOK.md`
 - Codex local environment: `docs/CODEX_LOCAL_ENV.md`
