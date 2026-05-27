@@ -1,0 +1,109 @@
+{
+  "site": "Velour House",
+  "version": 1,
+  "contractScope": "Velour House preset archive visuals. This contract covers the premium interior architecture and spatial design preset.",
+  "visualItems": [
+    {
+      "section": "exhibitArchive",
+      "title": "Light-Well Residence",
+      "serviceValue": "Calibrated daylight, shadow, and proportion for a private residence.",
+      "requiredSubject": "architectural light well, room volume, shadow plane, or spatial proportion study",
+      "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "MaterialPlate spatialLight artifact with room volume, daylight plane, and material shadow cues",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "spatialLight"
+      },
+      "semanticFit": "The artifact shows a grounded room volume, daylight cut, and shadow map so the visual subject supports spatial proportion rather than decorative ambience.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led architectural light map with room volume and spatial flow cues",
+      "visualProofNote": "Verify the card reads as interior architecture and light control at desktop and mobile sizes."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Stone & Linen Palette",
+      "serviceValue": "Quiet material language across stone, textile, and warm neutral surfaces.",
+      "requiredSubject": "architectural material board, stone plane, linen surface, tactile interior finish, or neutral surface study",
+      "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "MaterialPlate materialStudy artifact with stone, textile, and warm neutral swatch planes",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "materialStudy"
+      },
+      "semanticFit": "The materialStudy artifact uses layered stone, textile, and surface swatches to communicate tactile material direction for interiors.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led material craft board with stone, textile, and surface flow cues",
+      "visualProofNote": "Verify the card reads as a tactile interior material study and not a generic luxury mood board."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Gallery Plan",
+      "serviceValue": "Spatial sequencing that makes rooms feel collected, legible, and calm.",
+      "requiredSubject": "interior floor plan, circulation map, room sequence, gallery layout, or spatial blueprint",
+      "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "MaterialPlate planGridInterior artifact with room walls, grid, and circulation path",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "planGridInterior"
+      },
+      "semanticFit": "The planGridInterior artifact visibly shows room boundaries and circulation flow, matching the promise of legible spatial sequencing.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led interior blueprint map with circulation flow",
+      "visualProofNote": "Verify the card reads as a spatial plan or gallery sequence rather than abstract decoration."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Shadow Courtyard",
+      "serviceValue": "Cinematic shadow control with grounded architectural restraint.",
+      "requiredSubject": "courtyard volume, architectural shadow, light plane, interior massing, or restrained spatial composition",
+      "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "MaterialPlate courtyardShadow artifact with architectural blocks, light angle, and shadow plane",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "courtyardShadow"
+      },
+      "semanticFit": "The courtyardShadow artifact uses massing blocks and a light cut to make shadow control visible without relying on staged interior stock imagery.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led courtyard light map with shadow flow and architectural volume",
+      "visualProofNote": "Verify the card reads as grounded architecture and shadow control in desktop Story Track proof."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Joinery Detail",
+      "serviceValue": "Custom joinery logic with tactile craft and durable material edges.",
+      "requiredSubject": "joinery detail, timber grain, cabinet edge, crafted interior surface, or built material junction",
+      "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "MaterialPlate joineryDetail artifact with timber grain, panel junctions, and joinery marks",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "joineryDetail"
+      },
+      "semanticFit": "The joineryDetail artifact shows panel seams, timber grain, and crafted junctions, so the visual subject supports the promise of durable custom detail.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led joinery craft detail with timber linework and material junctions",
+      "visualProofNote": "Verify the card reads as custom joinery craft and not a generic texture."
+    },
+    {
+      "section": "exhibitArchive",
+      "title": "Quiet Threshold",
+      "serviceValue": "Arrival moments shaped through compression, reveal, and softened light.",
+      "requiredSubject": "interior threshold, doorway section, arrival sequence, light reveal, or spatial transition",
+      "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "MaterialPlate thresholdStudy artifact with doorway volume, light reveal, and section line",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "thresholdStudy"
+      },
+      "semanticFit": "The thresholdStudy artifact presents a doorway section and light reveal, matching the service value of composed arrival and spatial transition.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led threshold blueprint with doorway volume and light flow",
+      "visualProofNote": "Verify the final Story Track card reads as an interior threshold study."
+    }
+  ]
+}

@@ -1,4 +1,10 @@
 import { EXHIBIT_ARCHIVE, INTAKE_PROTOCOL, PRIVATE_LEDGER, STUDIO_INFO } from './demoData.js';
+import {
+  VELOUR_EXHIBIT_ARCHIVE,
+  VELOUR_INTAKE_PROTOCOL,
+  VELOUR_PRIVATE_LEDGER,
+  VELOUR_STUDIO_INFO,
+} from './velourData.js';
 
 export const DEFAULT_SITE_ID = 'obsidian-ink';
 
@@ -6,6 +12,7 @@ export const OBSIDIAN_SITE_PRESET = {
   id: DEFAULT_SITE_ID,
   label: 'Obsidian Ink Studio',
   contractFile: 'obsidian-ink.json',
+  referenceAuthLabel: 'OBSIDIAN_AUTH',
   studioInfo: STUDIO_INFO,
   exhibitArchive: EXHIBIT_ARCHIVE,
   privateLedger: PRIVATE_LEDGER,
@@ -87,7 +94,93 @@ export const OBSIDIAN_SITE_PRESET = {
   },
 };
 
-export const SITE_PRESETS = [OBSIDIAN_SITE_PRESET];
+export const VELOUR_HOUSE_SITE_PRESET = {
+  id: 'velour-house',
+  label: 'Velour House',
+  contractFile: 'velour-house.json',
+  referenceAuthLabel: 'VELOUR_AUTH',
+  studioInfo: VELOUR_STUDIO_INFO,
+  exhibitArchive: VELOUR_EXHIBIT_ARCHIVE,
+  privateLedger: VELOUR_PRIVATE_LEDGER,
+  intakeProtocol: VELOUR_INTAKE_PROTOCOL,
+  copy: {
+    nav: {
+      logo: 'Velour House',
+      meta: 'Mumbai - Spatial Studio',
+    },
+    hero: {
+      topNote: '[ INTERIOR ARCHITECTURE / MATERIAL ATELIER / 19.06N 72.83E ]',
+      referenceSlip: {
+        index: '00',
+        label: 'ROOM_INIT',
+        variant: 'header',
+      },
+      materialAlt: 'Architectural material and light study',
+      materialVariant: 'spatialLight',
+      materialMode: 'artifact',
+      shieldAnnotation: '[ LIGHT_REF_01 ]',
+      placementArea: 'SPATIAL_SEQUENCE',
+      desktopTitle: 'Velour',
+      mobileTitleParts: ['VELOUR', 'HOUSE'],
+      mobileTitleSuffix: 'SPATIAL DESIGN',
+      statusItems: [
+        {
+          label: 'Studio',
+          value: 'Interior Architecture',
+        },
+        {
+          label: 'Access',
+          value: 'Private Project Review',
+        },
+      ],
+      archiveLabel: 'Archive: Material Room / Mumbai',
+      protocolStatus: 'PROTOCOL: BRIEF_VALIDATED',
+    },
+    stance: {
+      headingStart: 'Spatial restraint.',
+      headingAccent: 'Material precision',
+      headingEnd: 'No decorative noise.',
+      description:
+        'Velour House is a premium interior architecture studio for private residences and spatial design briefs. Each project begins with light, proportion, circulation, and material discipline before styling is considered.',
+      marks: [
+        {
+          label: 'Design Logic',
+          value: 'Light / Plan / Material',
+        },
+        {
+          label: 'Studio Standard',
+          value: 'Detail-Led Direction',
+        },
+      ],
+    },
+    exhibit: {
+      eyebrow: '[ Exhibit 02 - Spatial / Material Archive ]',
+    },
+    ledger: {
+      eyebrow: '[ Studio Method & Detail Protocol ]',
+    },
+    intake: {
+      eyebrow: '[ Brief System V.01 ]',
+      titleLines: ['Begin', 'Brief.'],
+      referenceSlip: {
+        index: '05',
+        label: 'BRIEF_AUTH',
+        variant: 'stamp',
+      },
+    },
+    threshold: {
+      headingLines: ['Private', 'Rooms.'],
+      ctaLabel: 'Start a spatial brief review',
+      footerLocation: 'Mumbai / Private Studio',
+      footerNote: 'Material Dialogue Required',
+    },
+    footer: {
+      text: 'VELOUR HOUSE - INTERIOR ARCHITECTURE - MUMBAI',
+    },
+  },
+};
+
+export const SITE_PRESETS = [OBSIDIAN_SITE_PRESET, VELOUR_HOUSE_SITE_PRESET];
 
 export const SITE_PRESETS_BY_ID = SITE_PRESETS.reduce((presets, preset) => {
   presets[preset.id] = preset;
