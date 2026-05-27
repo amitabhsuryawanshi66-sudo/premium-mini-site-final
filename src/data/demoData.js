@@ -10,28 +10,28 @@ export const STUDIO_INFO = {
 export const INTAKE_PROTOCOL = [
   {
     id: "IDEA",
-    label: "Send My Tattoo Idea",
-    message: "Hi Obsidian Ink, I have a custom tattoo concept I'd like to discuss. Are you open for new projects?"
+    label: "Start a Concept Review",
+    message: "Hi Obsidian Ink, I would like to discuss a custom tattoo concept and understand the next steps for a consultation."
   },
   {
     id: "AVAILABILITY",
-    label: "Check Availability",
-    message: "Hi Obsidian Ink, I'd like to check your current appointment availability for a session in Koregaon Park."
+    label: "Check Studio Dates",
+    message: "Hi Obsidian Ink, I would like to check available consultation and session dates in Koregaon Park."
   },
   {
     id: "PRICE",
-    label: "Ask Fine-Line Price",
-    message: "Hi Obsidian Ink, I'm interested in a fine-line piece. Could you guide me on your pricing logic for custom work?"
+    label: "Discuss Pricing",
+    message: "Hi Obsidian Ink, I am interested in a custom piece and would like to understand how you estimate size, detail, and session time."
   },
   {
     id: "REFERENCE",
     label: "Share Reference",
-    message: "Hi Obsidian Ink, I have some reference images for a custom design. Can I share them for a technical review?"
+    message: "Hi Obsidian Ink, I have reference images and placement notes for a custom design. Can I share them for review?"
   },
   {
     id: "COVERUP",
-    label: "Ask Cover-Up Question",
-    message: "Hi Obsidian Ink, I have an existing tattoo I'd like to cover or rework. Do you handle technical cover-up projects?"
+    label: "Ask About Rework",
+    message: "Hi Obsidian Ink, I have an existing tattoo I may want to cover or rework. Can I share photos for an honest review?"
   },
 ];
 
@@ -94,24 +94,24 @@ export const EXHIBIT_ARCHIVE = [
 
 export const PRIVATE_LEDGER = [
   {
-    index: "PROTOCOL 01",
+    index: "STEP 01",
     title: "Reference Review",
-    description: "Submit your custom vision and body placement. All references are reviewed before a quote is provided. We only accept bespoke commissions that respect the skin's architecture."
+    description: "Share the idea, references, placement, and approximate size. The studio reviews fit, detail, and healing considerations before suggesting a direction."
   },
   {
-    index: "PROTOCOL 02",
+    index: "STEP 02",
     title: "Artist Consultation",
-    description: "A private session to map intent to your body. Pricing is transparently calculated based on final design size, level of detail, and total session time required."
+    description: "The artist maps the design intent to your body and explains what will affect price, session time, and final detail."
   },
   {
-    index: "PROTOCOL 03",
+    index: "STEP 03",
     title: "Sterile Setup",
-    description: "Hospital-grade sterilization. Single-use needles, premium vegan pigments, and a focused, private studio environment in Koregaon Park. No walk-ins, no rushed sessions."
+    description: "Single-use needles, careful station prep, quality pigments, and a quiet appointment setting keep the session focused and hygienic."
   },
   {
-    index: "PROTOCOL 04",
+    index: "STEP 04",
     title: "Technical Precision",
-    description: "Focused artist-led execution of your custom fine-line or blackwork design. Appointment-only access ensures absolute focus on your long-term healing result."
+    description: "Fine-line and blackwork pieces are executed with attention to line weight, contrast, placement, and how the tattoo will age."
   }
 ];
 

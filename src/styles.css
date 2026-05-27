@@ -255,6 +255,18 @@ nav {
 }
 .plate-item span { display: block; margin-bottom: 0.75rem; color: var(--accent); }
 .plate-item p { font-weight: 700; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em; }
+.hero-inquiry-link {
+  display: inline-flex;
+  margin-top: 2rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--accent);
+  color: var(--fg);
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.hero-inquiry-link:hover { color: var(--accent); }
 
 .hero-bottom {
   display: flex;
@@ -500,6 +512,7 @@ nav {
 
   .status-plate { flex-direction: row; flex-wrap: wrap; gap: 1.25rem; margin-top: 0.25rem; }
   .plate-item p { font-size: 0.7rem; }
+  .hero-inquiry-link { margin-top: 0.75rem; font-size: 9px; }
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding-top: 1.5rem; margin-top: 1.5rem; width: 100%; }
   .brand-meta { flex-direction: column; gap: 0.5rem; }
   .brand-meta .mono { font-size: 8px; }
