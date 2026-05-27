@@ -3,6 +3,7 @@ import { spawnSync } from 'node:child_process';
 const checks = [
   ['qa:links', 'scripts/qa-links.js'],
   ['qa:source', 'scripts/qa-source-gates.js'],
+  ['qa:assets', 'scripts/qa-assets.js'],
 ];
 
 const results = [];

@@ -2,6 +2,8 @@
 
 Visual assets are part of the product system. They must carry the service promise, not merely decorate the page.
 
+For the enforceable v1 process, use `docs/ASSET_PIPELINE.md` and the relevant contract file in `docs/asset-contracts/`. The strategy below defines the taste rules; the pipeline defines the metadata contract and static QA gate.
+
 ## Source Priority
 1. **Client photos first**: Use real client-provided studio, artist, work, or process imagery when available and approved.
 2. **Generated bespoke visuals second**: Use generated visuals when they are specific to the service, readable, and consistent with the brand mood.
@@ -29,6 +31,7 @@ Fallbacks are allowed only when intentionally designed. They should feel like a 
 
 ## Archive / Media Acceptance Checklist
 Before accepting assets, confirm:
+- The asset has a matching contract entry and passes `npm.cmd run qa:assets`.
 - Source, license, or generation method is known.
 - Subject matches the section title and service value.
 - Cropping works on desktop and mobile.

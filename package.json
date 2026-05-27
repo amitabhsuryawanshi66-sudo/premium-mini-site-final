@@ -9,6 +9,7 @@
     "preview": "vite preview",
     "qa:links": "node scripts/qa-links.js",
     "qa:source": "node scripts/qa-source-gates.js",
+    "qa:assets": "node scripts/qa-assets.js",
     "qa:report": "node scripts/qa-report.js",
     "qa:visual": "node scripts/qa-visual.js"
   },
