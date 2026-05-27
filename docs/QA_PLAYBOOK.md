@@ -38,7 +38,7 @@ The proof must come from the current branch and current build/dev preview.
 ## Asset QA
 Asset changes must follow `docs/ASSET_PIPELINE.md`.
 
-`qa:assets` is an offline static gate. It verifies contract coverage, required metadata, allowed source types, subject-led deterministic artifacts, meaningful stock semantic-fit notes, fallback behavior, and banned generic subjects in claimed visual fields. It does not browse, fetch image URLs, inspect pixels, judge beauty, or verify copyright/license status.
+`qa:assets` is an offline static gate. It verifies contract coverage, required metadata, allowed source types, subject-led deterministic artifacts, meaningful stock semantic-fit notes, fallback behavior, and banned generic subjects in claimed visual fields. It validates every JSON contract in `docs/asset-contracts/` against the matching preset registered in `src/data/sitePresets.js`. It does not browse, fetch image URLs, inspect pixels, judge beauty, or verify copyright/license status.
 
 Passing asset QA does not replace visual proof. Reviewers must still inspect desktop and mobile screenshots to confirm the asset is readable, intentional, and not label-led or fallback-looking in the rendered UI.
 
