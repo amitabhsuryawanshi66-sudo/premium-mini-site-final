@@ -18,6 +18,11 @@ Ask council before implementation when a task changes layout, copy hierarchy, im
 
 Use the full council for risky or cross-surface changes, especially when a prompt includes "premium", "polish", "visual", "homepage", "story", "asset", "mobile", "desktop", "conversion", or any request that could become a redesign. For narrow scoped fixes, use only the relevant reviewers.
 
+## Decision Council
+The targeted repo reviewers remain the primary system for code, PR, visual QA, asset, mobile, Story Track, and prompt-scope work. Use the Decision Council in `docs/DECISION_COUNCIL.md` only for strategic decisions with genuine uncertainty, such as product direction, pricing, offer design, or major workflow architecture.
+
+Do not use Decision Council to avoid making a normal implementation decision. Do not run the full council just to create certainty for a narrow PR. If the task is already scoped as implementation or review, use the relevant targeted reviewers instead.
+
 ## Prompt Review
 Before implementation, the council reviews the prompt for:
 - Explicit current branch and target files.
