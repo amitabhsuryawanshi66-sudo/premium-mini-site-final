@@ -23,6 +23,7 @@ Each visual contract item must include:
 - `forbiddenSubjects`: Subjects that would make the asset fail even if the image looks premium.
 - `assetSourceType`: One of the allowed source types below.
 - `assetSource`: The concrete file, URL, generator note, or deterministic artifact source.
+- `assetBinding`: The exact local data binding used by static QA. Image-backed entries bind to the current image URL; artifact entries bind to the current visual mode and variant.
 - `semanticFit`: Why this asset matches the title and service value.
 - `fallbackMode`: The fallback behavior or visual mode.
 - `fallbackSubject`: What the fallback visibly communicates.
