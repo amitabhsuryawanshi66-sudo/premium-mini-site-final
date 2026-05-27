@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, useReducedMotion } from 'framer-motion';
-import { STUDIO_INFO, EXHIBIT_ARCHIVE, PRIVATE_LEDGER, INTAKE_PROTOCOL } from './data/demoData';
+import { getSelectedSitePreset, getSitePreset } from './data/sitePresets';
 import { getWhatsAppUrl } from './lib/whatsapp';
 
 const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", className = "", style = {} }) => {
@@ -258,18 +258,19 @@ const TechnicalOverlay = () => (
   </div>
 );
 
-const Nav = () => (
+const Nav = ({ site }) => (
   <nav>
-    <div className="logo">Obsidian</div>
-    <div className="mono nav-meta">Pune — Studio 07</div>
+    <div className="logo">{site.copy.nav.logo}</div>
+    <div className="mono nav-meta">{site.copy.nav.meta}</div>
   </nav>
 );
 
-const HeroArtifact = () => {
+const HeroArtifact = ({ site }) => {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 1000], [0, 150]);
   const scale = useTransform(scrollY, [0, 1000], [1, 1.1]);
   const [isMobile, setIsMobile] = useState(false);
+  const { hero } = site.copy;
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768);
@@ -282,47 +283,51 @@ const HeroArtifact = () => {
     <section className="scene hero-artifact">
       <div className="hero-top">
         <div className="mono redacted-note-fragment">
-          [ ARTIST-LED / PRIVATE STUDIO / 18.53°N 73.89°E ]
+          {hero.topNote}
         </div>
-        <ReferenceSlip index="00" label="STATION_INIT" variant="header" />
+        <ReferenceSlip {...hero.referenceSlip} />
       </div>
 
       <div className="hero-center">
         <div className="material-shield">
           <motion.div style={{ y, scale, height: '100%' }}>
-            <MaterialPlate src={STUDIO_INFO.heroImage} alt="Premium Tattoo Process" variant="inkCraft" mode="hybrid" />
+            <MaterialPlate
+              src={site.studioInfo.heroImage}
+              alt={hero.materialAlt}
+              variant={hero.materialVariant}
+              mode={hero.materialMode}
+            />
           </motion.div>
-          <div className="shield-annotation mono" style={{ fontSize: '8px', opacity: 0.4 }}>[ ARCHIVE_REF_01 ]</div>
-          <PlacementMap area="PRIMARY_DESIRE" />
+          <div className="shield-annotation mono" style={{ fontSize: '8px', opacity: 0.4 }}>{hero.shieldAnnotation}</div>
+          <PlacementMap area={hero.placementArea} />
         </div>
 
         <div className="hero-content">
-          <h1 className="brand-title-desktop">Obsidian</h1>
+          <h1 className="brand-title-desktop">{hero.desktopTitle}</h1>
           <h1 className="brand-title-mobile-forced">
-            <span className="title-part">OBSID</span>
-            <span className="title-part">IAN</span>
-            <span className="title-suffix">INK STUDIO</span>
+            {hero.mobileTitleParts.map((part) => (
+              <span className="title-part" key={part}>{part}</span>
+            ))}
+            <span className="title-suffix">{hero.mobileTitleSuffix}</span>
           </h1>
           <div className="status-plate">
-            <div className="plate-item">
-              <span className="mono">Location</span>
-              <p>Koregaon Park, Pune</p>
-            </div>
-            <div className="plate-item">
-              <span className="mono">Access</span>
-              <p>Premium Appointment-Only</p>
-            </div>
+            {hero.statusItems.map((item) => (
+              <div className="plate-item" key={item.label}>
+                <span className="mono">{item.label}</span>
+                <p>{item.value}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
 
       <Reveal className="hero-bottom">
         <div className="brand-meta">
-          <div className="mono">Archive: Studio 07 / Pune</div>
-          <div className="mono" style={{ color: 'var(--accent)' }}>[ {STUDIO_INFO.tagline} ]</div>
+          <div className="mono">{hero.archiveLabel}</div>
+          <div className="mono" style={{ color: 'var(--accent)' }}>[ {site.studioInfo.tagline} ]</div>
         </div>
         <div className="hero-marginalia mono">
-          <div>PROTOCOL: ENTRY_VALIDATED</div>
+          <div>{hero.protocolStatus}</div>
           <div className="registration-tick"></div>
         </div>
       </Reveal>
@@ -330,30 +335,32 @@ const HeroArtifact = () => {
   );
 };
 
-const SceneStance = () => (
-  <section className="scene technical-stance">
-    <div className="stance-body">
-      <Reveal className="stance-heading">
-        Custom design. <span style={{ color: 'var(--accent)' }}>Technical Precision</span>. No rushed walk-ins.
-      </Reveal>
-      <div className="stance-details-grid">
-        <Reveal className="stance-details" stagger={0.2}>
-          Obsidian Ink is a premium tattoo studio in Koregaon Park for style-conscious collectors. Every project begins with a mandatory reference review to ensure technical excellence and custom alignment.
+const SceneStance = ({ site }) => {
+  const { stance } = site.copy;
+
+  return (
+    <section className="scene technical-stance">
+      <div className="stance-body">
+        <Reveal className="stance-heading">
+          {stance.headingStart} <span style={{ color: 'var(--accent)' }}>{stance.headingAccent}</span>. {stance.headingEnd}
         </Reveal>
-        <Reveal className="stance-marks" stagger={0.3}>
-          <div className="mark-fragment">
-            <span className="mono">Pricing Logic</span>
-            <p>Size / Detail / Time</p>
-          </div>
-          <div className="mark-fragment">
-            <span className="mono">Clinic Standard</span>
-            <p>Hospital-Grade Sterile</p>
-          </div>
-        </Reveal>
+        <div className="stance-details-grid">
+          <Reveal className="stance-details" stagger={0.2}>
+            {stance.description}
+          </Reveal>
+          <Reveal className="stance-marks" stagger={0.3}>
+            {stance.marks.map((mark) => (
+              <div className="mark-fragment" key={mark.label}>
+                <span className="mono">{mark.label}</span>
+                <p>{mark.value}</p>
+              </div>
+            ))}
+          </Reveal>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const ArchiveStudy = ({ item, index }) => {
   const isLarge = index === 0 || index === 3;
@@ -399,7 +406,7 @@ const ArchiveStudy = ({ item, index }) => {
   );
 };
 
-const SceneExhibit = () => {
+const SceneExhibit = ({ site }) => {
   const trackRef = useRef(null);
   const containerRef = useRef(null);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 768);
@@ -456,10 +463,10 @@ const SceneExhibit = () => {
     <section className="scene-container-exhibit" ref={containerRef} style={{ height: isDesktop ? '260vh' : 'auto' }}>
       <section className="scene exhibit-archive">
         <div className="exhibit-header">
-          <div className="mono">[ Exhibit 02 — Portfolio / Process Archive ]</div>
+          <div className="mono">{site.copy.exhibit.eyebrow}</div>
         </div>
         <div className="story-track" ref={trackRef}>
-          {EXHIBIT_ARCHIVE.map((item, i) => (
+          {site.exhibitArchive.map((item, i) => (
             <ArchiveStudy key={i} item={item} index={i} />
           ))}
         </div>
@@ -473,15 +480,15 @@ const SceneExhibit = () => {
   );
 };
 
-const StudioTrustLedger = () => (
+const StudioTrustLedger = ({ site }) => (
   <section className="scene studio-trust-ledger">
     <div className="ledger-container">
       <div className="mono" style={{ marginBottom: '4rem', color: 'var(--accent)', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-        <span>[ Studio Trust & Safety Protocol ]</span>
+        <span>{site.copy.ledger.eyebrow}</span>
         <div style={{ height: '1px', flex: 1, background: 'var(--accent)', opacity: 0.2 }}></div>
       </div>
       <div className="ledger-grid">
-        {PRIVATE_LEDGER.map((item, i) => (
+        {site.privateLedger.map((item, i) => (
           <Reveal key={i} className="ledger-item" stagger={i * 0.1}>
             <div className="ledger-sidebar">
               <span className="ledger-num mono">{item.index}</span>
@@ -498,19 +505,19 @@ const StudioTrustLedger = () => (
   </section>
 );
 
-const IntakeProtocolPanel = () => (
+const IntakeProtocolPanel = ({ site }) => (
   <section className="scene intake-protocol-panel">
     <div className="intake-portal">
       <div className="intake-header">
         <Reveal>
-          <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1rem' }}>[ Intake System V.07 ]</div>
-          <h2 className="intake-title">Initiate<br />Dialogue.</h2>
+          <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1rem' }}>{site.copy.intake.eyebrow}</div>
+          <h2 className="intake-title">{site.copy.intake.titleLines[0]}<br />{site.copy.intake.titleLines[1]}</h2>
         </Reveal>
-        <ReferenceSlip index="05" label="INTAKE_AUTH" variant="stamp" />
+        <ReferenceSlip {...site.copy.intake.referenceSlip} />
       </div>
 
       <div className="intake-grid">
-        {INTAKE_PROTOCOL.map((intent, i) => (
+        {site.intakeProtocol.map((intent, i) => (
           <Reveal key={intent.id} stagger={i * 0.1}>
             <a href={getWhatsAppUrl(intent.message)} className="intake-card">
               <div className="intake-card-top">
@@ -531,43 +538,53 @@ const IntakeProtocolPanel = () => (
   </section>
 );
 
-const SceneThreshold = () => (
+const SceneThreshold = ({ site }) => (
   <section className="scene portal-threshold">
     <div className="portal-body">
-      <Reveal className="portal-heading">Secure<br />Session.</Reveal>
+      <Reveal className="portal-heading">{site.copy.threshold.headingLines[0]}<br />{site.copy.threshold.headingLines[1]}</Reveal>
       <Reveal stagger={0.2}>
-        <a href={getWhatsAppUrl(INTAKE_PROTOCOL[0].message)} className="portal-action">
-          <span>Start a private concept review</span>
+        <a href={getWhatsAppUrl(site.intakeProtocol[0].message)} className="portal-action">
+          <span>{site.copy.threshold.ctaLabel}</span>
           <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
             <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
         </a>
       </Reveal>
       <div className="footer-meta">
-        <div className="mono">Pune / Koregaon Park</div>
-        <div className="mono" style={{ opacity: 0.3 }}>Technical Dialogue Required</div>
+        <div className="mono">{site.copy.threshold.footerLocation}</div>
+        <div className="mono" style={{ opacity: 0.3 }}>{site.copy.threshold.footerNote}</div>
       </div>
     </div>
   </section>
 );
 
+const getInitialSitePreset = () => {
+  if (typeof window === 'undefined') {
+    return getSitePreset();
+  }
+
+  return getSelectedSitePreset(window.location.search);
+};
+
 export default function App() {
+  const site = getInitialSitePreset();
+
   return (
     <div className="app-root">
       <div className="grain"></div>
       <TechnicalOverlay />
-      <Nav />
+      <Nav site={site} />
       <main>
-        <HeroArtifact />
-        <SceneStance />
-        <SceneExhibit />
-        <StudioTrustLedger />
-        <IntakeProtocolPanel />
-        <SceneThreshold />
+        <HeroArtifact site={site} />
+        <SceneStance site={site} />
+        <SceneExhibit site={site} />
+        <StudioTrustLedger site={site} />
+        <IntakeProtocolPanel site={site} />
+        <SceneThreshold site={site} />
       </main>
       <footer style={{ padding: '5rem 0', textAlign: 'center', opacity: 0.3 }}>
         <div className="container">
-          <p className="mono">© {new Date().getFullYear()} OBSIDIAN INK STUDIO • KOREGAON PARK • PUNE</p>
+          <p className="mono">© {new Date().getFullYear()} {site.copy.footer.text}</p>
         </div>
       </footer>
     </div>

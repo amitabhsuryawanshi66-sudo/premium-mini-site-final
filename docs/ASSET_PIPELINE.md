@@ -2,7 +2,7 @@
 
 Asset pipeline v1 turns asset taste rules into a repeatable contract and a static QA gate. It does not replace human visual review; it prevents major visuals from entering the site without a clear explanation of what they must show, where they came from, and what intentional fallback should appear if media fails.
 
-Future mini-sites should create their own contract file in `docs/asset-contracts/` instead of expanding the Obsidian-specific contract forever.
+Future mini-sites should create their own contract file in `docs/asset-contracts/` instead of expanding the Obsidian-specific contract forever. Each contract file must be registered on its matching site preset in `src/data/sitePresets.js` through the preset's `contractFile` field.
 
 ## Asset Contract Purpose
 Every major visual asset must satisfy this chain:
@@ -51,6 +51,11 @@ Reject the asset or freeze the PR when:
 Before implementation, the Asset Alignment Reviewer checks that every changed visual has a contract entry and that the contract chain is coherent. The Visual Taste Reviewer then judges whether the actual rendered result feels premium and readable. The Frontend Engineering Reviewer confirms the implementation is scoped, dependency-safe, and does not change app behavior outside the approved task.
 
 Before merge, `npm.cmd run qa:report` must pass, including `qa:assets`, and visual proof must still cover the required desktop and mobile states from `docs/QA_PLAYBOOK.md`.
+
+## Multi-Site Presets
+Mini-site presets live in `src/data/sitePresets.js`. Obsidian remains the default preset. Future presets should add their own data object, register it in `SITE_PRESETS`, and point `contractFile` to a dedicated JSON contract in `docs/asset-contracts/`.
+
+`qa:assets` validates every JSON contract in `docs/asset-contracts/`. A contract file fails if no registered preset maps to it, and a preset fails if its declared contract file is missing. This keeps asset contracts tied to the exact archive data that renders in the app.
 
 ## Static Asset QA vs Visual QA
 `qa:assets` checks metadata coverage and contract quality without browsing, fetching, or inspecting images online. It proves that every major visual has a declared subject, source, semantic fit, and fallback plan.
