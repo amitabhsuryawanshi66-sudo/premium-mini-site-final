@@ -268,7 +268,7 @@ const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", classNa
   );
 };
 
-const ReferenceSlip = ({ index = "01", label = "REF_SCAN", variant = "default" }) => (
+const ReferenceSlip = ({ index = "01", label = "REF_SCAN", variant = "default", authLabel = "OBSIDIAN_AUTH" }) => (
   <div className={`reference-slip mono slip-variant-${variant}`}>
     <div className="slip-header">
       <span className="slip-label" style={{ opacity: 0.5 }}>{label}</span>
@@ -283,7 +283,7 @@ const ReferenceSlip = ({ index = "01", label = "REF_SCAN", variant = "default" }
       <div className="slip-stamp" style={{ opacity: 0.7 }}>APPROVED</div>
     </div>
     <div className="slip-footer">
-      <span style={{ opacity: 0.3 }}>OBSIDIAN_AUTH</span>
+      <span style={{ opacity: 0.3 }}>{authLabel}</span>
       <div className="registration-tick" style={{ width: '8px', height: '8px', opacity: 0.2 }}></div>
     </div>
   </div>
@@ -366,7 +366,7 @@ const HeroArtifact = ({ site }) => {
         <div className="mono redacted-note-fragment">
           {hero.topNote}
         </div>
-        <ReferenceSlip {...hero.referenceSlip} />
+        <ReferenceSlip {...hero.referenceSlip} authLabel={site.referenceAuthLabel} />
       </div>
 
       <div className="hero-center">
@@ -594,7 +594,7 @@ const IntakeProtocolPanel = ({ site }) => (
           <div className="mono" style={{ color: 'var(--accent)', marginBottom: '1rem' }}>{site.copy.intake.eyebrow}</div>
           <h2 className="intake-title">{site.copy.intake.titleLines[0]}<br />{site.copy.intake.titleLines[1]}</h2>
         </Reveal>
-        <ReferenceSlip {...site.copy.intake.referenceSlip} />
+        <ReferenceSlip {...site.copy.intake.referenceSlip} authLabel={site.referenceAuthLabel} />
       </div>
 
       <div className="intake-grid">
