@@ -1293,3 +1293,715 @@ nav {
     transition-duration: 0.01ms;
   }
 }
+
+/* Lume Vale: aesthetic clinic capability test */
+.app-root[data-site="lume-vale"] {
+  --bg: #edf1ef;
+  --surface: #f8faf7;
+  --fg: #14211f;
+  --muted: #61706d;
+  --border: rgba(20, 33, 31, 0.14);
+  --accent: #2e706d;
+  --lume-ground: #e8efed;
+  --lume-pearl: #fbfbf6;
+  --lume-veil: #d9ece7;
+  --lume-celadon: #8fd4c8;
+  --lume-coral: #d77f69;
+  --lume-sage: #79936f;
+  --lume-ink: #14211f;
+  --lume-graphite: #43514e;
+  --lume-blush: #e8aa99;
+  --font-display: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Avenir Next", "Segoe UI", ui-sans-serif, sans-serif;
+  --gutter: clamp(1.25rem, 5vw, 5.5rem);
+  background:
+    radial-gradient(circle at 86% 7%, rgba(143, 212, 200, 0.48), transparent 28rem),
+    radial-gradient(circle at 16% 34%, rgba(215, 127, 105, 0.18), transparent 24rem),
+    linear-gradient(180deg, #f7f9f5 0%, #e6eeeb 48%, #dce6e2 100%);
+  color: var(--fg);
+}
+
+.app-root[data-site="lume-vale"] .grain {
+  opacity: 0.035;
+  mix-blend-mode: multiply;
+}
+
+.app-root[data-site="lume-vale"] .technical-overlay {
+  opacity: 0;
+}
+
+.app-root[data-site="lume-vale"] nav {
+  mix-blend-mode: normal;
+  padding: 1.25rem var(--gutter);
+  color: var(--fg);
+  background: linear-gradient(180deg, rgba(247, 249, 245, 0.84), rgba(247, 249, 245, 0));
+}
+
+.app-root[data-site="lume-vale"] .logo {
+  font-weight: 680;
+  letter-spacing: 0.03em;
+  text-transform: none;
+  font-size: 1rem;
+}
+
+.app-root[data-site="lume-vale"] .mono {
+  text-transform: none;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.app-root[data-site="lume-vale"] footer {
+  background: #14211f;
+  color: #f8faf7;
+}
+
+.lume-main {
+  width: 100%;
+  overflow-x: clip;
+}
+
+.lume-hero {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(340px, 1.08fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 6.5rem);
+  padding: clamp(5rem, 9vh, 7rem) var(--gutter) clamp(2rem, 5vh, 4rem);
+}
+
+.lume-hero-copy {
+  max-width: 720px;
+}
+
+.lume-kicker,
+.lume-section-header span,
+.lume-booking span,
+.lume-visual-note span,
+.lume-reveal-copy span {
+  display: inline-flex;
+  color: var(--accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 1.1rem;
+}
+
+.lume-hero h1 {
+  font-size: clamp(4.25rem, 8.3vw, 8.4rem);
+  line-height: 0.86;
+  letter-spacing: -0.06em;
+  font-weight: 660;
+  max-width: 9.6ch;
+}
+
+.lume-hero-copy p {
+  margin-top: clamp(1rem, 2.8vh, 1.8rem);
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.55;
+  max-width: 42ch;
+}
+
+.lume-hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.lume-primary-cta,
+.lume-secondary-cta,
+.lume-reveal-copy a,
+.lume-booking-grid a,
+.lume-mobile-cta {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: transform 160ms var(--ease), background-color 220ms var(--ease), color 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+.lume-primary-cta,
+.lume-mobile-cta {
+  padding: 0.9rem 1.25rem;
+  background: var(--fg);
+  color: var(--surface);
+}
+
+.lume-secondary-cta,
+.lume-reveal-copy a {
+  padding: 0.9rem 1.15rem;
+  color: var(--fg);
+  border: 1px solid var(--border);
+  background: rgba(248, 250, 247, 0.38);
+}
+
+.lume-primary-cta:hover,
+.lume-mobile-cta:hover {
+  background: var(--accent);
+  color: var(--surface);
+}
+
+.lume-secondary-cta:hover,
+.lume-reveal-copy a:hover,
+.lume-booking-grid a:hover {
+  border-color: rgba(46, 112, 109, 0.46);
+  background: rgba(143, 212, 200, 0.18);
+}
+
+.lume-primary-cta:active,
+.lume-secondary-cta:active,
+.lume-reveal-copy a:active,
+.lume-booking-grid a:active,
+.lume-mobile-cta:active {
+  transform: scale(0.98);
+}
+
+.lume-hero-visual {
+  position: relative;
+  min-height: min(64vh, 620px);
+  display: grid;
+  align-items: center;
+}
+
+.lume-hero-visual::before {
+  content: "";
+  position: absolute;
+  inset: 7% 10% -4% -8%;
+  border: 1px solid rgba(20, 33, 31, 0.12);
+  border-radius: 42% 58% 50% 50% / 55% 42% 58% 45%;
+  transform: rotate(-7deg);
+}
+
+.lume-skin-plate {
+  position: relative;
+  overflow: hidden;
+  border-radius: 42% 58% 50% 50% / 55% 42% 58% 45%;
+  aspect-ratio: 4 / 5;
+  background: var(--lume-ground);
+  box-shadow: 0 42px 110px rgba(42, 74, 70, 0.22);
+  border: 1px solid rgba(20, 33, 31, 0.12);
+}
+
+.lume-skin-plate svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.lume-visual-note {
+  position: absolute;
+  right: 0;
+  bottom: 5%;
+  width: min(260px, 52%);
+  padding: 1rem;
+  background: rgba(248, 250, 247, 0.82);
+  border: 1px solid rgba(20, 33, 31, 0.12);
+  box-shadow: 0 20px 60px rgba(42, 74, 70, 0.12);
+}
+
+.lume-visual-note span {
+  margin-bottom: 0.5rem;
+  font-size: 0.68rem;
+}
+
+.lume-visual-note strong {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.35;
+}
+
+.lume-trust-strip {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(248, 250, 247, 0.38);
+}
+
+.lume-trust-strip article {
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  border-right: 1px solid var(--border);
+}
+
+.lume-trust-strip article:last-child {
+  border-right: 0;
+}
+
+.lume-trust-strip span {
+  display: block;
+  color: var(--fg);
+  font-weight: 750;
+  margin-bottom: 0.75rem;
+}
+
+.lume-trust-strip p,
+.lume-treatment-card p,
+.lume-journey article p,
+.lume-proof-list p,
+.lume-booking p,
+.lume-reveal-copy p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.lume-section {
+  padding: clamp(5rem, 12vh, 9rem) var(--gutter);
+}
+
+.lume-section-header {
+  max-width: 780px;
+  margin-bottom: clamp(2rem, 6vh, 4.5rem);
+}
+
+.lume-section-header h2,
+.lume-booking h2 {
+  font-size: clamp(2.6rem, 6vw, 6.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.055em;
+  font-weight: 640;
+}
+
+.lume-treatment-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+}
+
+.lume-treatment-card {
+  min-height: 330px;
+  grid-column: span 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: clamp(1.4rem, 3vw, 2.4rem);
+  color: var(--fg);
+  text-decoration: none;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(circle at 85% 15%, rgba(143, 212, 200, 0.18), transparent 12rem),
+    rgba(248, 250, 247, 0.36);
+  transition: transform 220ms var(--ease), background-color 220ms var(--ease);
+}
+
+.lume-treatment-card:nth-child(2),
+.lume-treatment-card:nth-child(5) {
+  grid-column: span 3;
+}
+
+.lume-treatment-card:nth-child(4) {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(121, 147, 111, 0.22), transparent 13rem),
+    rgba(248, 250, 247, 0.36);
+}
+
+.lume-treatment-card:nth-child(6) {
+  background:
+    radial-gradient(circle at 80% 20%, rgba(215, 127, 105, 0.16), transparent 13rem),
+    rgba(248, 250, 247, 0.36);
+}
+
+.lume-treatment-card:hover {
+  transform: translateY(-6px);
+  background-color: rgba(248, 250, 247, 0.68);
+}
+
+.lume-treatment-card span {
+  color: var(--accent);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lume-treatment-card h3 {
+  font-size: clamp(1.45rem, 2.5vw, 2.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  max-width: 12ch;
+}
+
+.lume-reveal-section {
+  background: #14211f;
+  color: #f8faf7;
+}
+
+.lume-reveal-section .lume-section-header span,
+.lume-reveal-copy span {
+  color: var(--lume-celadon);
+}
+
+.lume-reveal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.12fr) minmax(280px, 0.62fr);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+}
+
+.lume-reveal {
+  position: relative;
+  min-height: min(68vh, 620px);
+  overflow: hidden;
+  border-radius: 2rem;
+  background: #dfe8e4;
+  border: 1px solid rgba(248, 250, 247, 0.16);
+  touch-action: none;
+}
+
+.lume-reveal-state {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
+.lume-reveal-state .lume-skin-plate {
+  width: min(62%, 430px);
+}
+
+.lume-reveal-before {
+  background: linear-gradient(120deg, #e6d6d0, #e4ebe7);
+}
+
+.lume-reveal-after {
+  clip-path: inset(0 0 0 var(--reveal-position));
+  background: radial-gradient(circle at 55% 45%, rgba(143, 212, 200, 0.35), transparent 26rem), #eaf1ed;
+}
+
+.lume-reveal-state span {
+  position: absolute;
+  left: 1.2rem;
+  bottom: 1.2rem;
+  padding: 0.5rem 0.7rem;
+  border-radius: 999px;
+  background: rgba(20, 33, 31, 0.82);
+  color: #f8faf7;
+  font-size: 0.8rem;
+}
+
+.lume-reveal-after span {
+  left: auto;
+  right: 1.2rem;
+}
+
+.lume-reveal-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 44px;
+  transform: translateX(-50%);
+  border: 0;
+  background: transparent;
+  cursor: ew-resize;
+}
+
+.lume-reveal-handle::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 1px;
+  background: rgba(20, 33, 31, 0.54);
+}
+
+.lume-reveal-handle::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 54px;
+  height: 54px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #14211f;
+  box-shadow: 0 16px 36px rgba(20, 33, 31, 0.28);
+}
+
+.lume-reveal-copy p {
+  color: rgba(248, 250, 247, 0.7);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+  margin-bottom: 1.5rem;
+}
+
+.lume-reveal-copy a {
+  color: #f8faf7;
+  border-color: rgba(248, 250, 247, 0.2);
+}
+
+.lume-journey {
+  background: rgba(248, 250, 247, 0.42);
+}
+
+.lume-journey-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--border);
+}
+
+.lume-journey article {
+  min-height: 360px;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  background: rgba(248, 250, 247, 0.72);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.lume-journey article span {
+  color: var(--accent);
+  font-weight: 760;
+}
+
+.lume-journey article h3 {
+  font-size: clamp(2rem, 4vw, 4.4rem);
+  letter-spacing: -0.06em;
+  font-weight: 640;
+}
+
+.lume-proof {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.72fr) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+}
+
+.lume-proof-visual .lume-skin-plate {
+  border-radius: 2rem;
+}
+
+.lume-proof-list {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+}
+
+.lume-proof-list article {
+  background: rgba(248, 250, 247, 0.62);
+  padding: 1.4rem 0;
+  display: grid;
+  grid-template-columns: 120px 1fr 1.2fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.lume-proof-list span,
+.lume-proof-list small {
+  color: var(--accent);
+  font-weight: 720;
+}
+
+.lume-proof-list h3 {
+  font-size: 1.25rem;
+}
+
+.lume-proof-list small {
+  line-height: 1.45;
+}
+
+.lume-booking {
+  margin: 0 var(--gutter) clamp(4rem, 9vh, 7rem);
+  padding: clamp(2rem, 5vw, 4rem);
+  background: #14211f;
+  color: #f8faf7;
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(300px, 1fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+  border-radius: 2rem;
+}
+
+.lume-booking span {
+  color: var(--lume-celadon);
+}
+
+.lume-booking p {
+  color: rgba(248, 250, 247, 0.68);
+  margin-top: 1rem;
+  max-width: 46ch;
+}
+
+.lume-booking-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+}
+
+.lume-booking-grid a {
+  padding: 1rem;
+  color: #f8faf7;
+  border: 1px solid rgba(248, 250, 247, 0.16);
+  background: rgba(248, 250, 247, 0.05);
+}
+
+.lume-mobile-cta {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .lume-treatment-card:hover,
+  .lume-primary-cta:hover,
+  .lume-secondary-cta:hover,
+  .lume-reveal-copy a:hover,
+  .lume-booking-grid a:hover,
+  .lume-mobile-cta:hover {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 980px) {
+  .lume-hero,
+  .lume-reveal-layout,
+  .lume-proof,
+  .lume-booking {
+    grid-template-columns: 1fr;
+  }
+
+  .lume-trust-strip,
+  .lume-journey-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lume-treatment-card,
+  .lume-treatment-card:nth-child(2),
+  .lume-treatment-card:nth-child(5) {
+    grid-column: span 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-root[data-site="lume-vale"] {
+    padding-bottom: 5rem;
+  }
+
+  .app-root[data-site="lume-vale"] nav {
+    padding: 1rem 1.25rem;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .app-root[data-site="lume-vale"] .nav-meta {
+    max-width: 12ch;
+    text-align: right;
+    line-height: 1.35;
+  }
+
+  .lume-hero {
+    min-height: auto;
+    padding: 6rem 1.25rem 3rem;
+    gap: 2rem;
+  }
+
+  .lume-hero h1 {
+    font-size: clamp(4.1rem, 18vw, 6.2rem);
+    max-width: 7ch;
+  }
+
+  .lume-hero-actions {
+    flex-direction: column;
+  }
+
+  .lume-primary-cta,
+  .lume-secondary-cta {
+    width: 100%;
+  }
+
+  .lume-hero-visual {
+    min-height: 360px;
+  }
+
+  .lume-visual-note {
+    width: min(250px, 76%);
+    right: 0.5rem;
+    bottom: -0.5rem;
+  }
+
+  .lume-trust-strip,
+  .lume-journey-grid,
+  .lume-booking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lume-trust-strip article {
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .lume-section {
+    padding: 4.5rem 1.25rem;
+  }
+
+  .lume-section-header h2,
+  .lume-booking h2 {
+    font-size: clamp(2.7rem, 14vw, 4.5rem);
+  }
+
+  .lume-treatment-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .lume-treatment-card,
+  .lume-treatment-card:nth-child(2),
+  .lume-treatment-card:nth-child(5) {
+    min-height: 260px;
+    grid-column: auto;
+  }
+
+  .lume-reveal {
+    min-height: 420px;
+    border-radius: 1.3rem;
+  }
+
+  .lume-reveal-state .lume-skin-plate {
+    width: min(78%, 320px);
+  }
+
+  .lume-journey article {
+    min-height: 280px;
+  }
+
+  .lume-proof-list article {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+    padding: 1.2rem 0;
+  }
+
+  .lume-booking {
+    margin: 0 1.25rem 2rem;
+    padding: 1.5rem;
+    border-radius: 1.4rem;
+  }
+
+  .lume-mobile-cta {
+    display: flex;
+    position: fixed;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1001;
+    min-height: 52px;
+    box-shadow: 0 18px 54px rgba(20, 33, 31, 0.22);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-root[data-site="lume-vale"] *,
+  .app-root[data-site="lume-vale"] *::before,
+  .app-root[data-site="lume-vale"] *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  .lume-reveal-after {
+    clip-path: inset(0 0 0 50%);
+  }
+}

@@ -5,6 +5,12 @@ import {
   VELOUR_PRIVATE_LEDGER,
   VELOUR_STUDIO_INFO,
 } from './velourData.js';
+import {
+  LUME_EXHIBIT_ARCHIVE,
+  LUME_INTAKE_PROTOCOL,
+  LUME_PRIVATE_LEDGER,
+  LUME_STUDIO_INFO,
+} from './lumeValeData.js';
 
 export const DEFAULT_SITE_ID = 'obsidian-ink';
 
@@ -185,7 +191,27 @@ export const VELOUR_HOUSE_SITE_PRESET = {
   },
 };
 
-export const SITE_PRESETS = [OBSIDIAN_SITE_PRESET, VELOUR_HOUSE_SITE_PRESET];
+export const LUME_VALE_SITE_PRESET = {
+  id: 'lume-vale',
+  label: 'Lume Vale Skin Atelier',
+  contractFile: 'lume-vale.json',
+  referenceAuthLabel: 'Private skin desk',
+  studioInfo: LUME_STUDIO_INFO,
+  exhibitArchive: LUME_EXHIBIT_ARCHIVE,
+  privateLedger: LUME_PRIVATE_LEDGER,
+  intakeProtocol: LUME_INTAKE_PROTOCOL,
+  copy: {
+    nav: {
+      logo: 'Lume Vale',
+      meta: 'Pune / Mumbai private consults',
+    },
+    footer: {
+      text: 'Lume Vale Skin Atelier / Precision skin plans / Pune and Mumbai',
+    },
+  },
+};
+
+export const SITE_PRESETS = [OBSIDIAN_SITE_PRESET, VELOUR_HOUSE_SITE_PRESET, LUME_VALE_SITE_PRESET];
 
 export const SITE_PRESETS_BY_ID = SITE_PRESETS.reduce((presets, preset) => {
   presets[preset.id] = preset;

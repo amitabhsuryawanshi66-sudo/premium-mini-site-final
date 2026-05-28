@@ -2,6 +2,12 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, useReducedMotion } from 'framer-motion';
 import { getSelectedSitePreset, getSitePreset } from './data/sitePresets';
 import { getWhatsAppUrl } from './lib/whatsapp';
+import {
+  LUME_JOURNEY,
+  LUME_TRANSFORMATION_PROOF,
+  LUME_TREATMENT_INTENTS,
+  LUME_TRUST_CUES,
+} from './data/lumeValeData';
 
 const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", className = "", style = {} }) => {
   const [error, setError] = useState(false);
@@ -642,6 +648,279 @@ const SceneThreshold = ({ site }) => (
   </section>
 );
 
+const LumeSkinPlate = ({ variant = "diagnostic", className = "" }) => {
+  const isIntent = variant === "intent";
+  const isAftercare = variant === "aftercare";
+  const glowColor = isIntent ? "var(--lume-coral)" : isAftercare ? "var(--lume-sage)" : "var(--lume-celadon)";
+  const lineColor = isAftercare ? "var(--lume-ink)" : "var(--lume-graphite)";
+
+  return (
+    <div className={`lume-skin-plate ${className}`} aria-hidden="true">
+      <svg viewBox="0 0 240 320" preserveAspectRatio="none">
+        <defs>
+          <radialGradient id={`lume-glow-${variant}`} cx="50%" cy="36%" r="62%">
+            <stop offset="0%" stopColor={glowColor} stopOpacity="0.58" />
+            <stop offset="48%" stopColor="var(--lume-veil)" stopOpacity="0.42" />
+            <stop offset="100%" stopColor="var(--lume-ground)" stopOpacity="0" />
+          </radialGradient>
+          <linearGradient id={`lume-layer-${variant}`} x1="0" x2="1" y1="0" y2="1">
+            <stop offset="0%" stopColor="var(--lume-pearl)" stopOpacity="0.72" />
+            <stop offset="52%" stopColor={glowColor} stopOpacity="0.2" />
+            <stop offset="100%" stopColor="var(--lume-ink)" stopOpacity="0.08" />
+          </linearGradient>
+        </defs>
+        <rect width="240" height="320" fill="var(--lume-ground)" />
+        <path d="M18 26 C76 -4 169 10 220 70 C198 111 204 172 228 223 C170 312 56 304 15 244 C42 188 40 87 18 26 Z" fill={`url(#lume-glow-${variant})`} />
+        <path d="M48 50 C96 24 159 35 195 82 C174 129 179 178 202 225 C158 273 90 278 47 236 C69 174 69 105 48 50 Z" fill={`url(#lume-layer-${variant})`} opacity="0.86" />
+        <path d="M68 82 C111 62 154 68 178 101 C162 132 164 177 183 210 C148 239 100 246 70 214 C88 168 88 121 68 82 Z" fill="var(--lume-blush)" opacity="0.34" />
+        {[0, 1, 2, 3, 4].map((line) => (
+          <path
+            key={line}
+            d={`M ${38 + line * 12} ${92 + line * 19} C ${89 + line * 7} ${64 + line * 11} ${156 - line * 3} ${82 + line * 18} ${207 - line * 9} ${132 + line * 21}`}
+            fill="none"
+            stroke={lineColor}
+            strokeWidth="0.5"
+            opacity={0.1 + line * 0.035}
+          />
+        ))}
+        {isIntent && (
+          <g opacity="0.72">
+            <circle cx="70" cy="98" r="12" fill="none" stroke="var(--lume-coral)" strokeWidth="1" />
+            <circle cx="158" cy="154" r="18" fill="none" stroke="var(--lume-celadon)" strokeWidth="1" />
+            <circle cx="116" cy="224" r="14" fill="none" stroke="var(--lume-sage)" strokeWidth="1" />
+            <path d="M82 98 L140 150 M151 170 L124 212" stroke="var(--lume-graphite)" strokeWidth="0.7" opacity="0.32" />
+          </g>
+        )}
+        {isAftercare && (
+          <g opacity="0.55">
+            {[54, 84, 114, 144, 174].map((x) => (
+              <path key={x} d={`M ${x} 72 L ${x + 34} 252`} stroke="var(--lume-sage)" strokeWidth="0.5" />
+            ))}
+            {[92, 132, 172, 212].map((y) => (
+              <path key={y} d={`M 44 ${y} C 92 ${y - 16} 156 ${y + 14} 204 ${y - 8}`} stroke="var(--lume-ink)" strokeWidth="0.38" opacity="0.42" />
+            ))}
+          </g>
+        )}
+      </svg>
+    </div>
+  );
+};
+
+const LumeHero = ({ site }) => (
+  <section className="lume-hero">
+    <div className="lume-hero-copy">
+      <div className="lume-kicker">Private skin atelier for Pune and Mumbai</div>
+      <h1>Lume Vale Skin Atelier</h1>
+      <p>
+        Precision-led skin, hair, and subtle aesthetic plans for clients who want visible improvement without overdone clinic theatre.
+      </p>
+      <div className="lume-hero-actions">
+        <a className="lume-primary-cta" href={getWhatsAppUrl(site.intakeProtocol[0].message)}>
+          Book a private skin consult
+        </a>
+        <a className="lume-secondary-cta" href="#lume-treatments">
+          Explore treatments
+        </a>
+      </div>
+    </div>
+    <div className="lume-hero-visual">
+      <LumeSkinPlate />
+      <div className="lume-visual-note">
+        <span>Light-layer diagnostic</span>
+        <strong>Concern to plan, not promise to perfection.</strong>
+      </div>
+    </div>
+  </section>
+);
+
+const LumeTrustStrip = () => (
+  <section className="lume-trust-strip" aria-label="Lume Vale trust cues">
+    {LUME_TRUST_CUES.map((cue) => (
+      <article key={cue.title}>
+        <span>{cue.title}</span>
+        <p>{cue.detail}</p>
+      </article>
+    ))}
+  </section>
+);
+
+const LumeTreatmentMap = () => (
+  <section className="lume-section lume-treatment-map" id="lume-treatments">
+    <div className="lume-section-header">
+      <span>Concern-led treatment map</span>
+      <h2>Choose the concern. The clinic shapes the sequence.</h2>
+    </div>
+    <div className="lume-treatment-grid">
+      {LUME_TREATMENT_INTENTS.map((intent, index) => (
+        <a
+          className="lume-treatment-card"
+          href={getWhatsAppUrl(intent.message)}
+          key={intent.id}
+          style={{ '--tone': index % 3 }}
+        >
+          <span>{intent.label}</span>
+          <h3>{intent.title}</h3>
+          <p>{intent.detail}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+);
+
+const LumeRevealSection = () => {
+  const [position, setPosition] = useState(58);
+  const [active, setActive] = useState(false);
+  const revealRef = useRef(null);
+  const shouldReduceMotion = useReducedMotion();
+
+  const updatePosition = (clientX) => {
+    const rect = revealRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    const next = ((clientX - rect.left) / rect.width) * 100;
+    setPosition(Math.max(18, Math.min(82, next)));
+  };
+
+  const handlePointerMove = (event) => {
+    if (!active || shouldReduceMotion) return;
+    updatePosition(event.clientX);
+  };
+
+  return (
+    <section className="lume-section lume-reveal-section">
+      <div className="lume-section-header">
+        <span>Lume Reveal</span>
+        <h2>A treatment preview built around gradual, realistic change.</h2>
+      </div>
+      <div className="lume-reveal-layout">
+        <div
+          className={`lume-reveal ${shouldReduceMotion ? 'is-reduced' : ''}`}
+          ref={revealRef}
+          onPointerDown={(event) => {
+            if (shouldReduceMotion) return;
+            setActive(true);
+            event.currentTarget.setPointerCapture(event.pointerId);
+            updatePosition(event.clientX);
+          }}
+          onPointerMove={handlePointerMove}
+          onPointerUp={() => setActive(false)}
+          onPointerCancel={() => setActive(false)}
+          style={{ '--reveal-position': `${position}%` }}
+          role="img"
+          aria-label="Privacy-safe treatment reveal showing calmer tone and smoother skin texture over time"
+        >
+          <div className="lume-reveal-state lume-reveal-before">
+            <LumeSkinPlate variant="intent" />
+            <span>Concern state</span>
+          </div>
+          <div className="lume-reveal-state lume-reveal-after">
+            <LumeSkinPlate />
+            <span>After planned care</span>
+          </div>
+          {!shouldReduceMotion && (
+            <button
+              className="lume-reveal-handle"
+              type="button"
+              aria-label="Drag treatment reveal"
+              style={{ left: `${position}%` }}
+              onKeyDown={(event) => {
+                if (event.key === 'ArrowLeft') setPosition((value) => Math.max(18, value - 6));
+                if (event.key === 'ArrowRight') setPosition((value) => Math.min(82, value + 6));
+              }}
+            />
+          )}
+        </div>
+        <div className="lume-reveal-copy">
+          <span>What the motion is for</span>
+          <p>
+            The reveal explains staged improvement: less visible redness, smoother texture, clearer light reflection. It avoids miracle before-after claims and keeps the CTA close to the concern.
+          </p>
+          <a href={getWhatsAppUrl(LUME_TREATMENT_INTENTS[1].message)}>Ask about a skin plan</a>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const LumeJourney = () => (
+  <section className="lume-section lume-journey">
+    <div className="lume-section-header">
+      <span>Private consultation journey</span>
+      <h2>From first message to maintenance, the path stays quiet and specific.</h2>
+    </div>
+    <div className="lume-journey-grid">
+      {LUME_JOURNEY.map((step) => (
+        <article key={step.index}>
+          <span>{step.index}</span>
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+);
+
+const LumeProof = () => (
+  <section className="lume-section lume-proof">
+    <div className="lume-proof-visual">
+      <LumeSkinPlate variant="aftercare" />
+    </div>
+    <div className="lume-proof-copy">
+      <div className="lume-section-header">
+        <span>Privacy-safe proof</span>
+        <h2>Transformation stories are framed by goal, timeline, and aftercare.</h2>
+      </div>
+      <div className="lume-proof-list">
+        {LUME_TRANSFORMATION_PROOF.map((item) => (
+          <article key={item.title}>
+            <span>{item.timeline}</span>
+            <h3>{item.title}</h3>
+            <p>{item.goal}</p>
+            <small>{item.cue}</small>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const LumeBooking = ({ site }) => (
+  <section className="lume-booking" id="lume-booking">
+    <div>
+      <span>Consultation intent</span>
+      <h2>Start with the concern you actually want solved.</h2>
+      <p>
+        Each option opens WhatsApp with a private consultation message. The clinic can then ask for lighting-safe photos, routine notes, and timing constraints.
+      </p>
+    </div>
+    <div className="lume-booking-grid">
+      {site.intakeProtocol.map((intent) => (
+        <a href={getWhatsAppUrl(intent.message)} key={intent.id}>
+          {intent.label}
+        </a>
+      ))}
+    </div>
+  </section>
+);
+
+const LumeMobileCta = ({ site }) => (
+  <a className="lume-mobile-cta" href={getWhatsAppUrl(site.intakeProtocol[0].message)}>
+    Book consult
+  </a>
+);
+
+const LumeValeSite = ({ site }) => (
+  <main className="lume-main">
+    <LumeHero site={site} />
+    <LumeTrustStrip />
+    <LumeTreatmentMap />
+    <LumeRevealSection />
+    <LumeJourney />
+    <LumeProof />
+    <LumeBooking site={site} />
+    <LumeMobileCta site={site} />
+  </main>
+);
+
 const getInitialSitePreset = () => {
   if (typeof window === 'undefined') {
     return getSitePreset();
@@ -653,19 +932,37 @@ const getInitialSitePreset = () => {
 export default function App() {
   const site = getInitialSitePreset();
 
+  useEffect(() => {
+    if (site.id === 'lume-vale') {
+      document.title = 'Lume Vale Skin Atelier | Private Skin Consultation';
+      return;
+    }
+
+    if (site.id === 'velour-house') {
+      document.title = 'Velour House | Interior Architecture Studio';
+      return;
+    }
+
+    document.title = 'Obsidian Ink Studio | Premium Tattoo Concierge';
+  }, [site.id]);
+
   return (
     <div className="app-root" data-site={site.id}>
       <div className="grain"></div>
       <TechnicalOverlay />
       <Nav site={site} />
-      <main>
-        <HeroArtifact site={site} />
-        <SceneStance site={site} />
-        <SceneExhibit site={site} />
-        <StudioTrustLedger site={site} />
-        <IntakeProtocolPanel site={site} />
-        <SceneThreshold site={site} />
-      </main>
+      {site.id === 'lume-vale' ? (
+        <LumeValeSite site={site} />
+      ) : (
+        <main>
+          <HeroArtifact site={site} />
+          <SceneStance site={site} />
+          <SceneExhibit site={site} />
+          <StudioTrustLedger site={site} />
+          <IntakeProtocolPanel site={site} />
+          <SceneThreshold site={site} />
+        </main>
+      )}
       <footer style={{ padding: '5rem 0', textAlign: 'center', opacity: 0.3 }}>
         <div className="container">
           <p className="mono">© {new Date().getFullYear()} {site.copy.footer.text}</p>

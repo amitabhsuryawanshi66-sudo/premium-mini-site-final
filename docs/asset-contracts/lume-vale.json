@@ -1,0 +1,92 @@
+{
+  "site": "Lume Vale Skin Atelier",
+  "version": 1,
+  "contractScope": "Lume Vale capability-test preset visuals. This contract covers code-native skin-light artifacts, reveal visuals, treatment routing, consultation journey, and aftercare proof surfaces.",
+  "visualItems": [
+    {
+      "section": "hero",
+      "title": "Skin-Light Diagnostic",
+      "serviceValue": "Clinical clarity shown through translucent skin-layer light, not generic beauty ambience.",
+      "requiredSubject": "translucent skin-layer light study with visible tone, texture, and diagnostic glow cues",
+      "forbiddenSubjects": ["generic lifestyle", "woman touching face", "spa candle", "beige med spa room", "office", "doctor", "business meeting"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "LumeSkinPlate diagnostic artifact with translucent layered skin light, tone lines, and treatment glow field",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "lumeSkinLight"
+      },
+      "semanticFit": "The artifact makes the visual metaphor of light passing through skin layers visible, supporting a careful diagnostic promise instead of relying on a generic face photo.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led skin layer map with diagnostic glow and tone texture flow",
+      "visualProofNote": "Verify the hero visual reads as skin-light diagnostic material and not a decorative placeholder at desktop, 390px, and 412px."
+    },
+    {
+      "section": "lumeReveal",
+      "title": "Lume Reveal",
+      "serviceValue": "A privacy-safe reveal that explains gradual tone, texture, and glow improvement.",
+      "requiredSubject": "interactive skin reveal showing concern state to calmer tone and smoother texture over time",
+      "forbiddenSubjects": ["generic lifestyle", "woman touching face", "miracle result", "spa candle", "office", "doctor", "business meeting"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "Custom LumeReveal interaction using two LumeSkinPlate artifact states and a draggable reveal handle",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "lumeReveal"
+      },
+      "semanticFit": "The visual demonstrates staged tone and texture improvement while avoiding unlicensed before-after faces or unrealistic claims.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led skin reveal map with calmer tone, texture flow, and gradual treatment comparison",
+      "visualProofNote": "Verify the reveal works on desktop, remains usable on mobile, and falls back to a polished static split under reduced motion."
+    },
+    {
+      "section": "treatmentMap",
+      "title": "Treatment Intent Map",
+      "serviceValue": "Treatment options grouped by client concern so inquiry feels specific and safe.",
+      "requiredSubject": "concern routing map for glow, acne marks, pigmentation, hair revival, bridal prep, and subtle refinement",
+      "forbiddenSubjects": ["generic lifestyle", "woman touching face", "spa candle", "office", "doctor", "business meeting"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "Treatment grid and LumeSkinPlate intent artifact with concern nodes and skin-plan routing lines",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "lumeIntentMap"
+      },
+      "semanticFit": "The visual system groups treatments by concern and links each surface to a WhatsApp intent, making conversion specific rather than menu-like.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led treatment map with skin concern nodes and routing flow",
+      "visualProofNote": "Verify the treatment map reads as concern-led care and that every card is tappable without mobile overflow."
+    },
+    {
+      "section": "consultationJourney",
+      "title": "Private Consultation Path",
+      "serviceValue": "A calm consultation journey that makes privacy, safety, and aftercare visible.",
+      "requiredSubject": "scan, plan, treat, and maintain journey with private skin consultation flow cues",
+      "forbiddenSubjects": ["generic lifestyle", "woman touching face", "spa candle", "office", "doctor", "business meeting"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "Consultation journey section with four process steps and private skin-plan language",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "lumeJourney"
+      },
+      "semanticFit": "The section makes the consultation process visible through precise steps, helping visitors understand privacy, preparation, treatment, and maintenance.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led private skin consultation flow with scan plan treat maintain stages",
+      "visualProofNote": "Verify the journey does not look like generic process cards and remains readable at 390px and 412px."
+    },
+    {
+      "section": "proof",
+      "title": "Aftercare Lattice",
+      "serviceValue": "Transformation proof is grounded in timeline, aftercare, and maintenance discipline.",
+      "requiredSubject": "aftercare lattice, skin maintenance flow, treatment timeline, and privacy-safe proof structure",
+      "forbiddenSubjects": ["generic lifestyle", "woman touching face", "miracle result", "spa candle", "office", "doctor", "business meeting"],
+      "assetSourceType": "deterministic-artifact",
+      "assetSource": "LumeSkinPlate aftercare artifact with lattice lines plus proof rows for goal, timeline, and aftercare cue",
+      "assetBinding": {
+        "visualMode": "artifact",
+        "visualVariant": "lumeAftercare"
+      },
+      "semanticFit": "The proof surface avoids fake client photos and instead ties transformation claims to timeline, maintenance, and aftercare discipline.",
+      "fallbackMode": "artifact",
+      "fallbackSubject": "subject-led skin aftercare lattice with maintenance flow and treatment timeline cues",
+      "visualProofNote": "Verify the proof section communicates credible transformation support without relying on captions alone."
+    }
+  ]
+}
