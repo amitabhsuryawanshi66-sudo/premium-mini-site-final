@@ -23,6 +23,8 @@ This repo is a repeatable workflow/tool for generating premium, mobile-first min
 - Repo-local `agent-skills/*`: legacy reviewer guidance and historical approximations only. They are not active installed Codex skills and must not be cited as operational skill usage.
 
 ## Required References
+- Product context: `PRODUCT.md`
+- Design context: `DESIGN.md`
 - Council workflow: `docs/COUNCIL_WORKFLOW.md`
 - Decision Council: `docs/DECISION_COUNCIL.md`
 - Real design skills install plan: `docs/REAL_DESIGN_SKILLS_INSTALL_PLAN.md`
