@@ -1,3 +1,5 @@
 node_modules/
 dist/
 qa-artifacts/
+__pycache__/
+*.pyc
