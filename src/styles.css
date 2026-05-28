@@ -592,3 +592,704 @@ nav {
     overflow-x: hidden !important;
   }
 }
+
+/* Velour House: preset-scoped interior architecture identity */
+.app-root[data-site="velour-house"] {
+  --bg: #e8e3d7;
+  --surface: #f2eee5;
+  --fg: #23241f;
+  --muted: #706c62;
+  --border: rgba(42, 39, 32, 0.16);
+  --accent: #6b7351;
+  --velour-brass: #9b8157;
+  --velour-stone: #cfc7b8;
+  --velour-plaster: #f7f3ea;
+  --font-display: "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "Avenir Next", "Segoe UI", ui-sans-serif, sans-serif;
+  --gutter: clamp(1.25rem, 5vw, 5rem);
+  --artifact-ground: #e4ddd0;
+  --artifact-surface: #f5f0e6;
+  --artifact-surface-2: #d4ccbd;
+  --artifact-line: #81775f;
+  --artifact-line-soft: #574f42;
+  --artifact-light: #fff8e8;
+  --artifact-stone: #bcb2a1;
+  --artifact-warm: #9f8054;
+  --artifact-shadow: #8a8172;
+  --artifact-fabric: #ece5d8;
+  --artifact-timber: #8a674c;
+  background:
+    linear-gradient(90deg, rgba(247, 243, 234, 0.82) 0 58%, rgba(207, 199, 184, 0.5) 58% 100%),
+    linear-gradient(180deg, #f4f0e7 0%, #e8e3d7 56%, #ded6c7 100%);
+  color: var(--fg);
+}
+
+.app-root[data-site="velour-house"] .grain {
+  opacity: 0.06;
+  mix-blend-mode: multiply;
+}
+
+.app-root[data-site="velour-house"] .technical-overlay {
+  opacity: 0.28;
+}
+
+.app-root[data-site="velour-house"] .axis-line {
+  background: var(--velour-brass);
+  opacity: 0.08;
+}
+
+.app-root[data-site="velour-house"] .reg-mark {
+  border-color: var(--velour-brass);
+  opacity: 0.28;
+}
+
+.app-root[data-site="velour-house"] nav {
+  mix-blend-mode: normal;
+  padding: 1.4rem var(--gutter);
+  color: var(--fg);
+  background: linear-gradient(180deg, rgba(244, 240, 231, 0.86), rgba(244, 240, 231, 0));
+}
+
+.app-root[data-site="velour-house"] .logo {
+  font-weight: 650;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  font-size: 0.95rem;
+}
+
+.app-root[data-site="velour-house"] .mono {
+  text-transform: none;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.app-root[data-site="velour-house"] .scene {
+  min-height: 100dvh;
+}
+
+.app-root[data-site="velour-house"] .hero-artifact {
+  padding: clamp(5rem, 8vh, 7rem) var(--gutter) clamp(2.5rem, 6vh, 5rem);
+  justify-content: space-between;
+  background:
+    linear-gradient(90deg, rgba(247, 243, 234, 0.72) 0 54%, rgba(196, 187, 169, 0.38) 54% 100%),
+    radial-gradient(circle at 15% 100%, rgba(107, 115, 81, 0.14), transparent 32%),
+    var(--bg);
+}
+
+.app-root[data-site="velour-house"] .hero-top {
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.app-root[data-site="velour-house"] .redacted-note-fragment {
+  max-width: 36ch;
+  color: var(--fg);
+  font-size: clamp(0.82rem, 1.2vw, 1rem);
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+.app-root[data-site="velour-house"] .reference-slip {
+  width: 190px;
+  padding: 1rem;
+  background: rgba(247, 243, 234, 0.92);
+  color: var(--fg);
+  border: 1px solid rgba(42, 39, 32, 0.14);
+  box-shadow: 0 18px 48px rgba(60, 54, 43, 0.14);
+  transform: none;
+}
+
+.app-root[data-site="velour-house"] .reference-slip:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 54px rgba(60, 54, 43, 0.18);
+}
+
+.app-root[data-site="velour-house"] .slip-header,
+.app-root[data-site="velour-house"] .slip-footer {
+  border-color: rgba(42, 39, 32, 0.12);
+}
+
+.app-root[data-site="velour-house"] .bar-code,
+.app-root[data-site="velour-house"] .redacted-line {
+  background: rgba(107, 115, 81, 0.3);
+}
+
+.app-root[data-site="velour-house"] .slip-stamp {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: none;
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: none;
+}
+
+.app-root[data-site="velour-house"] .hero-center {
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(280px, 0.84fr);
+  gap: clamp(2rem, 6vw, 7rem);
+  align-items: center;
+}
+
+.app-root[data-site="velour-house"] .material-shield {
+  position: relative;
+  top: auto;
+  right: auto;
+  grid-column: 2;
+  grid-row: 1;
+  width: 100%;
+  height: min(62vh, 620px);
+  min-height: 410px;
+  clip-path: none;
+  background: var(--surface);
+  border: 1px solid rgba(42, 39, 32, 0.16);
+  box-shadow: 0 30px 80px rgba(72, 65, 52, 0.2);
+}
+
+.app-root[data-site="velour-house"] .material-plate {
+  background: var(--surface);
+}
+
+.app-root[data-site="velour-house"] .material-plate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, rgba(255, 252, 241, 0.2), transparent 42%),
+    linear-gradient(0deg, rgba(42, 39, 32, 0.08), transparent 38%);
+  pointer-events: none;
+}
+
+.app-root[data-site="velour-house"] .shield-annotation,
+.app-root[data-site="velour-house"] .map-meta {
+  color: var(--fg);
+  text-shadow: none;
+  opacity: 0.62 !important;
+}
+
+.app-root[data-site="velour-house"] .placement-map {
+  width: 120px;
+  height: 120px;
+  opacity: 0.72;
+}
+
+.app-root[data-site="velour-house"] .hero-content {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  max-width: 780px;
+}
+
+.app-root[data-site="velour-house"] .brand-title-desktop {
+  max-width: 7.6ch;
+  font-size: clamp(4.5rem, 10.5vw, 12.5rem);
+  font-weight: 520;
+  letter-spacing: -0.055em;
+  line-height: 0.88;
+  text-transform: none;
+}
+
+.app-root[data-site="velour-house"] .status-plate {
+  margin-top: clamp(2.5rem, 6vh, 4.5rem);
+  gap: clamp(1.5rem, 4vw, 4rem);
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--border);
+}
+
+.app-root[data-site="velour-house"] .plate-item span {
+  color: var(--accent);
+}
+
+.app-root[data-site="velour-house"] .plate-item p {
+  color: var(--fg);
+  font-size: 0.95rem;
+  font-weight: 520;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  line-height: 1.35;
+}
+
+.app-root[data-site="velour-house"] .hero-inquiry-link {
+  margin-top: 2.2rem;
+  padding: 0.95rem 1.25rem;
+  border: 1px solid rgba(35, 36, 31, 0.18);
+  border-radius: 999px;
+  background: var(--fg);
+  color: var(--surface);
+  letter-spacing: 0.06em;
+  transition: transform 180ms var(--ease), background-color 220ms var(--ease), color 220ms var(--ease);
+}
+
+.app-root[data-site="velour-house"] .hero-inquiry-link:hover {
+  background: var(--accent);
+  color: var(--velour-plaster);
+}
+
+.app-root[data-site="velour-house"] .hero-inquiry-link:active,
+.app-root[data-site="velour-house"] .intake-card:active,
+.app-root[data-site="velour-house"] .portal-action:active {
+  transform: scale(0.98);
+}
+
+.app-root[data-site="velour-house"] .hero-bottom {
+  border-color: var(--border);
+  padding-top: clamp(2rem, 4vh, 3rem);
+}
+
+.app-root[data-site="velour-house"] .brand-meta {
+  gap: clamp(1rem, 4vw, 3rem);
+}
+
+.app-root[data-site="velour-house"] .hero-marginalia {
+  opacity: 0.58;
+}
+
+.app-root[data-site="velour-house"] .technical-stance {
+  background: var(--surface);
+}
+
+.app-root[data-site="velour-house"] .stance-heading {
+  grid-column: 1 / 12;
+  font-size: clamp(3rem, 7.2vw, 7.8rem);
+  font-weight: 500;
+  letter-spacing: -0.045em;
+  line-height: 0.96;
+}
+
+.app-root[data-site="velour-house"] .stance-details-grid {
+  grid-column: 5 / 12;
+  margin-top: clamp(4rem, 9vh, 8rem);
+}
+
+.app-root[data-site="velour-house"] .stance-details {
+  color: var(--muted);
+  border-left: 0;
+  border-top: 1px solid var(--border);
+  padding: 1.5rem 0 0;
+  font-size: clamp(1.05rem, 1.45vw, 1.35rem);
+}
+
+.app-root[data-site="velour-house"] .stance-marks {
+  padding-left: 0;
+}
+
+.app-root[data-site="velour-house"] .mark-fragment p {
+  color: var(--fg);
+  font-weight: 520;
+  margin-top: 0.7rem;
+}
+
+.app-root[data-site="velour-house"] .exhibit-archive {
+  background: #ddd6c8;
+}
+
+.app-root[data-site="velour-house"] .exhibit-header {
+  margin-bottom: 2.5vh;
+}
+
+.app-root[data-site="velour-house"] .story-track {
+  counter-reset: velour-study;
+  gap: clamp(1.5rem, 3vw, 3.4rem);
+  align-items: center;
+}
+
+.app-root[data-site="velour-house"] .archive-study {
+  counter-increment: velour-study;
+  transform: none;
+  flex-basis: clamp(300px, 26vw, 470px);
+}
+
+.app-root[data-site="velour-house"] .archive-study:hover {
+  transform: translateY(-8px);
+}
+
+.app-root[data-site="velour-house"] .study-large {
+  flex-basis: clamp(350px, 31vw, 540px);
+}
+
+.app-root[data-site="velour-house"] .study-small {
+  flex-basis: clamp(270px, 21vw, 370px);
+  margin-top: 0;
+}
+
+.app-root[data-site="velour-house"] .study-surface {
+  background: var(--surface);
+  border: 1px solid rgba(42, 39, 32, 0.14);
+  box-shadow: 0 28px 70px rgba(60, 54, 43, 0.18);
+}
+
+.app-root[data-site="velour-house"] .study-annotation {
+  background: rgba(247, 243, 234, 0.72);
+  border-color: rgba(42, 39, 32, 0.1);
+  color: var(--fg);
+  opacity: 0.72;
+  font-size: 0;
+}
+
+.app-root[data-site="velour-house"] .study-annotation::after {
+  content: "Plate " counter(velour-study, decimal-leading-zero);
+  font-size: 9px;
+}
+
+.app-root[data-site="velour-house"] .study-surface-meta {
+  display: none;
+}
+
+.app-root[data-site="velour-house"] .study-title {
+  color: var(--fg);
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 560;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  line-height: 1.08;
+}
+
+.app-root[data-site="velour-house"] .study-value {
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  max-width: 34ch;
+}
+
+.app-root[data-site="velour-house"] .archive-badge-clinical {
+  border-color: rgba(42, 39, 32, 0.14);
+  background: rgba(247, 243, 234, 0.5);
+  opacity: 0.72;
+}
+
+.app-root[data-site="velour-house"] .archive-badge-clinical span {
+  font-size: 0;
+}
+
+.app-root[data-site="velour-house"] .archive-badge-clinical span::after {
+  content: "folio checked";
+  font-size: 8px;
+}
+
+.app-root[data-site="velour-house"] .scroll-indicator-track {
+  background: rgba(35, 36, 31, 0.12);
+}
+
+.app-root[data-site="velour-house"] .scroll-indicator-bar {
+  background: var(--accent);
+}
+
+.app-root[data-site="velour-house"] .studio-trust-ledger {
+  background: var(--surface);
+}
+
+.app-root[data-site="velour-house"] .ledger-grid {
+  gap: 0;
+  background: transparent;
+  border-top: 1px solid var(--border);
+}
+
+.app-root[data-site="velour-house"] .ledger-item {
+  background: transparent;
+  border-bottom: 1px solid var(--border);
+  padding: clamp(2.5rem, 6vw, 4rem) 0;
+}
+
+.app-root[data-site="velour-house"] .ledger-num {
+  color: var(--accent);
+}
+
+.app-root[data-site="velour-house"] .ledger-title {
+  color: var(--fg);
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 520;
+  letter-spacing: -0.035em;
+  text-transform: none;
+}
+
+.app-root[data-site="velour-house"] .ledger-copy {
+  color: var(--muted);
+}
+
+.app-root[data-site="velour-house"] .intake-protocol-panel {
+  background:
+    linear-gradient(90deg, rgba(107, 115, 81, 0.1), transparent 40%),
+    #d6cebe;
+}
+
+.app-root[data-site="velour-house"] .intake-header {
+  margin-bottom: clamp(4rem, 8vh, 7rem);
+}
+
+.app-root[data-site="velour-house"] .intake-title,
+.app-root[data-site="velour-house"] .portal-heading {
+  color: var(--fg);
+  font-size: clamp(3rem, 9vw, 9rem);
+  font-weight: 520;
+  letter-spacing: -0.055em;
+  line-height: 0.94;
+  text-transform: none;
+}
+
+.app-root[data-site="velour-house"] .intake-grid {
+  gap: 1px;
+  background: rgba(42, 39, 32, 0.14);
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+}
+
+.app-root[data-site="velour-house"] .intake-card {
+  background: rgba(247, 243, 234, 0.54);
+  color: var(--fg);
+  padding: clamp(2rem, 5vw, 3.4rem);
+  gap: clamp(3rem, 6vw, 5rem);
+  transition: transform 180ms var(--ease), background-color 220ms var(--ease), color 220ms var(--ease);
+}
+
+.app-root[data-site="velour-house"] .intake-card::before {
+  display: none;
+}
+
+.app-root[data-site="velour-house"] .intake-card:hover {
+  background: var(--accent);
+  color: var(--velour-plaster);
+}
+
+.app-root[data-site="velour-house"] .intake-card:hover .intake-card-label,
+.app-root[data-site="velour-house"] .intake-card:hover svg {
+  transform: translateX(4px);
+  color: currentColor;
+}
+
+.app-root[data-site="velour-house"] .intake-card-top {
+  color: currentColor;
+  opacity: 0.72;
+}
+
+.app-root[data-site="velour-house"] .intake-card-label {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  font-weight: 540;
+}
+
+.app-root[data-site="velour-house"] .portal-threshold {
+  background: var(--fg);
+  color: var(--surface);
+  border-top: 0;
+}
+
+.app-root[data-site="velour-house"] .portal-action {
+  color: var(--surface);
+  border: 1px solid rgba(247, 243, 234, 0.28);
+  border-radius: 999px;
+  padding: 1rem 1.25rem 1rem 1.6rem;
+  gap: 1.5rem;
+  transition: transform 180ms var(--ease), background-color 220ms var(--ease), gap 220ms var(--ease);
+}
+
+.app-root[data-site="velour-house"] .portal-action:hover {
+  gap: 2rem;
+  border-bottom-width: 1px;
+  background: rgba(247, 243, 234, 0.1);
+}
+
+.app-root[data-site="velour-house"] .portal-action span {
+  font-size: clamp(1.2rem, 3vw, 2.4rem);
+  font-weight: 520;
+}
+
+.app-root[data-site="velour-house"] .footer-meta {
+  border-color: rgba(247, 243, 234, 0.18);
+}
+
+.app-root[data-site="velour-house"] footer {
+  background: var(--fg);
+  color: var(--surface);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .app-root[data-site="velour-house"] .hero-inquiry-link:hover,
+  .app-root[data-site="velour-house"] .intake-card:hover,
+  .app-root[data-site="velour-house"] .portal-action:hover {
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-root[data-site="velour-house"] {
+    background:
+      linear-gradient(180deg, #f4f0e7 0%, #e7e0d2 58%, #d6cebe 100%);
+  }
+
+  .app-root[data-site="velour-house"] nav {
+    padding: 1rem 1.25rem;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .app-root[data-site="velour-house"] .nav-meta {
+    text-align: right;
+    max-width: 13ch;
+    line-height: 1.35;
+  }
+
+  .app-root[data-site="velour-house"] .hero-artifact {
+    min-height: auto;
+    padding: 5.5rem 1.25rem 2rem;
+    gap: 1.5rem;
+  }
+
+  .app-root[data-site="velour-house"] .hero-top {
+    gap: 1.2rem;
+    padding-top: 0;
+  }
+
+  .app-root[data-site="velour-house"] .redacted-note-fragment {
+    max-width: 28ch;
+    font-size: 0.9rem;
+  }
+
+  .app-root[data-site="velour-house"] .reference-slip {
+    align-self: flex-start;
+    width: min(100%, 178px);
+    padding: 0.85rem;
+  }
+
+  .app-root[data-site="velour-house"] .hero-center {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1.5rem;
+  }
+
+  .app-root[data-site="velour-house"] .material-shield {
+    width: 100%;
+    min-height: 0;
+    height: clamp(310px, 58vh, 430px);
+    margin-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .app-root[data-site="velour-house"] .placement-map {
+    width: 92px;
+    height: 92px;
+  }
+
+  .app-root[data-site="velour-house"] .brand-title-mobile-forced {
+    width: auto !important;
+    margin: 0.75rem 0 1.5rem !important;
+    color: var(--fg) !important;
+    font-size: clamp(4rem, 20vw, 6.4rem) !important;
+    font-weight: 520 !important;
+    line-height: 0.9 !important;
+    letter-spacing: -0.055em !important;
+    text-transform: none !important;
+  }
+
+  .app-root[data-site="velour-house"] .brand-title-mobile-forced .title-suffix {
+    color: var(--muted) !important;
+    font-family: var(--font-display) !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.04em !important;
+    text-transform: none !important;
+  }
+
+  .app-root[data-site="velour-house"] .status-plate {
+    margin-top: 0;
+    padding-top: 1rem;
+    gap: 1rem;
+  }
+
+  .app-root[data-site="velour-house"] .plate-item {
+    flex: 1 1 150px;
+  }
+
+  .app-root[data-site="velour-house"] .plate-item p {
+    font-size: 0.82rem;
+  }
+
+  .app-root[data-site="velour-house"] .hero-inquiry-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .app-root[data-site="velour-house"] .hero-bottom {
+    margin-top: 0;
+  }
+
+  .app-root[data-site="velour-house"] .brand-meta {
+    gap: 0.6rem;
+  }
+
+  .app-root[data-site="velour-house"] .scene {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .app-root[data-site="velour-house"] .stance-heading {
+    font-size: clamp(2.6rem, 12vw, 4.6rem);
+    line-height: 0.98;
+  }
+
+  .app-root[data-site="velour-house"] .stance-details-grid {
+    grid-column: 1 / 13;
+    margin-top: 2.5rem;
+  }
+
+  .app-root[data-site="velour-house"] .stance-marks {
+    gap: 1.5rem;
+  }
+
+  .app-root[data-site="velour-house"] .exhibit-archive {
+    padding-top: 5rem;
+  }
+
+  .app-root[data-site="velour-house"] .story-track {
+    gap: 3.4rem;
+    padding: 0;
+  }
+
+  .app-root[data-site="velour-house"] .archive-study:hover {
+    transform: none;
+  }
+
+  .app-root[data-site="velour-house"] .study-title {
+    font-size: clamp(1.75rem, 9vw, 2.55rem);
+  }
+
+  .app-root[data-site="velour-house"] .study-value {
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+
+  .app-root[data-site="velour-house"] .ledger-container {
+    margin-left: 0;
+  }
+
+  .app-root[data-site="velour-house"] .ledger-item {
+    gap: 1.3rem;
+  }
+
+  .app-root[data-site="velour-house"] .intake-title,
+  .app-root[data-site="velour-house"] .portal-heading,
+  .app-root[data-site="velour-house"] .intake-protocol-panel .intake-title,
+  .app-root[data-site="velour-house"] .portal-threshold .portal-heading {
+    font-size: clamp(3rem, 15vw, 5.2rem) !important;
+    line-height: 0.98;
+  }
+
+  .app-root[data-site="velour-house"] .intake-card {
+    padding: 2rem 1.25rem;
+    gap: 3rem;
+  }
+
+  .app-root[data-site="velour-house"] .portal-action {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-root[data-site="velour-house"] .reference-slip,
+  .app-root[data-site="velour-house"] .archive-study,
+  .app-root[data-site="velour-house"] .hero-inquiry-link,
+  .app-root[data-site="velour-house"] .intake-card,
+  .app-root[data-site="velour-house"] .portal-action {
+    transition-duration: 0.01ms;
+  }
+}
