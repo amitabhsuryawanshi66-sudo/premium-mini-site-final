@@ -29,6 +29,18 @@ Reject:
 ## Fallbacks
 Fallbacks are allowed only when intentionally designed. They should feel like a deliberate brand artifact, not a missing-media state.
 
+## Serious Preset Standard
+For a serious premium or reel-level preset, deterministic artifacts alone are not enough unless they are unusually rich, subject-led, and central to the concept.
+
+Serious presets should use one or more of:
+- client-provided visuals with clear service relevance
+- generated bespoke bitmap visuals made for the exact niche and section
+- licensed stock that is semantically exact and license-safe
+- high-quality adapted visual/component references captured through `docs/REFERENCE_CAPTURE_PROTOCOL.md`
+- motion or interaction patterns that make the asset experience memorable without hiding weak imagery
+
+If the visual system only swaps colors, copy, and simple deterministic placeholders, label the work as a foundation/base checkpoint rather than final sellable quality.
+
 ## Archive / Media Acceptance Checklist
 Before accepting assets, confirm:
 - The asset has a matching contract entry and passes `npm.cmd run qa:assets`.
@@ -38,3 +50,4 @@ Before accepting assets, confirm:
 - Image remains readable in the actual UI dimensions.
 - No important details are hidden by text, overlays, or viewport cropping.
 - File size and format are suitable for a fast mini-site.
+- The asset strategy passes `docs/CAPABILITY_TEST_GATES.md` when the task claims premium, motion-aware, client-ready, or reel-level output.
