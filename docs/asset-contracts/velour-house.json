@@ -1,12 +1,12 @@
 {
   "site": "Velour House",
   "version": 1,
-  "contractScope": "Velour House preset archive visuals. This contract covers the premium interior architecture and spatial design preset.",
+  "contractScope": "Velour House v0 preset archive visuals. This contract covers a foundation/base checkpoint for interior architecture differentiation, not final sellable or reel-level demo quality.",
   "visualItems": [
     {
       "section": "exhibitArchive",
       "title": "Light-Well Residence",
-      "serviceValue": "Calibrated daylight, shadow, and proportion for a private residence.",
+      "serviceValue": "A daylight plate for tuning proportion, shadow, and the feeling of arrival.",
       "requiredSubject": "architectural light well, room volume, shadow plane, or spatial proportion study",
       "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
       "assetSourceType": "deterministic-artifact",
@@ -23,7 +23,7 @@
     {
       "section": "exhibitArchive",
       "title": "Stone & Linen Palette",
-      "serviceValue": "Quiet material language across stone, textile, and warm neutral surfaces.",
+      "serviceValue": "Stone, linen, plaster, and metal held together before anything reaches site.",
       "requiredSubject": "architectural material board, stone plane, linen surface, tactile interior finish, or neutral surface study",
       "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
       "assetSourceType": "deterministic-artifact",
@@ -40,7 +40,7 @@
     {
       "section": "exhibitArchive",
       "title": "Gallery Plan",
-      "serviceValue": "Spatial sequencing that makes rooms feel collected, legible, and calm.",
+      "serviceValue": "A calm circulation study that lets rooms unfold without visual noise.",
       "requiredSubject": "interior floor plan, circulation map, room sequence, gallery layout, or spatial blueprint",
       "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
       "assetSourceType": "deterministic-artifact",
@@ -57,7 +57,7 @@
     {
       "section": "exhibitArchive",
       "title": "Shadow Courtyard",
-      "serviceValue": "Cinematic shadow control with grounded architectural restraint.",
+      "serviceValue": "Soft contrast and massing cues for spaces that need shade, quiet, and depth.",
       "requiredSubject": "courtyard volume, architectural shadow, light plane, interior massing, or restrained spatial composition",
       "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
       "assetSourceType": "deterministic-artifact",
@@ -74,7 +74,7 @@
     {
       "section": "exhibitArchive",
       "title": "Joinery Detail",
-      "serviceValue": "Custom joinery logic with tactile craft and durable material edges.",
+      "serviceValue": "Panel junctions, timber grain, and hardware decisions resolved as one surface.",
       "requiredSubject": "joinery detail, timber grain, cabinet edge, crafted interior surface, or built material junction",
       "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
       "assetSourceType": "deterministic-artifact",
@@ -91,7 +91,7 @@
     {
       "section": "exhibitArchive",
       "title": "Quiet Threshold",
-      "serviceValue": "Arrival moments shaped through compression, reveal, and softened light.",
+      "serviceValue": "A doorway study for compression, reveal, and the first change in light.",
       "requiredSubject": "interior threshold, doorway section, arrival sequence, light reveal, or spatial transition",
       "forbiddenSubjects": ["office", "desk", "conference", "staged Airbnb", "futuristic tower", "generic lifestyle"],
       "assetSourceType": "deterministic-artifact",
