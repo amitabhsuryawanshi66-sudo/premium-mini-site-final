@@ -11,9 +11,18 @@ On Windows/Codex, follow `docs/CODEX_LOCAL_ENV.md` for the local setup and use `
 - If a dev server is needed for visual checks, run `npm run dev` and inspect the rendered site.
 
 ## Required Viewports
-- Desktop check: verify the main desktop layout and Story Track behavior.
+- Desktop check: verify the main desktop layout and Story Track or equivalent key section behavior.
 - Mobile check at 390px width.
 - Mobile check at 412px width.
+
+## Required Routes
+For multi-preset work, visual proof must cover:
+
+- `/` default route.
+- The target preset route, for example `?site=velour-house`.
+- An unknown fallback route, for example `?site=unknown-test`.
+
+Default-route proof is not enough when the changed behavior lives behind a `site` query parameter.
 
 ## Required Checks
 - No horizontal overflow at desktop, 390px, or 412px.
@@ -25,6 +34,8 @@ On Windows/Codex, follow `docs/CODEX_LOCAL_ENV.md` for the local setup and use `
 - Touch targets remain usable on mobile.
 - Hover/tap states remain visible and purposeful.
 - Desktop polish does not degrade mobile behavior, and mobile fixes do not degrade desktop behavior.
+- Key interaction or section states are proven for the changed route, not only for Obsidian.
+- Serious new presets satisfy `docs/CAPABILITY_TEST_GATES.md`.
 
 ## Visual Proof
 Before merge, attach or reference screenshots/video captures for:
@@ -32,6 +43,7 @@ Before merge, attach or reference screenshots/video captures for:
 - Mobile 390px.
 - Mobile 412px.
 - Any changed interaction state or asset surface.
+- Target preset route and unknown fallback route when presets are involved.
 
 The proof must come from the current branch and current build/dev preview.
 

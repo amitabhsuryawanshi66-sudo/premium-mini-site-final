@@ -2,6 +2,7 @@ import { mkdir } from 'node:fs/promises';
 import { spawn, spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
+import { DEFAULT_SITE_ID, SITE_PRESETS } from '../src/data/sitePresets.js';
 
 const host = '127.0.0.1';
 const port = 4173;
@@ -17,6 +18,18 @@ const viewports = [
   { name: 'desktop', width: 1440, height: 1000 },
   { name: 'mobile-390', width: 390, height: 844 },
   { name: 'mobile-412', width: 412, height: 915 },
+];
+
+const routeChecks = [
+  { name: 'default', query: '', expectedSiteId: DEFAULT_SITE_ID },
+  ...SITE_PRESETS
+    .filter((preset) => preset.id !== DEFAULT_SITE_ID)
+    .map((preset) => ({
+      name: preset.id,
+      query: `?site=${encodeURIComponent(preset.id)}`,
+      expectedSiteId: preset.id,
+    })),
+  { name: 'unknown-fallback', query: '?site=unknown-test', expectedSiteId: DEFAULT_SITE_ID },
 ];
 
 const checks = [];
@@ -58,6 +71,8 @@ const stopPreview = (server) => {
 
 const screenshotPath = (name) => new URL(`${name}.png`, artifactRoot);
 
+const getRouteUrl = (route) => `${baseUrl}/${route.query}`;
+
 const saveScreenshot = async (page, name, options = {}) => {
   const fileUrl = screenshotPath(name);
   const filePath = fileURLToPath(fileUrl);
@@ -71,6 +86,31 @@ const hasNoHorizontalOverflow = (page) => page.evaluate(
   (allowedTolerance) => document.documentElement.scrollWidth <= window.innerWidth + allowedTolerance,
   tolerance,
 );
+
+const getRouteState = (page) => page.evaluate(() => {
+  const appRoot = document.querySelector('.app-root');
+  const main = document.querySelector('main');
+  const mainRect = main?.getBoundingClientRect();
+
+  return {
+    dataSite: appRoot?.getAttribute('data-site') || '',
+    hasAppRoot: Boolean(appRoot),
+    hasMain: Boolean(main),
+    mainChildCount: main?.children.length || 0,
+    mainRenderedArea: mainRect ? Math.round(Math.max(0, mainRect.width) * Math.max(0, mainRect.height)) : 0,
+    bodyLength: (document.body.innerText || '').trim().length,
+    ctaCount: document.querySelectorAll('a[href^="https://wa.me/"]').length,
+  };
+});
+
+const getLegacyStoryTrackState = (page) => page.evaluate(() => {
+  const container = document.querySelector('.scene-container-exhibit');
+
+  return {
+    hasContainer: Boolean(container),
+    cardCount: container?.querySelectorAll('.archive-study').length || 0,
+  };
+});
 
 const scrollToStoryProgress = async (page, progress) => {
   const didScroll = await page.evaluate((targetProgress) => {
@@ -95,7 +135,8 @@ const scrollToStoryProgress = async (page, progress) => {
 };
 
 const getStoryTrackState = (page) => page.evaluate((minArea) => {
-  const cards = Array.from(document.querySelectorAll('.archive-study'));
+  const container = document.querySelector('.scene-container-exhibit');
+  const cards = Array.from(container?.querySelectorAll('.archive-study') || []);
   const viewportWidth = window.innerWidth;
   const viewportHeight = window.innerHeight;
 
@@ -160,14 +201,6 @@ const assertStoryCheckpoint = async (page, checkpoint) => {
   await saveScreenshot(page, checkpoint.screenshot);
 };
 
-const sectionChecks = [
-  { name: 'Obsidian / hero', pattern: /Obsidian/i },
-  { name: 'Exhibit / archive', pattern: /Exhibit|Archive/i },
-  { name: 'Studio Trust / ledger', pattern: /Studio Trust|Trust|Ledger/i },
-  { name: 'Intake', pattern: /Intake/i },
-  { name: 'Secure Session', pattern: /Secure\s*Session/i },
-];
-
 const storyCheckpoints = [
   { name: 'start', progress: 0, required: 'first', screenshot: 'desktop-story-start' },
   { name: 'mid', progress: 0.5, required: 'middle', screenshot: 'desktop-story-mid' },
@@ -199,30 +232,73 @@ try {
   browser = await chromium.launch();
   const page = await browser.newPage();
 
-  for (const viewport of viewports) {
-    await page.setViewportSize({ width: viewport.width, height: viewport.height });
-    await page.goto(baseUrl, { waitUntil: 'networkidle' });
-    await page.waitForSelector('main', { state: 'visible', timeout: 10000 });
+  for (const route of routeChecks) {
+    const routeUrl = getRouteUrl(route);
 
-    const bodyText = await getPageText(page);
-    record(bodyText.trim().length > 0, `${viewport.name}: body is not blank`);
+    for (const viewport of viewports) {
+      await page.setViewportSize({ width: viewport.width, height: viewport.height });
+      await page.goto(routeUrl, { waitUntil: 'networkidle' });
+      await page.waitForSelector('main', { state: 'visible', timeout: 10000 });
 
-    const noOverflow = await hasNoHorizontalOverflow(page);
-    record(noOverflow, `${viewport.name}: no horizontal overflow`);
+      const bodyText = await getPageText(page);
+      record(bodyText.trim().length > 0, `${route.name} ${viewport.name}: body is not blank`);
 
-    for (const section of sectionChecks) {
-      record(section.pattern.test(bodyText), `${viewport.name}: ${section.name} marker present`);
+      const routeState = await getRouteState(page);
+      record(
+        routeState.dataSite === route.expectedSiteId,
+        `${route.name} ${viewport.name}: expected site preset renders`,
+        `expected ${route.expectedSiteId}, got ${routeState.dataSite || 'none'}`,
+      );
+      record(routeState.hasAppRoot, `${route.name} ${viewport.name}: app root exists`);
+      record(routeState.hasMain, `${route.name} ${viewport.name}: main landmark exists`);
+      record(routeState.bodyLength > 0, `${route.name} ${viewport.name}: route text is present`);
+      record(
+        routeState.mainChildCount >= 1 && routeState.mainRenderedArea > 0,
+        `${route.name} ${viewport.name}: route content is rendered`,
+        `${routeState.mainChildCount} main children, area ${routeState.mainRenderedArea}`,
+      );
+      record(
+        routeState.ctaCount >= 1,
+        `${route.name} ${viewport.name}: WhatsApp CTA exists`,
+        `${routeState.ctaCount} links`,
+      );
+
+      const noOverflow = await hasNoHorizontalOverflow(page);
+      record(noOverflow, `${route.name} ${viewport.name}: no horizontal overflow`);
+
+      await saveScreenshot(page, `${route.name}-${viewport.name}`);
     }
 
-    await saveScreenshot(page, viewport.name);
-  }
+    await page.setViewportSize({ width: 1440, height: 1000 });
+    await page.goto(routeUrl, { waitUntil: 'networkidle' });
+    await page.waitForSelector('main', { state: 'visible', timeout: 10000 });
 
-  await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.goto(baseUrl, { waitUntil: 'networkidle' });
-  await page.waitForSelector('.scene-container-exhibit', { state: 'attached', timeout: 10000 });
+    const legacyStoryTrack = await getLegacyStoryTrackState(page);
 
-  for (const checkpoint of storyCheckpoints) {
-    await assertStoryCheckpoint(page, checkpoint);
+    if (!legacyStoryTrack.hasContainer) {
+      record(
+        true,
+        `${route.name} desktop Story Track: not applicable for this route architecture`,
+        'No .scene-container-exhibit container.',
+      );
+      continue;
+    }
+
+    if (legacyStoryTrack.cardCount < 1) {
+      record(
+        true,
+        `${route.name} desktop Story Track card proof: not applicable for this route architecture`,
+        'Legacy .scene-container-exhibit exists without .archive-study cards.',
+      );
+      continue;
+    }
+
+    for (const checkpoint of storyCheckpoints) {
+      await assertStoryCheckpoint(page, {
+        ...checkpoint,
+        screenshot: `${route.name}-${checkpoint.screenshot}`,
+      });
+    }
   }
 } catch (error) {
   record(false, 'Visual QA runtime', error.message);

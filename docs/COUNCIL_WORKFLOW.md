@@ -2,6 +2,8 @@
 
 The council is a review harness for this mini-site generator. It prevents broad prompts from turning into uncontrolled redesigns and makes every change pass through explicit role-based gates before one builder implements it.
 
+The council does not replace real installed Codex design skills, browser reference capture, asset strategy, or QA proof. For serious premium/reel-level work, reviewers must check that the builder used the relevant skills/resources and satisfied `docs/CAPABILITY_TEST_GATES.md`.
+
 ## Roles
 - **Creative Director**: Confirms the change supports a premium mini-site generation workflow and the current Obsidian Ink Studio demo without changing the site thesis.
 - **Visual Taste Reviewer**: Checks composition, hierarchy, restraint, visual specificity, and premium finish.
@@ -31,6 +33,8 @@ Before implementation, the council reviews the prompt for:
 - Direct choices for A/B tool questions unless a third option is truly necessary.
 - Evidence-based warnings only; no speculative blockers.
 - Request for implementation rationale, not hidden chain of thought.
+- Concept-first direction and no-reskin proof when the work targets a serious new mini-site or preset.
+- Reference capture and skill usage proof when the task is taste-sensitive, motion-led, asset-led, or component-led.
 
 If the prompt is broad, the Prompt Hygiene Reviewer must rewrite it into a small scoped task before a builder starts.
 
@@ -40,6 +44,7 @@ For PRs, council reviewers inspect the diff, built output, and visual proof. Eac
 - `evidence`: files, screenshots, commands, viewport sizes, or interaction paths checked.
 - `risks`: known failures and unknown risks found beyond the checklist.
 - `required fixes`: only blocking items, stated as small actionable changes.
+- `skill/resource usage`: which real installed skill or plugin resource was used, why it mattered, and what decision it influenced.
 
 ## Merge / Fix / Freeze
 - **Merge**: Build passes, visual proof exists, acceptance criteria are met, and no reviewer has a blocking concern.
@@ -55,6 +60,19 @@ Reject or freeze if any of these appear:
 - Mobile text clipping, overflow, or CTA crowding.
 - "Ready" claims without actual build and visual proof.
 - Overbroad prompts that mix current work with future-phase polish.
+- Same-template reskins presented as premium or final work.
+- 21st.dev, MotionSites, or repo-local `agent-skills/*` described as installed skills.
+- Component copying without license, dependency, niche-translation, and QA proof.
+
+## Capability Gates
+For serious premium, motion-aware, client-ready, or reel-level tasks, apply `docs/CAPABILITY_TEST_GATES.md`.
+
+The council should verify the gates, not invent the design answer. Use:
+
+- Installed design skills for visual and motion judgment.
+- Browser reference capture for 21st.dev, MotionSites, and live/local proof.
+- Asset contracts and asset strategy for visual subject quality.
+- QA scripts and screenshots for objective route, viewport, and interaction proof.
 
 ## Unknown-Risk Requirement
 The checklist is not enough. Every reviewer must also ask: "What could fail here that is not already named?" Unknown risks may include new viewport edge cases, copy/asset semantic drift, brittle CSS assumptions, regressions in scroll behavior, or invisible conversion breakage.
