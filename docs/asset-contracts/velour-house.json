@@ -1,7 +1,7 @@
 {
   "site": "Velour House",
   "version": 1,
-  "contractScope": "Velour House preset archive visuals. This contract covers the premium interior architecture and spatial design preset.",
+  "contractScope": "Velour House v0 preset archive visuals. This contract covers a foundation/base checkpoint for interior architecture differentiation, not final sellable or reel-level demo quality.",
   "visualItems": [
     {
       "section": "exhibitArchive",
