@@ -1,6 +1,6 @@
 import { readFile } from 'node:fs/promises';
 
-import { INTAKE_PROTOCOL } from '../src/data/demoData.js';
+import { SITE_PRESETS } from '../src/data/sitePresets.js';
 
 const checks = [];
 
@@ -28,23 +28,27 @@ if (appSource.includes('getWhatsAppUrl(')) {
   fail('App still routes CTA links through getWhatsAppUrl', 'No getWhatsAppUrl call found in src/App.jsx.');
 }
 
-if (Array.isArray(INTAKE_PROTOCOL) && INTAKE_PROTOCOL.length === 5) {
-  pass('Intake protocol contains 5 actions');
+const presetsMissingIntake = SITE_PRESETS
+  .filter((preset) => !Array.isArray(preset.intakeProtocol) || preset.intakeProtocol.length < 1)
+  .map((preset) => preset.id);
+
+if (presetsMissingIntake.length === 0) {
+  pass('Registered presets declare at least one intake action');
 } else {
-  fail('Intake protocol contains 5 actions', `Found ${Array.isArray(INTAKE_PROTOCOL) ? INTAKE_PROTOCOL.length : 'no'} actions.`);
+  fail('Registered presets declare at least one intake action', presetsMissingIntake.join(', '));
 }
 
-const emptyIntakeFields = INTAKE_PROTOCOL
-  .flatMap((item, index) => [
-    hasContent(item?.label) ? null : `action ${index + 1} label`,
-    hasContent(item?.message) ? null : `action ${index + 1} message`,
-  ])
+const emptyIntakeFields = SITE_PRESETS
+  .flatMap((preset) => (preset.intakeProtocol || []).flatMap((item, index) => [
+    hasContent(item?.label) ? null : `${preset.id} action ${index + 1} label`,
+    hasContent(item?.message) ? null : `${preset.id} action ${index + 1} message`,
+  ]))
   .filter(Boolean);
 
 if (emptyIntakeFields.length === 0) {
-  pass('No empty intake CTA labels or messages');
+  pass('No empty registered intake CTA labels or messages');
 } else {
-  fail('No empty intake CTA labels or messages', emptyIntakeFields.join(', '));
+  fail('No empty registered intake CTA labels or messages', emptyIntakeFields.join(', '));
 }
 
 const failures = checks.filter((check) => !check.ok);

@@ -38,6 +38,7 @@ const fileContents = await Promise.all(
 );
 
 const allSource = fileContents.map((file) => file.text).join('\n');
+const readProjectFile = (relativePath) => readFile(new URL(`../${relativePath}`, import.meta.url), 'utf8');
 
 const findPatternHits = (patterns) => {
   const hits = [];
@@ -93,22 +94,50 @@ if (debugHits.length === 0) {
   fail('No accidental debug text', debugHits.join(', '));
 }
 
-const requiredSections = [
-  { name: 'hero', patterns: ['HeroArtifact', 'hero-artifact'] },
-  { name: 'exhibit/archive', patterns: ['SceneExhibit', 'exhibit-archive', 'EXHIBIT_ARCHIVE'] },
-  { name: 'trust ledger', patterns: ['StudioTrustLedger', 'studio-trust-ledger', 'PRIVATE_LEDGER'] },
-  { name: 'intake', patterns: ['IntakeProtocolPanel', 'intake-protocol-panel', 'INTAKE_PROTOCOL'] },
-  { name: 'secure session', patterns: ['SceneThreshold', 'Secure<br />Session', 'portal-threshold'] },
+const sitePresetsSource = await readProjectFile('src/data/sitePresets.js');
+const appSource = await readProjectFile('src/App.jsx');
+const whatsappSource = await readProjectFile('src/lib/whatsapp.js');
+const qaAssetsSource = await readProjectFile('scripts/qa-assets.js');
+
+const sourceContracts = [
+  {
+    name: 'Route preset registry exists',
+    ok: sitePresetsSource.includes('SITE_PRESETS') && sitePresetsSource.includes('SITE_PRESETS_BY_ID'),
+    detail: 'Expected SITE_PRESETS and SITE_PRESETS_BY_ID in src/data/sitePresets.js.',
+  },
+  {
+    name: 'Default route preset exists',
+    ok: sitePresetsSource.includes('DEFAULT_SITE_ID') && sitePresetsSource.includes('getSitePreset'),
+    detail: 'Expected DEFAULT_SITE_ID and getSitePreset in src/data/sitePresets.js.',
+  },
+  {
+    name: 'Registered presets are discoverable from the site query',
+    ok: sitePresetsSource.includes('URLSearchParams') && sitePresetsSource.includes('getSelectedSitePreset'),
+    detail: 'Expected getSelectedSitePreset to resolve the site query through URLSearchParams.',
+  },
+  {
+    name: 'App has a renderable route root',
+    ok: appSource.includes('data-site=') && appSource.includes('<main>'),
+    detail: 'Expected App.jsx to render an app root with data-site and a main landmark.',
+  },
+  {
+    name: 'WhatsApp CTA helper is available',
+    ok: whatsappSource.includes('getWhatsAppUrl') && allSource.includes('getWhatsAppUrl('),
+    detail: 'Expected getWhatsAppUrl helper and at least one app usage.',
+  },
+  {
+    name: 'Asset contract QA path exists',
+    ok: qaAssetsSource.includes('docs/asset-contracts/') && qaAssetsSource.includes('contractFile'),
+    detail: 'Expected qa-assets to validate docs/asset-contracts against preset contractFile values.',
+  },
 ];
 
-const missingSections = requiredSections
-  .filter((section) => !section.patterns.some((pattern) => allSource.includes(pattern)))
-  .map((section) => section.name);
-
-if (missingSections.length === 0) {
-  pass('Key sections exist: hero, exhibit/archive, trust ledger, intake, secure session');
-} else {
-  fail('Key sections exist: hero, exhibit/archive, trust ledger, intake, secure session', missingSections.join(', '));
+for (const contract of sourceContracts) {
+  if (contract.ok) {
+    pass(contract.name);
+  } else {
+    fail(contract.name, contract.detail);
+  }
 }
 
 const failures = checks.filter((check) => !check.ok);
