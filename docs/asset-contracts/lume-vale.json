@@ -1,0 +1,85 @@
+{
+  "siteId": "lume-vale",
+  "visualItems": [
+    {
+      "section": "hero",
+      "title": "Light-Sheet Intake",
+      "serviceValue": "A privacy-safe light therapy metaphor for beginning with observation, not promises.",
+      "requiredSubject": "LED light mask on a treatment bed with visible clinical light and no beauty pose",
+      "forbiddenSubjects": ["generic woman touching face", "pink spa portrait", "makeup glamour result", "miracle before after"],
+      "assetSourceType": "generated-bespoke",
+      "assetSource": "Generated in-app canvas bitmap: generated-canvas:lume-light-sheet. Purpose-built privacy-safe LED light mask and treatment bed scene for Lume Vale.",
+      "assetBinding": {
+        "image": "generated-canvas:lume-light-sheet"
+      },
+      "semanticFit": "The LED mask and treatment bed visibly carry the Light-Sheet Intake title and support a privacy-safe diagnostic metaphor for clinical light review before any treatment promise.",
+      "fallbackMode": "photo with dark clinical overlay",
+      "fallbackSubject": "LED light mask and treatment bed remain the visible subject if styling changes",
+      "visualProofNote": "Hero desktop and 390px mobile screenshots must show the LED mask image as the first visual signal without med-spa pink styling."
+    },
+    {
+      "section": "consultation path",
+      "title": "Sterile Room Readiness",
+      "serviceValue": "A calm clinical room signal that consultation, treatment, and aftercare happen in a controlled setting.",
+      "requiredSubject": "empty aesthetic clinic treatment room with devices, treatment bed, sink, and sterile surfaces",
+      "forbiddenSubjects": ["random spa room", "hotel bedroom", "generic lifestyle", "pink spa portrait", "miracle before after"],
+      "assetSourceType": "generated-bespoke",
+      "assetSource": "Generated in-app canvas bitmap: generated-canvas:lume-clinic-room. Purpose-built sterile treatment room with bed, device tower, sink, and cool clinical surfaces.",
+      "assetBinding": {
+        "image": "generated-canvas:lume-clinic-room"
+      },
+      "semanticFit": "The visible treatment bed, devices, sink, and sterile room surfaces match the Sterile Room Readiness title and make the controlled consultation setting concrete.",
+      "fallbackMode": "photo with porcelain and smoke crop",
+      "fallbackSubject": "sterile treatment room with bed, devices, sink, and clinical surfaces",
+      "visualProofNote": "Consultation path screenshot must show room details clearly and not read as a hotel, generic wellness room, or beige spa."
+    },
+    {
+      "section": "diagnostic theatre",
+      "title": "Device Parameter Review",
+      "serviceValue": "Treatment settings are reviewed by concern, sensitivity, downtime, and maintenance needs before booking.",
+      "requiredSubject": "close clinical skincare device interface with gloved interaction and visible settings",
+      "forbiddenSubjects": ["generic lifestyle", "decorative device", "pink spa portrait", "miracle before after"],
+      "assetSourceType": "generated-bespoke",
+      "assetSource": "Generated in-app canvas bitmap: generated-canvas:lume-parameter-review. Purpose-built device interface with parameter readout, controls, and gloved review cue.",
+      "assetBinding": {
+        "image": "generated-canvas:lume-parameter-review"
+      },
+      "semanticFit": "The device interface and gloved setting review visually support Device Parameter Review by showing treatment parameters as something checked before a plan is sent.",
+      "fallbackMode": "photo with scan reticle overlay",
+      "fallbackSubject": "clinical skincare device interface with settings and gloved review",
+      "visualProofNote": "Diagnostic theatre proof must show the device image, scan reticle, and selected concern readout without relying on text alone."
+    },
+    {
+      "section": "treatment proof",
+      "title": "Treatment Handset Calibration",
+      "serviceValue": "Handset-led treatments are framed as measured procedures, not instant transformations.",
+      "requiredSubject": "skin treatment handset held in a clinical room with visible machine body and controlled handling",
+      "forbiddenSubjects": ["generic woman touching face", "beauty pose", "pink spa portrait", "miracle before after"],
+      "assetSourceType": "generated-bespoke",
+      "assetSource": "Generated in-app canvas bitmap: generated-canvas:lume-handset-calibration. Purpose-built treatment handset and machine body scene over skin-toned treatment field.",
+      "assetBinding": {
+        "image": "generated-canvas:lume-handset-calibration"
+      },
+      "semanticFit": "The handset and machine body make Treatment Handset Calibration concrete and help the page frame treatment as measured clinical handling rather than a dramatic result claim.",
+      "fallbackMode": "photo with cool clinical crop",
+      "fallbackSubject": "skin treatment handset and machine body in controlled clinical handling",
+      "visualProofNote": "If used in future rendered sections, proof must show the handset and machine clearly enough to support calibration language."
+    },
+    {
+      "section": "comparison reveal",
+      "title": "Macro Texture Map",
+      "serviceValue": "Real skin texture is treated as planning evidence so expectations stay specific and realistic.",
+      "requiredSubject": "macro human skin texture with pores, fine texture, and natural surface detail",
+      "forbiddenSubjects": ["beauty pose", "makeup glamour result", "miracle before after", "generic lifestyle"],
+      "assetSourceType": "generated-bespoke",
+      "assetSource": "Generated in-app canvas bitmap: generated-canvas:lume-macro-texture. Purpose-built macro skin texture field with pores, fine lines, and natural surface variation.",
+      "assetBinding": {
+        "image": "generated-canvas:lume-macro-texture"
+      },
+      "semanticFit": "The macro skin texture directly supports Macro Texture Map and gives the comparison reveal real skin evidence for a concern-to-plan overlay without claiming a perfected after state.",
+      "fallbackMode": "same photo with diagnostic overlay",
+      "fallbackSubject": "macro skin texture with pores and natural surface detail under planning overlay",
+      "visualProofNote": "Reveal proof must show the macro texture and overlay handle, including a changed slider state."
+    }
+  ]
+}
