@@ -39,8 +39,19 @@ These gates define the bar for serious future mini-sites and presets. Passing no
    - Desktop, mobile, target preset route, fallback route, and key interaction or section states must have current proof.
    - Screenshots or browser proof must come from the current branch.
 
-10. **Skill usage proof**
-    - Reports must name which real installed skill or resource was used, why it was relevant, what decision it influenced, and the usage mode.
+10. **Skill/resource usage proof**
+    - Reports must name which real installed skill, plugin, browser reference, or MCP resource was used.
+    - Reports must include operational mode, command/tool/reference output, exact decision influenced, and visible result or QA proof.
+
+## Mode-Specific Proof
+
+- UI UX Pro Max: `search.py --design-system` output or focused script result.
+- Impeccable: repair-pending until preferred install and detector proof are verified.
+- Emil Design Engineering: exact rule citation plus visible implementation effect.
+- Design Taste Frontend: exact anti-template rejection or design decision.
+- 21st.dev Magic MCP: MCP list/tool output and selected resource proof after install.
+- 21st.dev and MotionSites: Browser reference capture proof.
+- Stop Slop: reference files and before/after copy cleanup after install.
 
 ## Freeze Conditions
 
@@ -50,4 +61,5 @@ Freeze or send back for planning if:
 - Visuals are label-led, generic, or fallback-looking.
 - The task claims premium or reel-level quality without reference capture and current visual proof.
 - Motion is decorative, broken, inaccessible, or absent despite a motion-led brief.
-- The design depends on fake local skill approximations instead of real installed skills/resources.
+- The design depends on fake local approximations instead of real installed skills/resources.
+- A report claims skill/resource usage without output, citation, reference proof, or visible decision impact.

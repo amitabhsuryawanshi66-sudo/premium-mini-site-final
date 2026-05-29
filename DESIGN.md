@@ -66,4 +66,4 @@ Use real installed skills and resources honestly:
 - `ui-ux-pro-max` for UI/UX pattern and design-system search.
 - Browser plugin for references, localhost proof, screenshots, and responsive checks.
 
-Reports must not fake skill usage proof. Name the real skill or resource used, why it mattered, what decision it influenced, and the usage mode, as required by `docs/SKILL_USAGE_PROTOCOL.md`.
+Reports must not fake skill/resource usage proof. Name the real skill or resource used, why it mattered, what decision it influenced, and the usage mode, as required by `docs/SKILL_USAGE_PROTOCOL.md`.

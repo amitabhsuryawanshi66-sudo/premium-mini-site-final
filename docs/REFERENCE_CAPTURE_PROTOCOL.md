@@ -2,6 +2,8 @@
 
 21st.dev and MotionSites are browser reference resources, not installed skills. Use them to raise component, layout, and motion quality before implementation, then translate the idea into the niche and repo constraints.
 
+21st.dev Magic MCP is not installed or configured. If it is approved later, MCP output must be captured separately from browser reference proof.
+
 ## When Required
 
 Capture references before implementation when a task needs:
@@ -45,5 +47,14 @@ Reject component copying when it creates style mismatch, dependency bloat, weak 
 3. Record the reference fields above in the task plan or PR report.
 4. Decide whether to copy, adapt, or only use as inspiration.
 5. After implementation, verify the adapted result with the QA playbook.
+
+## MCP Capture Workflow
+
+Use this only after 21st.dev Magic MCP is explicitly approved, installed, and configured:
+
+1. Record the MCP server/tool output proving the resource is available.
+2. Record the selected component or resource output.
+3. State license, dependency, and niche-translation decisions before implementation.
+4. Keep browser visual proof for the adapted result.
 
 Do not use 21st.dev or MotionSites as a substitute for taste judgment. They provide raw reference material; the builder must still make a specific design decision.

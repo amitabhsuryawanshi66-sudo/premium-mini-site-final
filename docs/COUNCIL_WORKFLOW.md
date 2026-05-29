@@ -34,7 +34,7 @@ Before implementation, the council reviews the prompt for:
 - Evidence-based warnings only; no speculative blockers.
 - Request for implementation rationale, not hidden chain of thought.
 - Concept-first direction and no-reskin proof when the work targets a serious new mini-site or preset.
-- Reference capture and skill usage proof when the task is taste-sensitive, motion-led, asset-led, or component-led.
+- Reference capture and skill/resource usage proof when the task is taste-sensitive, motion-led, asset-led, or component-led.
 
 If the prompt is broad, the Prompt Hygiene Reviewer must rewrite it into a small scoped task before a builder starts.
 
@@ -44,7 +44,7 @@ For PRs, council reviewers inspect the diff, built output, and visual proof. Eac
 - `evidence`: files, screenshots, commands, viewport sizes, or interaction paths checked.
 - `risks`: known failures and unknown risks found beyond the checklist.
 - `required fixes`: only blocking items, stated as small actionable changes.
-- `skill/resource usage`: which real installed skill or plugin resource was used, why it mattered, and what decision it influenced.
+- `skill/resource usage`: which real installed skill, plugin resource, browser reference, or MCP resource was used, why it mattered, what output or citation proved it, and what decision it influenced.
 
 ## Merge / Fix / Freeze
 - **Merge**: Build passes, visual proof exists, acceptance criteria are met, and no reviewer has a blocking concern.
@@ -61,7 +61,7 @@ Reject or freeze if any of these appear:
 - "Ready" claims without actual build and visual proof.
 - Overbroad prompts that mix current work with future-phase polish.
 - Same-template reskins presented as premium or final work.
-- 21st.dev, MotionSites, or repo-local `agent-skills/*` described as installed skills.
+- 21st.dev or MotionSites browser references described as installed skills.
 - Component copying without license, dependency, niche-translation, and QA proof.
 
 ## Capability Gates
