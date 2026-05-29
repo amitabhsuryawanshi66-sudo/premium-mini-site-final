@@ -20,16 +20,45 @@ const viewports = [
   { name: 'mobile-412', width: 412, height: 915 },
 ];
 
+const legacyStoryTrackInteraction = {
+  type: 'legacy-story-track',
+  label: 'Story Track',
+};
+
+const defaultInteractionChecksByPreset = new Map([
+  ['obsidian-ink', [legacyStoryTrackInteraction]],
+  ['velour-house', [legacyStoryTrackInteraction]],
+]);
+
+const getPresetInteractionChecks = (preset) => {
+  if (Array.isArray(preset.qaInteractionChecks)) return preset.qaInteractionChecks;
+  if (Array.isArray(preset.interactionChecks)) return preset.interactionChecks;
+  return defaultInteractionChecksByPreset.get(preset.id) || [];
+};
+
+const defaultPreset = SITE_PRESETS.find((preset) => preset.id === DEFAULT_SITE_ID);
+
 const routeChecks = [
-  { name: 'default', query: '', expectedSiteId: DEFAULT_SITE_ID },
+  {
+    name: 'default',
+    query: '',
+    expectedSiteId: DEFAULT_SITE_ID,
+    interactionChecks: defaultPreset ? getPresetInteractionChecks(defaultPreset) : [],
+  },
   ...SITE_PRESETS
     .filter((preset) => preset.id !== DEFAULT_SITE_ID)
     .map((preset) => ({
       name: preset.id,
       query: `?site=${encodeURIComponent(preset.id)}`,
       expectedSiteId: preset.id,
+      interactionChecks: getPresetInteractionChecks(preset),
     })),
-  { name: 'unknown-fallback', query: '?site=unknown-test', expectedSiteId: DEFAULT_SITE_ID },
+  {
+    name: 'unknown-fallback',
+    query: '?site=unknown-test',
+    expectedSiteId: DEFAULT_SITE_ID,
+    interactionChecks: defaultPreset ? getPresetInteractionChecks(defaultPreset) : [],
+  },
 ];
 
 const checks = [];
@@ -201,6 +230,54 @@ const assertStoryCheckpoint = async (page, checkpoint) => {
   await saveScreenshot(page, checkpoint.screenshot);
 };
 
+const assertSelectorInteraction = async (page, route, interaction) => {
+  const selector = interaction.selector;
+  const label = interaction.label || selector;
+  const exists = await page.locator(selector).first().count();
+
+  record(exists > 0, `${route.name} desktop ${label}: selector exists`, selector);
+
+  if (exists > 0 && interaction.screenshot) {
+    await saveScreenshot(page, `${route.name}-${interaction.screenshot}`);
+  }
+};
+
+const assertRouteInteraction = async (page, route, interaction) => {
+  if (interaction.type === 'legacy-story-track') {
+    const legacyStoryTrack = await getLegacyStoryTrackState(page);
+
+    record(
+      legacyStoryTrack.hasContainer,
+      `${route.name} desktop Story Track: declared interaction container exists`,
+      '.scene-container-exhibit',
+    );
+    record(
+      legacyStoryTrack.cardCount >= 1,
+      `${route.name} desktop Story Track: declared interaction cards exist`,
+      `${legacyStoryTrack.cardCount} cards`,
+    );
+
+    if (!legacyStoryTrack.hasContainer || legacyStoryTrack.cardCount < 1) {
+      return;
+    }
+
+    for (const checkpoint of storyCheckpoints) {
+      await assertStoryCheckpoint(page, {
+        ...checkpoint,
+        screenshot: `${route.name}-${checkpoint.screenshot}`,
+      });
+    }
+    return;
+  }
+
+  if (interaction.type === 'selector') {
+    await assertSelectorInteraction(page, route, interaction);
+    return;
+  }
+
+  record(false, `${route.name} desktop interaction check type is supported`, interaction.type || 'missing type');
+};
+
 const storyCheckpoints = [
   { name: 'start', progress: 0, required: 'first', screenshot: 'desktop-story-start' },
   { name: 'mid', progress: 0.5, required: 'middle', screenshot: 'desktop-story-mid' },
@@ -273,31 +350,17 @@ try {
     await page.goto(routeUrl, { waitUntil: 'networkidle' });
     await page.waitForSelector('main', { state: 'visible', timeout: 10000 });
 
-    const legacyStoryTrack = await getLegacyStoryTrackState(page);
-
-    if (!legacyStoryTrack.hasContainer) {
+    if (!route.interactionChecks || route.interactionChecks.length === 0) {
       record(
         true,
-        `${route.name} desktop Story Track: not applicable for this route architecture`,
-        'No .scene-container-exhibit container.',
+        `${route.name} desktop key interaction proof: not declared`,
+        'Generic route health checks only.',
       );
       continue;
     }
 
-    if (legacyStoryTrack.cardCount < 1) {
-      record(
-        true,
-        `${route.name} desktop Story Track card proof: not applicable for this route architecture`,
-        'Legacy .scene-container-exhibit exists without .archive-study cards.',
-      );
-      continue;
-    }
-
-    for (const checkpoint of storyCheckpoints) {
-      await assertStoryCheckpoint(page, {
-        ...checkpoint,
-        screenshot: `${route.name}-${checkpoint.screenshot}`,
-      });
+    for (const interaction of route.interactionChecks) {
+      await assertRouteInteraction(page, route, interaction);
     }
   }
 } catch (error) {

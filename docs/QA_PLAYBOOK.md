@@ -11,7 +11,7 @@ On Windows/Codex, follow `docs/CODEX_LOCAL_ENV.md` for the local setup and use `
 - If a dev server is needed for visual checks, run `npm run dev` and inspect the rendered site.
 
 ## Required Viewports
-- Desktop check: verify the main desktop layout and Story Track or equivalent key section behavior.
+- Desktop check: verify the main desktop layout and declared key interaction or section-state behavior.
 - Mobile check at 390px width.
 - Mobile check at 412px width.
 
@@ -29,7 +29,7 @@ Default-route proof is not enough when the changed behavior lives behind a `site
 - No broken images, empty placeholders, or fallback-looking visuals unless intentionally designed and accepted.
 - Every major visual asset has an asset contract covering section purpose, title, service value, required visual subject, source, and fallback behavior.
 - All CTA and WhatsApp paths work.
-- Story Track first and last cards are reachable.
+- Declared key interaction/section states are reachable.
 - Text does not clip, overlap, or overflow its container.
 - Touch targets remain usable on mobile.
 - Hover/tap states remain visible and purposeful.
@@ -39,7 +39,7 @@ Default-route proof is not enough when the changed behavior lives behind a `site
 
 ## Visual Proof
 Before merge, attach or reference screenshots/video captures for:
-- Desktop main page and Story Track.
+- Desktop main page and declared key interaction/state proof.
 - Mobile 390px.
 - Mobile 412px.
 - Any changed interaction state or asset surface.

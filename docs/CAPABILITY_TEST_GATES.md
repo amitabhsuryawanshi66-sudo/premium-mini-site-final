@@ -35,11 +35,15 @@ These gates define the bar for serious future mini-sites and presets. Passing no
    - The builder must explain what changed beyond color, typography, and copy.
    - If the layout, section rhythm, motion, and visual language remain basically identical, the gate fails.
 
-9. **Visual proof**
+9. **Layout Independence Gate**
+   - Serious preset tests must document the baseline route used for comparison, the new route or preset id, section order comparison, DOM/component hierarchy comparison, navigation behavior comparison, scroll behavior comparison, interaction placement comparison, content sequence comparison, and mobile layout behavior comparison.
+   - The gate fails if the only changes are color, copy, card styling, visual texture, CTA label, section names, or asset labels.
+
+10. **Visual proof**
    - Desktop, mobile, target preset route, fallback route, and key interaction or section states must have current proof.
    - Screenshots or browser proof must come from the current branch.
 
-10. **Skill/resource usage proof**
+11. **Skill/resource usage proof**
     - Reports must name which real installed skill, plugin, browser reference, or MCP resource was used.
     - Reports must include operational mode, command/tool/reference output, exact decision influenced, and visible result or QA proof.
 

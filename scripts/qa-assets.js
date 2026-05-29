@@ -106,9 +106,24 @@ const readContractFiles = async () => {
     .sort();
 };
 
+const getPresetDeclaredVisuals = (preset) => {
+  if (Array.isArray(preset.visualManifest)) return preset.visualManifest;
+  if (Array.isArray(preset.visualAssets)) return preset.visualAssets;
+  if (Array.isArray(preset.exhibitArchive)) return preset.exhibitArchive;
+  return [];
+};
+
+const getDeclaredVisualSourceLabel = (preset) => {
+  if (Array.isArray(preset.visualManifest)) return 'visualManifest';
+  if (Array.isArray(preset.visualAssets)) return 'visualAssets';
+  if (Array.isArray(preset.exhibitArchive)) return 'exhibitArchive';
+  return 'declared visuals';
+};
+
 const validateContractForPreset = (preset, contract, contractFile) => {
   const prefix = `${preset.id} (${contractFile})`;
-  const archiveItems = Array.isArray(preset.exhibitArchive) ? preset.exhibitArchive : [];
+  const declaredVisuals = getPresetDeclaredVisuals(preset);
+  const declaredVisualSource = getDeclaredVisualSourceLabel(preset);
   const visualItems = Array.isArray(contract.visualItems) ? contract.visualItems : [];
 
   if (visualItems.length > 0) {
@@ -138,19 +153,25 @@ const validateContractForPreset = (preset, contract, contractFile) => {
     fail(`${prefix}: asset contract titles are unique`, summarizeItems(duplicateTitles));
   }
 
-  const missingContracts = archiveItems
+  if (declaredVisuals.length > 0) {
+    pass(`${prefix}: preset declares visual items via ${declaredVisualSource}`);
+  } else {
+    fail(`${prefix}: preset declares visual items`, 'Add visualManifest, visualAssets, or exhibitArchive entries for asset QA.');
+  }
+
+  const missingContracts = declaredVisuals
     .filter((item) => !contractsByTitle.has(item.title))
     .map((item) => item.title);
 
-  const archiveTitles = new Set(archiveItems.map((item) => item.title));
+  const declaredVisualTitles = new Set(declaredVisuals.map((item) => item.title));
   const orphanContracts = visualItems
-    .filter((item) => typeof item.title === 'string' && !archiveTitles.has(item.title))
+    .filter((item) => typeof item.title === 'string' && !declaredVisualTitles.has(item.title))
     .map((item) => item.title);
 
   if (missingContracts.length === 0) {
-    pass(`${prefix}: every archive item has an asset contract`);
+    pass(`${prefix}: every declared visual item has an asset contract`);
   } else {
-    fail(`${prefix}: every archive item has an asset contract`, summarizeItems(missingContracts));
+    fail(`${prefix}: every declared visual item has an asset contract`, summarizeItems(missingContracts));
   }
 
   if (orphanContracts.length === 0) {
@@ -168,8 +189,8 @@ const validateContractForPreset = (preset, contract, contractFile) => {
   const serviceValueMismatches = [];
   const assetBindingMismatches = [];
 
-  for (const archiveItem of archiveItems) {
-    const contractItem = contractsByTitle.get(archiveItem.title);
+  for (const declaredVisual of declaredVisuals) {
+    const contractItem = contractsByTitle.get(declaredVisual.title);
 
     if (!contractItem) {
       continue;
@@ -177,28 +198,28 @@ const validateContractForPreset = (preset, contract, contractFile) => {
 
     for (const field of requiredFields) {
       if (!isNonEmpty(contractItem[field])) {
-        missingFields.push(`${archiveItem.title}.${field}`);
+        missingFields.push(`${declaredVisual.title}.${field}`);
       }
     }
 
     if (!allowedSourceTypes.has(contractItem.assetSourceType)) {
-      invalidSourceTypes.push(`${archiveItem.title}: ${contractItem.assetSourceType}`);
+      invalidSourceTypes.push(`${declaredVisual.title}: ${contractItem.assetSourceType}`);
     }
 
-    if (contractItem.serviceValue !== archiveItem.serviceValue) {
-      serviceValueMismatches.push(archiveItem.title);
+    if (contractItem.serviceValue !== declaredVisual.serviceValue) {
+      serviceValueMismatches.push(declaredVisual.title);
     }
 
     const binding = contractItem.assetBinding;
     if (binding && typeof binding === 'object' && !Array.isArray(binding)) {
       if (contractItem.assetSourceType === 'deterministic-artifact') {
-        if (binding.visualMode !== archiveItem.visualMode || binding.visualVariant !== archiveItem.visualVariant) {
+        if (binding.visualMode !== declaredVisual.visualMode || binding.visualVariant !== declaredVisual.visualVariant) {
           assetBindingMismatches.push(
-            `${archiveItem.title}: expected visualMode=${archiveItem.visualMode}, visualVariant=${archiveItem.visualVariant}`,
+            `${declaredVisual.title}: expected visualMode=${declaredVisual.visualMode}, visualVariant=${declaredVisual.visualVariant}`,
           );
         }
-      } else if (binding.image !== archiveItem.image) {
-        assetBindingMismatches.push(`${archiveItem.title}: expected image=${archiveItem.image}`);
+      } else if (binding.image !== declaredVisual.image) {
+        assetBindingMismatches.push(`${declaredVisual.title}: expected image=${declaredVisual.image}`);
       }
     }
 
@@ -208,7 +229,7 @@ const validateContractForPreset = (preset, contract, contractFile) => {
     const forbiddenHits = findTerms(claimedText, forbiddenTerms);
 
     if (forbiddenHits.length > 0) {
-      forbiddenPositiveClaims.push(`${archiveItem.title}: ${summarizeItems(forbiddenHits)}`);
+      forbiddenPositiveClaims.push(`${declaredVisual.title}: ${summarizeItems(forbiddenHits)}`);
     }
 
     const labelHits = findTerms(
@@ -217,7 +238,7 @@ const validateContractForPreset = (preset, contract, contractFile) => {
     );
 
     if (labelHits.length > 0) {
-      labelReliance.push(`${archiveItem.title}: ${summarizeItems(labelHits)}`);
+      labelReliance.push(`${declaredVisual.title}: ${summarizeItems(labelHits)}`);
     }
 
     if (contractItem.assetSourceType === 'deterministic-artifact') {
@@ -225,7 +246,7 @@ const validateContractForPreset = (preset, contract, contractFile) => {
       const hasSubjectTerm = artifactSubjectTerms.some((term) => fallbackText.includes(term));
 
       if (!hasSubjectTerm || fallbackText.split(/\s+/).filter(Boolean).length < 4) {
-        weakArtifactFallbacks.push(archiveItem.title);
+        weakArtifactFallbacks.push(declaredVisual.title);
       }
     }
 
@@ -243,7 +264,7 @@ const validateContractForPreset = (preset, contract, contractFile) => {
         .some((word) => semanticFit.includes(word));
 
       if (semanticFit.length < 80 || !hasContractTerm) {
-        weakStockFits.push(archiveItem.title);
+        weakStockFits.push(declaredVisual.title);
       }
     }
   }
