@@ -1712,7 +1712,9 @@ nav {
 }
 
 .lume-reveal-section {
-  background: #08090c;
+  background:
+    radial-gradient(circle at 70% 36%, rgba(159, 247, 235, 0.09), transparent 30rem),
+    #08090c;
 }
 
 .lume-comparison {
@@ -1721,16 +1723,47 @@ nav {
   width: min(1120px, 100%);
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border: 1px solid rgba(238, 243, 244, 0.16);
-  background: var(--surface);
-  box-shadow: 0 34px 110px rgba(0, 0, 0, 0.44);
+  border: 1px solid rgba(238, 243, 244, 0.2);
+  background:
+    linear-gradient(135deg, rgba(232, 237, 240, 0.08), rgba(9, 10, 13, 0.02)),
+    var(--surface);
+  box-shadow:
+    inset 0 1px 0 rgba(238, 243, 244, 0.14),
+    inset 0 -80px 120px rgba(9, 10, 13, 0.32),
+    0 34px 110px rgba(0, 0, 0, 0.44);
   touch-action: none;
   user-select: none;
+  isolation: isolate;
+}
+
+.lume-comparison::before,
+.lume-comparison::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.lume-comparison::before {
+  background:
+    linear-gradient(90deg, rgba(238, 243, 244, 0.11) 0 1px, transparent 1px 100%),
+    linear-gradient(0deg, rgba(238, 243, 244, 0.08) 0 1px, transparent 1px 100%);
+  background-size: 13.5% 100%, 100% 18%;
+  opacity: 0.46;
+}
+
+.lume-comparison::after {
+  background:
+    radial-gradient(circle at 38% 48%, rgba(238, 243, 244, 0.24), transparent 19%),
+    linear-gradient(90deg, rgba(9, 10, 13, 0.28), transparent 24%, transparent 74%, rgba(9, 10, 13, 0.24));
+  mix-blend-mode: screen;
+  opacity: 0.42;
 }
 
 .lume-comparison > img,
 .lume-comparison > canvas {
-  filter: grayscale(0.08) contrast(1.08) brightness(0.86) saturate(0.82);
+  filter: grayscale(0.18) contrast(1.04) brightness(0.76) saturate(0.58);
 }
 
 .lume-comparison-plan {
@@ -1742,49 +1775,75 @@ nav {
 
 .lume-comparison-plan img,
 .lume-comparison-plan canvas {
-  filter: grayscale(0.45) contrast(1.28) brightness(0.64) saturate(0.6);
+  filter: grayscale(0.68) contrast(1.22) brightness(0.72) saturate(0.28) hue-rotate(142deg);
 }
 
 .lume-plan-overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(159, 247, 235, 0.18) 0 1px, transparent 1px 100%),
+    linear-gradient(115deg, rgba(238, 243, 244, 0.2), transparent 34%),
+    linear-gradient(90deg, rgba(159, 247, 235, 0.17) 0 1px, transparent 1px 100%),
     linear-gradient(0deg, rgba(159, 247, 235, 0.12) 0 1px, transparent 1px 100%),
-    radial-gradient(circle at 34% 44%, rgba(159, 247, 235, 0.25), transparent 12%),
-    radial-gradient(circle at 68% 62%, rgba(159, 247, 235, 0.18), transparent 15%);
-  background-size: 13% 13%, 13% 13%, auto, auto;
+    radial-gradient(circle at 34% 44%, rgba(159, 247, 235, 0.22), transparent 13%),
+    radial-gradient(circle at 66% 62%, rgba(238, 243, 244, 0.18), transparent 17%);
+  background-size: auto, 12.5% 12.5%, 12.5% 12.5%, auto, auto;
+  box-shadow:
+    inset 0 0 0 1px rgba(238, 243, 244, 0.1),
+    inset 0 0 90px rgba(159, 247, 235, 0.16);
 }
 
-.lume-zone {
+.lume-scan-plane,
+.lume-care-field {
   position: absolute;
-  padding: 0.45rem 0.55rem;
-  border: 1px solid rgba(159, 247, 235, 0.45);
-  background: rgba(9, 10, 13, 0.72);
-  color: var(--accent);
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  display: block;
+  pointer-events: none;
 }
 
-.zone-one { left: 14%; top: 22%; }
-.zone-two { right: 12%; top: 32%; }
-.zone-three { left: 42%; bottom: 18%; }
+.lume-scan-plane {
+  height: 100%;
+  top: 0;
+  border-left: 1px solid rgba(238, 243, 244, 0.62);
+  border-right: 1px solid rgba(159, 247, 235, 0.2);
+  background: linear-gradient(90deg, transparent, rgba(238, 243, 244, 0.2), transparent);
+}
+
+.scan-plane-one { left: 28%; width: 8%; }
+.scan-plane-two { left: 63%; width: 10%; opacity: 0.72; }
+
+.lume-care-field {
+  border: 1px solid rgba(159, 247, 235, 0.45);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle, rgba(159, 247, 235, 0.19), transparent 62%),
+    rgba(238, 243, 244, 0.035);
+  box-shadow:
+    inset 0 1px 0 rgba(238, 243, 244, 0.16),
+    0 0 42px rgba(159, 247, 235, 0.12);
+}
+
+.field-one { left: 18%; top: 18%; width: 18%; height: 26%; }
+.field-two { right: 18%; top: 24%; width: 20%; height: 20%; }
+.field-three { left: 42%; bottom: 13%; width: 24%; height: 24%; }
 
 .lume-reveal-handle {
   position: absolute;
   top: 0;
   bottom: 0;
   left: var(--lume-reveal);
-  width: 56px;
+  z-index: 5;
+  width: 62px;
   border: 0;
-  border-left: 1px solid rgba(238, 243, 244, 0.8);
-  border-right: 1px solid rgba(9, 10, 13, 0.8);
-  background: rgba(159, 247, 235, 0.08);
+  border-left: 1px solid rgba(238, 243, 244, 0.86);
+  border-right: 1px solid rgba(9, 10, 13, 0.72);
+  background:
+    linear-gradient(90deg, rgba(238, 243, 244, 0.22), rgba(159, 247, 235, 0.08), rgba(9, 10, 13, 0.16));
   color: var(--fg);
   cursor: ew-resize;
   transform: translateX(-50%);
+  box-shadow:
+    0 0 0 1px rgba(159, 247, 235, 0.08),
+    0 0 44px rgba(159, 247, 235, 0.16);
   transition:
     background-color 160ms var(--ease),
     transform 160ms var(--ease);
@@ -1797,12 +1856,17 @@ nav {
   width: 46px;
   height: 46px;
   padding: 13px;
-  border: 1px solid rgba(238, 243, 244, 0.34);
+  border: 1px solid rgba(238, 243, 244, 0.48);
   border-radius: 50%;
-  background: rgba(9, 10, 13, 0.82);
+  background:
+    linear-gradient(145deg, rgba(238, 243, 244, 0.16), rgba(9, 10, 13, 0.92)),
+    #090a0d;
   color: var(--accent);
   transform: translate(-50%, -50%);
-  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.42);
+  box-shadow:
+    inset 0 1px 0 rgba(238, 243, 244, 0.2),
+    0 16px 42px rgba(0, 0, 0, 0.42),
+    0 0 30px rgba(159, 247, 235, 0.18);
 }
 
 .lume-comparison.is-dragging .lume-reveal-handle {
@@ -1814,6 +1878,38 @@ nav {
   margin: 1rem 0 0;
   color: var(--muted);
   line-height: 1.6;
+}
+
+.lume-reveal-readouts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  width: min(1120px, 100%);
+  margin-top: 1rem;
+  border: 1px solid rgba(238, 243, 244, 0.14);
+  background: rgba(238, 243, 244, 0.12);
+}
+
+.lume-reveal-readouts div {
+  padding: 1rem;
+  background: rgba(13, 15, 19, 0.92);
+}
+
+.lume-reveal-readouts span {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.lume-reveal-readouts strong {
+  color: var(--fg);
+  font-size: 0.92rem;
+  font-weight: 560;
+  line-height: 1.45;
 }
 
 .lume-router {
@@ -2041,9 +2137,19 @@ nav {
   }
 
   .app-root[data-site="lume-vale"] .nav-meta {
-    max-width: 13ch;
+    width: 8.75rem;
+    max-width: none;
     text-align: right;
     line-height: 1.35;
+    font-size: 0;
+  }
+
+  .app-root[data-site="lume-vale"] .nav-meta::after {
+    content: "Pune / Private Atelier";
+    display: block;
+    font-size: 9px;
+    line-height: 1.35;
+    letter-spacing: 0.04em;
   }
 
   .lume-hero,
@@ -2098,6 +2204,10 @@ nav {
   .lume-zone {
     font-size: 0.52rem;
     padding: 0.35rem 0.4rem;
+  }
+
+  .lume-reveal-readouts {
+    grid-template-columns: 1fr;
   }
 
   .lume-reveal-handle {

@@ -795,27 +795,45 @@ const drawLumeCanvas = (canvas, variant) => {
   }
 
   if (variant === "lume-macro-texture") {
-    const skin = ctx.createLinearGradient(0, 0, width, height);
-    skin.addColorStop(0, "#9a7465");
-    skin.addColorStop(0.48, "#c29482");
-    skin.addColorStop(1, "#e0b29d");
-    ctx.fillStyle = skin;
+    const base = ctx.createLinearGradient(0, 0, width, height);
+    base.addColorStop(0, "#b8998c");
+    base.addColorStop(0.5, "#c9a99b");
+    base.addColorStop(1, "#e2c2b2");
+    ctx.fillStyle = base;
     ctx.fillRect(0, 0, width, height);
-    for (let i = 0; i < 520; i += 1) {
+
+    const coolSheet = ctx.createRadialGradient(width * 0.46, height * 0.48, 10, width * 0.46, height * 0.48, width * 0.62);
+    coolSheet.addColorStop(0, "rgba(232, 246, 244, 0.34)");
+    coolSheet.addColorStop(0.42, "rgba(159, 247, 235, 0.11)");
+    coolSheet.addColorStop(1, "rgba(9, 10, 13, 0.08)");
+    ctx.fillStyle = coolSheet;
+    ctx.fillRect(0, 0, width, height);
+
+    for (let i = 0; i < 210; i += 1) {
       const x = random() * width;
       const y = random() * height;
-      ctx.strokeStyle = `rgba(245, 230, 219, ${0.18 + random() * 0.28})`;
-      ctx.lineWidth = 1 + random() * 2.2;
+      ctx.strokeStyle = `rgba(245, 234, 228, ${0.09 + random() * 0.14})`;
+      ctx.lineWidth = 1 + random() * 1.3;
       ctx.beginPath();
       ctx.moveTo(x, y);
-      ctx.lineTo(x + (random() - 0.5) * 90, y + (random() - 0.5) * 90);
+      ctx.lineTo(x + (random() - 0.5) * 58, y + (random() - 0.5) * 58);
       ctx.stroke();
     }
-    for (let i = 0; i < 420; i += 1) {
+
+    for (let i = 0; i < 130; i += 1) {
       ctx.beginPath();
-      ctx.arc(random() * width, random() * height, 1 + random() * 2.6, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(72, 45, 40, ${0.1 + random() * 0.18})`;
+      ctx.arc(random() * width, random() * height, 1 + random() * 2.1, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(66, 48, 45, ${0.055 + random() * 0.1})`;
       ctx.fill();
+    }
+
+    ctx.strokeStyle = "rgba(238, 243, 244, 0.11)";
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 7; i += 1) {
+      ctx.beginPath();
+      ctx.moveTo(0, height * (0.16 + i * 0.12));
+      ctx.bezierCurveTo(width * 0.28, height * (0.1 + i * 0.12), width * 0.68, height * (0.22 + i * 0.1), width, height * (0.15 + i * 0.12));
+      ctx.stroke();
     }
   }
 };
@@ -1008,9 +1026,11 @@ const LumeComparison = () => {
         <div className="lume-comparison-plan">
           <LumeGeneratedCanvas src={LUME_VALE_IMAGES.skinMacro} alt="Macro skin texture with diagnostic planning overlay" />
           <div className="lume-plan-overlay" aria-hidden="true">
-            <span className="lume-zone zone-one">pigment cluster</span>
-            <span className="lume-zone zone-two">barrier watch</span>
-            <span className="lume-zone zone-three">texture field</span>
+            <span className="lume-scan-plane scan-plane-one"></span>
+            <span className="lume-scan-plane scan-plane-two"></span>
+            <span className="lume-care-field field-one"></span>
+            <span className="lume-care-field field-two"></span>
+            <span className="lume-care-field field-three"></span>
           </div>
         </div>
         <button
@@ -1030,6 +1050,20 @@ const LumeComparison = () => {
       <p className="lume-reveal-note">
         Drag or use arrow keys. The overlay explains planning zones and does not claim a treatment result.
       </p>
+      <div className="lume-reveal-readouts" aria-label="Diagnostic reveal planning notes">
+        <div>
+          <span>Texture field</span>
+          <strong>Resurface gently, review barrier first</strong>
+        </div>
+        <div>
+          <span>Pigment cluster</span>
+          <strong>Stabilize triggers before brightening</strong>
+        </div>
+        <div>
+          <span>Care window</span>
+          <strong>Plan in intervals, not instant claims</strong>
+        </div>
+      </div>
     </section>
   );
 };

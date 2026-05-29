@@ -72,14 +72,14 @@
       "requiredSubject": "macro human skin texture with pores, fine texture, and natural surface detail",
       "forbiddenSubjects": ["beauty pose", "makeup glamour result", "miracle before after", "generic lifestyle"],
       "assetSourceType": "generated-bespoke",
-      "assetSource": "Generated in-app canvas bitmap: generated-canvas:lume-macro-texture. Purpose-built macro skin texture field with pores, fine lines, and natural surface variation.",
+      "assetSource": "Generated in-app canvas bitmap: generated-canvas:lume-macro-texture. Purpose-built macro skin texture field with softened pores, clinical light-sheet toning, and natural surface variation.",
       "assetBinding": {
         "image": "generated-canvas:lume-macro-texture"
       },
-      "semanticFit": "The macro skin texture directly supports Macro Texture Map and gives the comparison reveal real skin evidence for a concern-to-plan overlay without claiming a perfected after state.",
+      "semanticFit": "The macro skin texture directly supports Macro Texture Map and gives the comparison reveal realistic skin evidence for a chrome-toned concern-to-plan overlay without text clutter or a perfected after state.",
       "fallbackMode": "same photo with diagnostic overlay",
-      "fallbackSubject": "macro skin texture with pores and natural surface detail under planning overlay",
-      "visualProofNote": "Reveal proof must show the macro texture and overlay handle, including a changed slider state."
+      "fallbackSubject": "macro skin texture with pores and natural surface detail under a clinical light-sheet planning overlay",
+      "visualProofNote": "Reveal proof must show the macro texture, chrome planning overlay, external readouts, and changed slider state."
     }
   ]
 }
