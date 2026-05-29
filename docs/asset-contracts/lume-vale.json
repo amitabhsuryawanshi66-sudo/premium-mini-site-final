@@ -10,12 +10,12 @@
       "requiredSubject": "translucent skin-layer light study with visible tone, texture, and diagnostic glow cues",
       "forbiddenSubjects": ["generic lifestyle", "woman touching face", "spa candle", "beige med spa room", "office", "doctor", "business meeting"],
       "assetSourceType": "deterministic-artifact",
-      "assetSource": "LumeSkinPlate diagnostic artifact with translucent layered skin light, tone lines, and treatment glow field",
+      "assetSource": "LumeDiagnosticTheatre code-native diagnostic chamber with macro skin texture field, translucent light sheet, scan window, and private treatment readout",
       "assetBinding": {
         "visualMode": "artifact",
         "visualVariant": "lumeSkinLight"
       },
-      "semanticFit": "The artifact makes the visual metaphor of light passing through skin layers visible, supporting a careful diagnostic promise instead of relying on a generic face photo.",
+      "semanticFit": "The artifact makes Lume Vale feel like a private diagnostic clinic surface rather than a generic abstract beauty blob, supporting careful assessment before treatment.",
       "fallbackMode": "artifact",
       "fallbackSubject": "subject-led skin layer map with diagnostic glow and tone texture flow",
       "visualProofNote": "Verify the hero visual reads as skin-light diagnostic material and not a decorative placeholder at desktop, 390px, and 412px."
@@ -27,12 +27,12 @@
       "requiredSubject": "interactive skin reveal showing concern state to calmer tone and smoother texture over time",
       "forbiddenSubjects": ["generic lifestyle", "woman touching face", "miracle result", "spa candle", "office", "doctor", "business meeting"],
       "assetSourceType": "deterministic-artifact",
-      "assetSource": "Custom LumeReveal interaction using two LumeSkinPlate artifact states and a draggable reveal handle",
+      "assetSource": "Custom LumeReveal interaction using layered macro skin fields, concern-map markers, planned-care overlay, staged treatment rail, and a draggable reveal handle",
       "assetBinding": {
         "visualMode": "artifact",
         "visualVariant": "lumeReveal"
       },
-      "semanticFit": "The visual demonstrates staged tone and texture improvement while avoiding unlicensed before-after faces or unrealistic claims.",
+      "semanticFit": "The visual demonstrates staged tone, barrier, and texture planning while avoiding unlicensed before-after faces or unrealistic claims.",
       "fallbackMode": "artifact",
       "fallbackSubject": "subject-led skin reveal map with calmer tone, texture flow, and gradual treatment comparison",
       "visualProofNote": "Verify the reveal works on desktop, remains usable on mobile, and falls back to a polished static split under reduced motion."

@@ -706,11 +706,31 @@ const LumeSkinPlate = ({ variant = "diagnostic", className = "" }) => {
   );
 };
 
+const LumeDiagnosticTheatre = () => (
+  <div className="lume-diagnostic-theatre" aria-hidden="true">
+    <div className="lume-scan-chamber">
+      <div className="lume-macro-skin" />
+      <div className="lume-light-sheet" />
+      <div className="lume-scan-window">
+        <span>Tone</span>
+        <span>Barrier</span>
+        <span>Texture</span>
+      </div>
+      <div className="lume-scan-readout">
+        <span>Private scan view</span>
+        <strong>Concern mapped before treatment is suggested.</strong>
+      </div>
+      <div className="lume-depth-label lume-depth-label-one">Surface texture</div>
+      <div className="lume-depth-label lume-depth-label-two">Light scatter</div>
+    </div>
+  </div>
+);
+
 const LumeHero = ({ site }) => (
   <section className="lume-hero">
     <div className="lume-hero-copy">
       <div className="lume-kicker">Private skin atelier for Pune and Mumbai</div>
-      <h1>Lume Vale Skin Atelier</h1>
+      <h1>Skin plans with clinical calm and visible restraint.</h1>
       <p>
         Precision-led skin, hair, and subtle aesthetic plans for clients who want visible improvement without overdone clinic theatre.
       </p>
@@ -724,11 +744,7 @@ const LumeHero = ({ site }) => (
       </div>
     </div>
     <div className="lume-hero-visual">
-      <LumeSkinPlate />
-      <div className="lume-visual-note">
-        <span>Light-layer diagnostic</span>
-        <strong>Concern to plan, not promise to perfection.</strong>
-      </div>
+      <LumeDiagnosticTheatre />
     </div>
   </section>
 );
@@ -785,54 +801,85 @@ const LumeRevealSection = () => {
     updatePosition(event.clientX);
   };
 
+  const nudgePosition = (delta) => {
+    setPosition((value) => Math.max(18, Math.min(82, value + delta)));
+  };
+
   return (
     <section className="lume-section lume-reveal-section">
       <div className="lume-section-header">
         <span>Lume Reveal</span>
-        <h2>A treatment preview built around gradual, realistic change.</h2>
+        <h2>Drag through the plan, not a miracle before-after.</h2>
       </div>
       <div className="lume-reveal-layout">
-        <div
-          className={`lume-reveal ${shouldReduceMotion ? 'is-reduced' : ''}`}
-          ref={revealRef}
-          onPointerDown={(event) => {
-            if (shouldReduceMotion) return;
-            setActive(true);
-            event.currentTarget.setPointerCapture(event.pointerId);
-            updatePosition(event.clientX);
-          }}
-          onPointerMove={handlePointerMove}
-          onPointerUp={() => setActive(false)}
-          onPointerCancel={() => setActive(false)}
-          style={{ '--reveal-position': `${position}%` }}
-          role="img"
-          aria-label="Privacy-safe treatment reveal showing calmer tone and smoother skin texture over time"
-        >
-          <div className="lume-reveal-state lume-reveal-before">
-            <LumeSkinPlate variant="intent" />
-            <span>Concern state</span>
+        <div className="lume-reveal-stage">
+          <div
+            className={`lume-reveal ${shouldReduceMotion ? 'is-reduced' : ''}`}
+            ref={revealRef}
+            onPointerDown={(event) => {
+              if (shouldReduceMotion) return;
+              setActive(true);
+              event.currentTarget.setPointerCapture(event.pointerId);
+              updatePosition(event.clientX);
+            }}
+            onPointerMove={handlePointerMove}
+            onPointerUp={(event) => {
+              setActive(false);
+              event.currentTarget.releasePointerCapture?.(event.pointerId);
+            }}
+            onPointerCancel={() => setActive(false)}
+            style={{ '--reveal-position': `${position}%` }}
+            role="img"
+            aria-label="Privacy-safe treatment planning reveal showing concern mapping and gradual skin improvement"
+          >
+            <div className="lume-reveal-panel lume-reveal-before">
+              <div className="lume-reveal-surface">
+                <div className="lume-concern-field" />
+              </div>
+            </div>
+            <div className="lume-reveal-panel lume-reveal-after">
+              <div className="lume-reveal-surface">
+                <div className="lume-care-field" />
+              </div>
+            </div>
+            <div className="lume-reveal-markers" aria-hidden="true">
+              <span />
+              <span />
+              <span />
+              <span />
+            </div>
+            {!shouldReduceMotion && (
+              <button
+                className="lume-reveal-handle"
+                type="button"
+                role="slider"
+                aria-label="Drag Lume Reveal treatment plan"
+                aria-valuemin={18}
+                aria-valuemax={82}
+                aria-valuenow={Math.round(position)}
+                style={{ left: `${position}%` }}
+                onKeyDown={(event) => {
+                  if (event.key === 'ArrowLeft') nudgePosition(-6);
+                  if (event.key === 'ArrowRight') nudgePosition(6);
+                }}
+              />
+            )}
           </div>
-          <div className="lume-reveal-state lume-reveal-after">
-            <LumeSkinPlate />
-            <span>After planned care</span>
+          <div className="lume-reveal-notes">
+            <article>
+              <span>Concern map</span>
+              <p>Redness, congestion, uneven scatter</p>
+            </article>
+            <article>
+              <span>Planned care</span>
+              <p>Calmer tone, clearer reflection, protected barrier</p>
+            </article>
           </div>
-          {!shouldReduceMotion && (
-            <button
-              className="lume-reveal-handle"
-              type="button"
-              aria-label="Drag treatment reveal"
-              style={{ left: `${position}%` }}
-              onKeyDown={(event) => {
-                if (event.key === 'ArrowLeft') setPosition((value) => Math.max(18, value - 6));
-                if (event.key === 'ArrowRight') setPosition((value) => Math.min(82, value + 6));
-              }}
-            />
-          )}
         </div>
         <div className="lume-reveal-copy">
           <span>What the motion is for</span>
           <p>
-            The reveal explains staged improvement: less visible redness, smoother texture, clearer light reflection. It avoids miracle before-after claims and keeps the CTA close to the concern.
+            The reveal reframes transformation as a private treatment plan: map the concern, calm the barrier, then protect the result. It keeps the visual claim measured and the next action specific.
           </p>
           <a href={getWhatsAppUrl(LUME_TREATMENT_INTENTS[1].message)}>Ask about a skin plan</a>
         </div>
@@ -902,11 +949,51 @@ const LumeBooking = ({ site }) => (
   </section>
 );
 
-const LumeMobileCta = ({ site }) => (
-  <a className="lume-mobile-cta" href={getWhatsAppUrl(site.intakeProtocol[0].message)}>
-    Book consult
-  </a>
-);
+const LumeMobileCta = ({ site }) => {
+  const [hideForReveal, setHideForReveal] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return undefined;
+    const revealSection = document.querySelector('.lume-reveal-section');
+    if (!revealSection) return undefined;
+
+    const updateVisibility = () => {
+      const rect = revealSection.getBoundingClientRect();
+      setHideForReveal(rect.top < window.innerHeight * 0.88 && rect.bottom > window.innerHeight * 0.12);
+    };
+
+    let observer;
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setHideForReveal(true);
+          } else {
+            updateVisibility();
+          }
+        },
+        { threshold: 0.08 }
+      );
+      observer.observe(revealSection);
+    }
+
+    updateVisibility();
+    window.addEventListener('scroll', updateVisibility, { passive: true });
+    window.addEventListener('resize', updateVisibility);
+
+    return () => {
+      observer?.disconnect();
+      window.removeEventListener('scroll', updateVisibility);
+      window.removeEventListener('resize', updateVisibility);
+    };
+  }, []);
+
+  return (
+    <a className={`lume-mobile-cta ${hideForReveal ? 'is-hidden' : ''}`} href={getWhatsAppUrl(site.intakeProtocol[0].message)}>
+      Book consult
+    </a>
+  );
+};
 
 const LumeValeSite = ({ site }) => (
   <main className="lume-main">
