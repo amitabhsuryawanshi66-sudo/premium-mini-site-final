@@ -46,7 +46,7 @@ Prompts should say whether the task needs a targeted reviewer pass, a Decision C
 ## Design Skills And References
 Before visual identity or taste-sensitive implementation, prompts should say whether approved Codex-native design skills, 21st.dev browser reference, or both are required. Follow `docs/REAL_DESIGN_SKILLS_INSTALL_PLAN.md`; do not treat repo-local approximations or 21st.dev as installed native skills.
 
-Use `docs/SKILL_USAGE_PROTOCOL.md` for skill usage proof. Use `docs/REFERENCE_CAPTURE_PROTOCOL.md` before copying or adapting external components, motion, or section patterns.
+Use `docs/SKILL_USAGE_PROTOCOL.md` for skill/resource usage proof. Use `docs/REFERENCE_CAPTURE_PROTOCOL.md` before copying or adapting external components, motion, or section patterns.
 
 ## Component Copy Policy
 Component copying or close adaptation is allowed only when the source is licensed or rewritten from observation, scoped to the task, dependency-safe, translated to the niche, and proven in QA. Reject random pasted components, style mismatches, dependency bloat, and component dumps.
