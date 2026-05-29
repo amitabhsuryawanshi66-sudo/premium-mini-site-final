@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, useReducedMotion } from 'framer-motion';
+import { ArrowRight, Check, ChevronRight, Lock, ScanLine, ShieldCheck, SlidersHorizontal } from 'lucide-react';
 import { getSelectedSitePreset, getSitePreset } from './data/sitePresets';
+import { LUME_VALE_CONCERNS, LUME_VALE_IMAGES, LUME_VALE_PRIVATE_LEDGER } from './data/lumeValeData';
 import { getWhatsAppUrl } from './lib/whatsapp';
 
 const MaterialPlate = ({ src, alt, variant = "inkCraft", mode = "photo", className = "", style = {} }) => {
@@ -642,6 +644,517 @@ const SceneThreshold = ({ site }) => (
   </section>
 );
 
+const getCanvasVariant = (src = "") => (src.startsWith("generated-canvas:") ? src.split(":")[1] : null);
+
+const createSeededRandom = (seed) => {
+  let value = seed;
+  return () => {
+    value = (value * 1664525 + 1013904223) % 4294967296;
+    return value / 4294967296;
+  };
+};
+
+const roundRectPath = (ctx, x, y, width, height, radius) => {
+  const r = Math.min(radius, width / 2, height / 2);
+  ctx.beginPath();
+  ctx.moveTo(x + r, y);
+  ctx.arcTo(x + width, y, x + width, y + height, r);
+  ctx.arcTo(x + width, y + height, x, y + height, r);
+  ctx.arcTo(x, y + height, x, y, r);
+  ctx.arcTo(x, y, x + width, y, r);
+  ctx.closePath();
+};
+
+const fillRoundRect = (ctx, x, y, width, height, radius, fill, stroke) => {
+  roundRectPath(ctx, x, y, width, height, radius);
+  ctx.fillStyle = fill;
+  ctx.fill();
+  if (stroke) {
+    ctx.strokeStyle = stroke;
+    ctx.stroke();
+  }
+};
+
+const drawLumeCanvas = (canvas, variant) => {
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const portrait = variant === "lume-light-sheet" || variant === "lume-handset-calibration";
+  const square = variant === "lume-macro-texture";
+  canvas.width = square ? 1100 : portrait ? 950 : 1400;
+  canvas.height = square ? 1100 : portrait ? 1300 : 900;
+  const { width, height } = canvas;
+  const random = createSeededRandom(variant.length * 997);
+  const bg = ctx.createLinearGradient(0, 0, width, height);
+  bg.addColorStop(0, "#171b20");
+  bg.addColorStop(0.45, "#0a0c10");
+  bg.addColorStop(1, "#283036");
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, width, height);
+
+  for (let i = 0; i < 2600; i += 1) {
+    ctx.fillStyle = `rgba(238, 243, 244, ${0.018 + random() * 0.028})`;
+    ctx.fillRect(random() * width, random() * height, random() * 1.8, random() * 1.8);
+  }
+
+  if (variant === "lume-light-sheet") {
+    const light = ctx.createRadialGradient(width * 0.5, height * 0.32, 20, width * 0.5, height * 0.32, width * 0.48);
+    light.addColorStop(0, "rgba(159, 247, 235, 0.42)");
+    light.addColorStop(1, "rgba(159, 247, 235, 0)");
+    ctx.fillStyle = light;
+    ctx.fillRect(0, 0, width, height);
+    fillRoundRect(ctx, width * 0.2, height * 0.58, width * 0.6, height * 0.2, 34, "rgba(232, 237, 240, 0.16)", "rgba(232, 237, 240, 0.35)");
+    fillRoundRect(ctx, width * 0.28, height * 0.22, width * 0.44, height * 0.38, 180, "rgba(232, 237, 240, 0.14)", "rgba(159, 247, 235, 0.48)");
+    for (let row = 0; row < 8; row += 1) {
+      for (let col = 0; col < 7; col += 1) {
+        ctx.beginPath();
+        ctx.arc(width * (0.36 + col * 0.047), height * (0.31 + row * 0.032), 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = row % 2 ? "rgba(159, 247, 235, 0.42)" : "rgba(238, 243, 244, 0.62)";
+        ctx.fill();
+      }
+    }
+    ctx.strokeStyle = "rgba(238, 243, 244, 0.28)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(width * 0.12, height * 0.8);
+    ctx.lineTo(width * 0.88, height * 0.8);
+    ctx.stroke();
+  }
+
+  if (variant === "lume-clinic-room") {
+    ctx.fillStyle = "#dfe5e7";
+    ctx.fillRect(0, 0, width, height);
+    const wall = ctx.createLinearGradient(0, 0, width, height);
+    wall.addColorStop(0, "#edf1f2");
+    wall.addColorStop(1, "#a9b3b7");
+    ctx.fillStyle = wall;
+    ctx.fillRect(0, 0, width, height * 0.66);
+    ctx.fillStyle = "#737f85";
+    ctx.fillRect(0, height * 0.66, width, height * 0.34);
+    fillRoundRect(ctx, width * 0.1, height * 0.52, width * 0.52, height * 0.13, 34, "#f1f4f4", "#98a5aa");
+    fillRoundRect(ctx, width * 0.17, height * 0.42, width * 0.26, height * 0.08, 24, "#eef2f3", "#a3adb1");
+    fillRoundRect(ctx, width * 0.72, height * 0.26, width * 0.18, height * 0.36, 18, "#c7d0d3", "#879397");
+    ctx.fillStyle = "#11161b";
+    ctx.fillRect(width * 0.755, height * 0.31, width * 0.11, height * 0.12);
+    ctx.strokeStyle = "rgba(53, 215, 199, 0.72)";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(width * 0.77, height * 0.335, width * 0.08, height * 0.055);
+    fillRoundRect(ctx, width * 0.68, height * 0.62, width * 0.26, height * 0.09, 18, "#e3e8ea", "#8d9a9f");
+    ctx.strokeStyle = "rgba(9, 10, 13, 0.14)";
+    for (let x = 0; x < width; x += width / 8) {
+      ctx.beginPath();
+      ctx.moveTo(x, height * 0.66);
+      ctx.lineTo(x + width * 0.12, height);
+      ctx.stroke();
+    }
+  }
+
+  if (variant === "lume-parameter-review") {
+    fillRoundRect(ctx, width * 0.18, height * 0.12, width * 0.64, height * 0.66, 26, "#10151a", "rgba(232, 237, 240, 0.36)");
+    fillRoundRect(ctx, width * 0.24, height * 0.19, width * 0.52, height * 0.3, 16, "#05080b", "rgba(159, 247, 235, 0.32)");
+    ctx.strokeStyle = "rgba(159, 247, 235, 0.54)";
+    ctx.lineWidth = 2;
+    for (let i = 0; i < 7; i += 1) {
+      ctx.beginPath();
+      ctx.moveTo(width * 0.29, height * (0.27 + i * 0.028));
+      ctx.lineTo(width * (0.38 + random() * 0.3), height * (0.27 + i * 0.028));
+      ctx.stroke();
+    }
+    for (let i = 0; i < 5; i += 1) {
+      ctx.beginPath();
+      ctx.arc(width * (0.31 + i * 0.095), height * 0.6, 28, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(232, 237, 240, 0.42)";
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(width * (0.31 + i * 0.095), height * 0.6, 9, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(159, 247, 235, 0.42)";
+      ctx.fill();
+    }
+    fillRoundRect(ctx, width * 0.03, height * 0.62, width * 0.24, height * 0.12, 50, "#d8dcdd", "rgba(9, 10, 13, 0.18)");
+  }
+
+  if (variant === "lume-handset-calibration") {
+    const skin = ctx.createLinearGradient(0, height * 0.52, width, height);
+    skin.addColorStop(0, "#7f6658");
+    skin.addColorStop(0.5, "#b38f7f");
+    skin.addColorStop(1, "#d3aa96");
+    ctx.fillStyle = skin;
+    ctx.fillRect(0, height * 0.54, width, height * 0.46);
+    fillRoundRect(ctx, width * 0.15, height * 0.12, width * 0.68, height * 0.32, 34, "#cfd7da", "#eef3f4");
+    fillRoundRect(ctx, width * 0.28, height * 0.35, width * 0.44, height * 0.14, 42, "#e9eef0", "#98a5aa");
+    ctx.fillStyle = "rgba(159, 247, 235, 0.28)";
+    ctx.fillRect(width * 0.35, height * 0.49, width * 0.3, height * 0.08);
+    ctx.strokeStyle = "rgba(238, 243, 244, 0.5)";
+    ctx.lineWidth = 2;
+    for (let i = 0; i < 8; i += 1) {
+      ctx.beginPath();
+      ctx.moveTo(width * (0.18 + i * 0.08), height * 0.63);
+      ctx.lineTo(width * (0.3 + i * 0.07), height * 0.84);
+      ctx.stroke();
+    }
+  }
+
+  if (variant === "lume-macro-texture") {
+    const base = ctx.createLinearGradient(0, 0, width, height);
+    base.addColorStop(0, "#b8998c");
+    base.addColorStop(0.5, "#c9a99b");
+    base.addColorStop(1, "#e2c2b2");
+    ctx.fillStyle = base;
+    ctx.fillRect(0, 0, width, height);
+
+    const coolSheet = ctx.createRadialGradient(width * 0.46, height * 0.48, 10, width * 0.46, height * 0.48, width * 0.62);
+    coolSheet.addColorStop(0, "rgba(232, 246, 244, 0.34)");
+    coolSheet.addColorStop(0.42, "rgba(159, 247, 235, 0.11)");
+    coolSheet.addColorStop(1, "rgba(9, 10, 13, 0.08)");
+    ctx.fillStyle = coolSheet;
+    ctx.fillRect(0, 0, width, height);
+
+    for (let i = 0; i < 210; i += 1) {
+      const x = random() * width;
+      const y = random() * height;
+      ctx.strokeStyle = `rgba(245, 234, 228, ${0.09 + random() * 0.14})`;
+      ctx.lineWidth = 1 + random() * 1.3;
+      ctx.beginPath();
+      ctx.moveTo(x, y);
+      ctx.lineTo(x + (random() - 0.5) * 58, y + (random() - 0.5) * 58);
+      ctx.stroke();
+    }
+
+    for (let i = 0; i < 130; i += 1) {
+      ctx.beginPath();
+      ctx.arc(random() * width, random() * height, 1 + random() * 2.1, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(66, 48, 45, ${0.055 + random() * 0.1})`;
+      ctx.fill();
+    }
+
+    ctx.strokeStyle = "rgba(238, 243, 244, 0.11)";
+    ctx.lineWidth = 1;
+    for (let i = 0; i < 7; i += 1) {
+      ctx.beginPath();
+      ctx.moveTo(0, height * (0.16 + i * 0.12));
+      ctx.bezierCurveTo(width * 0.28, height * (0.1 + i * 0.12), width * 0.68, height * (0.22 + i * 0.1), width, height * (0.15 + i * 0.12));
+      ctx.stroke();
+    }
+  }
+};
+
+const LumeGeneratedCanvas = ({ src, alt, className = "" }) => {
+  const canvasRef = useRef(null);
+  const variant = getCanvasVariant(src);
+
+  useEffect(() => {
+    if (!variant || !canvasRef.current) return;
+    drawLumeCanvas(canvasRef.current, variant);
+  }, [variant]);
+
+  if (!variant) {
+    return <img src={src} alt={alt} loading="lazy" draggable="false" />;
+  }
+
+  return <canvas ref={canvasRef} className={className} role="img" aria-label={alt} />;
+};
+
+const LumeImage = ({ src, alt, className = "" }) => (
+  <div className={`lume-image ${className}`}>
+    <LumeGeneratedCanvas src={src} alt={alt} />
+  </div>
+);
+
+const LumeCta = ({ href, children, variant = "primary", className = "" }) => (
+  <a className={`lume-cta lume-cta-${variant} ${className}`} href={href}>
+    <span>{children}</span>
+    <ArrowRight size={18} strokeWidth={1.8} aria-hidden="true" />
+  </a>
+);
+
+const LumeHero = () => (
+  <section className="lume-hero" id="lume-top">
+    <div className="lume-hero-copy">
+      <p className="lume-kicker">Private diagnostic skin atelier</p>
+      <h1>Skin plans under clinical light.</h1>
+      <p className="lume-hero-text">
+        Lume Vale maps glow, pigment, acne marks, hair and subtle refinement before treatment is booked.
+      </p>
+      <div className="lume-hero-actions">
+        <LumeCta href={getWhatsAppUrl(LUME_VALE_CONCERNS[6].message)}>WhatsApp private consult</LumeCta>
+        <LumeCta href="#lume-diagnostics" variant="secondary">Explore treatments</LumeCta>
+      </div>
+    </div>
+
+    <div className="lume-hero-stage" aria-label="LED skin-light diagnostic environment">
+      <LumeImage src={LUME_VALE_IMAGES.hero} alt="LED light mask in a quiet skin treatment room" className="lume-hero-image" />
+      <div className="lume-hero-panel">
+        <div>
+          <span>Review lens</span>
+          <strong>Light / texture / tolerance</strong>
+        </div>
+        <div>
+          <span>Access</span>
+          <strong>Private consult first</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+const LumeDiagnosticTheatre = () => {
+  const [activeId, setActiveId] = useState("pigmentation");
+  const active = LUME_VALE_CONCERNS.find((concern) => concern.id === activeId) ?? LUME_VALE_CONCERNS[0];
+
+  return (
+    <section className="lume-section lume-diagnostic" id="lume-diagnostics">
+      <div className="lume-section-heading">
+        <p className="lume-kicker">Diagnostic theatre</p>
+        <h2>Choose the concern, then read the plan.</h2>
+      </div>
+
+      <div className="lume-diagnostic-grid">
+        <div className="lume-concern-selector" aria-label="Select a skin concern">
+          {LUME_VALE_CONCERNS.map((concern) => (
+            <button
+              className={`lume-concern-row ${activeId === concern.id ? "is-active" : ""}`}
+              key={concern.id}
+              type="button"
+              onClick={() => setActiveId(concern.id)}
+            >
+              <span>{concern.label}</span>
+              <small>{concern.short}</small>
+            </button>
+          ))}
+        </div>
+
+        <div className="lume-planning-surface">
+          <div className="lume-scan-media">
+            <LumeImage src={LUME_VALE_IMAGES.scanDevice} alt="Clinical device interface used for treatment setting review" />
+            <div className="lume-scan-reticle" aria-hidden="true"></div>
+          </div>
+          <div className="lume-plan-readout">
+            <div className="lume-readout-title">
+              <ScanLine size={22} strokeWidth={1.6} aria-hidden="true" />
+              <div>
+                <span>Active concern</span>
+                <strong>{active.label}</strong>
+              </div>
+            </div>
+            <dl>
+              <div>
+                <dt>Scan inputs</dt>
+                <dd>{active.scan}</dd>
+              </div>
+              <div>
+                <dt>Planning route</dt>
+                <dd>{active.plan}</dd>
+              </div>
+              <div>
+                <dt>Typical timeline</dt>
+                <dd>{active.timeline}</dd>
+              </div>
+              <div>
+                <dt>Prep note</dt>
+                <dd>{active.prep}</dd>
+              </div>
+            </dl>
+            <LumeCta href={getWhatsAppUrl(active.message)} className="lume-plan-cta">Send this intent</LumeCta>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const LumeComparison = () => {
+  const [position, setPosition] = useState(48);
+  const [dragging, setDragging] = useState(false);
+  const frameRef = useRef(null);
+
+  const updatePosition = (clientX) => {
+    if (!frameRef.current) return;
+    const rect = frameRef.current.getBoundingClientRect();
+    const next = ((clientX - rect.left) / rect.width) * 100;
+    setPosition(Math.max(8, Math.min(92, next)));
+  };
+
+  const handlePointerDown = (event) => {
+    setDragging(true);
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+    updatePosition(event.clientX);
+  };
+
+  const handlePointerMove = (event) => {
+    if (!dragging) return;
+    updatePosition(event.clientX);
+  };
+
+  const stopDrag = () => setDragging(false);
+
+  const handleKeyDown = (event) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      setPosition((value) => Math.max(8, value - 4));
+    }
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+      setPosition((value) => Math.min(92, value + 4));
+    }
+    if (event.key === "Home") {
+      event.preventDefault();
+      setPosition(8);
+    }
+    if (event.key === "End") {
+      event.preventDefault();
+      setPosition(92);
+    }
+  };
+
+  return (
+    <section className="lume-section lume-reveal-section">
+      <div className="lume-section-heading">
+        <p className="lume-kicker">Tactile reveal</p>
+        <h2>Not before-after theatre. A concern-to-plan overlay.</h2>
+      </div>
+
+      <div
+        className={`lume-comparison ${dragging ? "is-dragging" : ""}`}
+        ref={frameRef}
+        style={{ "--lume-reveal": `${position}%` }}
+        onPointerMove={handlePointerMove}
+        onPointerUp={stopDrag}
+        onPointerCancel={stopDrag}
+        onPointerLeave={stopDrag}
+      >
+        <LumeGeneratedCanvas src={LUME_VALE_IMAGES.skinMacro} alt="Macro skin texture before diagnostic planning overlay" />
+        <div className="lume-comparison-plan">
+          <LumeGeneratedCanvas src={LUME_VALE_IMAGES.skinMacro} alt="Macro skin texture with diagnostic planning overlay" />
+          <div className="lume-plan-overlay" aria-hidden="true">
+            <span className="lume-scan-plane scan-plane-one"></span>
+            <span className="lume-scan-plane scan-plane-two"></span>
+            <span className="lume-care-field field-one"></span>
+            <span className="lume-care-field field-two"></span>
+            <span className="lume-care-field field-three"></span>
+          </div>
+        </div>
+        <button
+          className="lume-reveal-handle"
+          type="button"
+          role="slider"
+          aria-label="Reveal diagnostic plan overlay"
+          aria-valuemin={8}
+          aria-valuemax={92}
+          aria-valuenow={Math.round(position)}
+          onPointerDown={handlePointerDown}
+          onKeyDown={handleKeyDown}
+        >
+          <SlidersHorizontal size={18} strokeWidth={1.8} aria-hidden="true" />
+        </button>
+      </div>
+      <p className="lume-reveal-note">
+        Drag or use arrow keys. The overlay explains planning zones and does not claim a treatment result.
+      </p>
+      <div className="lume-reveal-readouts" aria-label="Diagnostic reveal planning notes">
+        <div>
+          <span>Texture field</span>
+          <strong>Resurface gently, review barrier first</strong>
+        </div>
+        <div>
+          <span>Pigment cluster</span>
+          <strong>Stabilize triggers before brightening</strong>
+        </div>
+        <div>
+          <span>Care window</span>
+          <strong>Plan in intervals, not instant claims</strong>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const LumeIntentRouter = () => (
+  <section className="lume-section lume-router">
+    <div className="lume-section-heading">
+      <p className="lume-kicker">Treatment intent router</p>
+      <h2>Send the clinic the right first sentence.</h2>
+    </div>
+    <div className="lume-router-list">
+      {LUME_VALE_CONCERNS.map((concern, index) => (
+        <a className="lume-router-row" href={getWhatsAppUrl(concern.message)} key={concern.id}>
+          <span className="lume-router-index">{String(index + 1).padStart(2, "0")}</span>
+          <span className="lume-router-label">{concern.label}</span>
+          <span className="lume-router-copy">{concern.short}</span>
+          <ChevronRight size={20} strokeWidth={1.6} aria-hidden="true" />
+        </a>
+      ))}
+    </div>
+  </section>
+);
+
+const LumeConsultationPath = () => (
+  <section className="lume-section lume-path">
+    <div className="lume-path-media">
+      <LumeImage src={LUME_VALE_IMAGES.clinicRoom} alt="Private sterile aesthetic clinic room prepared for consultation" />
+    </div>
+    <div className="lume-path-copy">
+      <p className="lume-kicker">Private consultation path</p>
+      <h2>Scan, plan, treat, maintain.</h2>
+      <div className="lume-path-steps">
+        {LUME_VALE_PRIVATE_LEDGER.map((step) => (
+          <div className="lume-path-step" key={step.index}>
+            <span>{step.index}</span>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const LumeProof = () => (
+  <section className="lume-section lume-proof">
+    {[
+      ["Privacy", "Photos and history are used for clinical planning, not public proof walls.", Lock],
+      ["Clinician review", "Suitability, contraindications, and downtime are checked before procedures.", ShieldCheck],
+      ["Realistic outcomes", "Progress is framed by intervals, maintenance, and aftercare.", Check],
+    ].map(([title, copy, Icon]) => (
+      <div className="lume-proof-item" key={title}>
+        <Icon size={22} strokeWidth={1.6} aria-hidden="true" />
+        <h3>{title}</h3>
+        <p>{copy}</p>
+      </div>
+    ))}
+  </section>
+);
+
+const LumeFinalCta = () => (
+  <section className="lume-final">
+    <div>
+      <p className="lume-kicker">Quiet first step</p>
+      <h2>Ask for a private skin plan.</h2>
+    </div>
+    <LumeCta href={getWhatsAppUrl(LUME_VALE_CONCERNS[6].message)}>WhatsApp Lume Vale</LumeCta>
+  </section>
+);
+
+const LumeValePage = ({ site }) => (
+  <div className="app-root lume-root" data-site={site.id}>
+    <div className="lume-noise"></div>
+    <Nav site={site} />
+    <main>
+      <LumeHero />
+      <LumeDiagnosticTheatre />
+      <LumeComparison />
+      <LumeIntentRouter />
+      <LumeConsultationPath />
+      <LumeProof />
+      <LumeFinalCta />
+    </main>
+    <footer className="lume-footer">
+      <p>{site.copy.footer.text}</p>
+    </footer>
+  </div>
+);
+
 const getInitialSitePreset = () => {
   if (typeof window === 'undefined') {
     return getSitePreset();
@@ -652,6 +1165,10 @@ const getInitialSitePreset = () => {
 
 export default function App() {
   const site = getInitialSitePreset();
+
+  if (site.id === "lume-vale") {
+    return <LumeValePage site={site} />;
+  }
 
   return (
     <div className="app-root" data-site={site.id}>
