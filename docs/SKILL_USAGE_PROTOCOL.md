@@ -6,7 +6,7 @@ This repo uses real installed Codex skills and plugin resources for design, moti
 
 - `.agents/skills/design-taste-frontend/`: anti-template design direction for landing pages, portfolios, and visual frontend work.
 - `.agents/skills/emil-design-eng/`: motion, interaction, and design-engineering judgment.
-- `.agents/skills/impeccable/`: repair-pending frontend critique, shaping, polish, UX writing, motion, and brand/product design judgment.
+- `.agents/skills/impeccable/` plus `npx impeccable`: frontend critique, shaping, polish, UX writing, motion, and brand/product design judgment. The `npx impeccable` CLI/help/detector path is verified; the project-local skill folder was not force-reinstalled or rewritten.
 - `.codex/skills/ui-ux-pro-max/`: searchable UI/UX guidance and design-system recommendations.
 - Browser plugin: local proof, 21st.dev and MotionSites reference capture, screenshots, and responsive checks.
 - GitHub plugin: PR, issue, branch, and repository operations.
@@ -28,7 +28,7 @@ Do not claim usage when the work only followed generic repo docs, a local note, 
 ## Mode-Specific Proof
 
 - UI UX Pro Max: include `search.py --design-system` output or a focused search result from the bundled script.
-- Impeccable: until repaired, label usage as repair-pending; after repair, include preferred install proof plus CLI or detector output when used as tooling.
+- Impeccable: include actual `npx impeccable` CLI, detector, help, or command output when used as tooling. Do not rely on `SKILL.md` alone as proof, and do not claim the local skill folder was rewritten or repaired unless a future approved `--force` reinstall changes it.
 - Emil Design Engineering: cite the exact rule or principle and show the visible implementation effect.
 - Design Taste Frontend: cite the exact anti-template rule, rejection, or decision.
 - 21st.dev Magic MCP: once installed, include MCP server/tool output and the selected resource proof.
@@ -38,7 +38,7 @@ Do not claim usage when the work only followed generic repo docs, a local note, 
 ## Operational Rules
 
 - Use `design-taste-frontend` before new landing-page concepts, visual identity work, or anti-reskin decisions.
-- Use `impeccable` only with the repair-pending caveat until the preferred installer and detector proof are verified.
+- Use `impeccable` with current `npx impeccable` CLI/detector/help proof when the task relies on its tooling.
 - Use `emil-design-eng` for motion and interaction decisions, especially signature moments and reduced-motion handling.
 - Use `ui-ux-pro-max` for pattern lookup and design-system searches. In this environment, use the bundled Python runtime if plain `python` is unavailable. Do not use `--persist` unless the task explicitly approves generated design-system files.
 - Use Browser for 21st.dev, MotionSites, local preview, screenshots, responsive verification, and visual proof.

@@ -9,7 +9,7 @@ This document separates repo state from local machine configuration. It is a pla
 | UI UX Pro Max | Complete and runnable. | Repo-local active skill under `.codex/skills/ui-ux-pro-max/`. | `search.py --design-system` output or focused script result. |
 | Emil Design Engineering | Installed instruction/rulebook skill. | Repo-local active skill under `.agents/skills/emil-design-eng/`. | Exact rule citation plus visible implementation effect. |
 | Design Taste Frontend | Installed instruction/rulebook skill. | Repo-local active skill under `.agents/skills/design-taste-frontend/`. | Exact anti-template rejection or design decision. |
-| Impeccable | Installed but repair-pending; generic/not-preferred install and detector proof failed locally. | Repo-local active skill under `.agents/skills/impeccable/`. | Preferred install proof plus CLI/detector output after repair. |
+| Impeccable | `npx impeccable` CLI/help/detector path is verified and no longer detector-broken; project-local skill folder was not force-reinstalled or rewritten. | Repo-local active skill under `.agents/skills/impeccable/` plus `npx impeccable` CLI. | Include current CLI/detector output when used as tooling; do not claim repair from `SKILL.md` alone. |
 | 21st.dev browser reference | Available through Browser only. | Browser/resource usage, not repo code. | Browser screenshot/proof and translated decision. |
 | MotionSites | Browser-only reference. | Browser/resource usage, not repo code. | Browser screenshot/proof and translated motion decision. |
 | 21st.dev Magic MCP | Not installed or configured. | Local Codex MCP config if approved later. | MCP server/tool output plus selected resource proof. |
@@ -41,30 +41,27 @@ python .codex\skills\ui-ux-pro-max\scripts\search.py "luxury service mobile book
 
 If the environment needs the bundled runtime, use the path documented in `docs/CODEX_LOCAL_ENV.md`.
 
-## Impeccable Repair Plan
+## Impeccable CLI Proof Status
 
-Audit verdict: Impeccable is real but installed in a generic/not-preferred way, and detector proof failed locally.
+Status verdict: `npx impeccable` CLI/help/detector proof passes locally, so Impeccable is no longer detector-broken for the CLI path.
 
-Repair plan, do not run without approval:
-
-1. Verify the current official Impeccable docs.
-2. Confirm whether the preferred command is still:
+Installer result:
 
 ```powershell
 npx impeccable skills install
 ```
 
-3. Determine whether the command changes repo files, user-global skill files, or both.
-4. Replace or repair old `.agents/skills/impeccable` only if the user approves that specific file change.
-5. Test CLI and detector proof after repair.
+The installer reported that Impeccable skills were already installed and suggested `--force` for reinstall. It was not run with `--force`, and it did not rewrite or repair `.agents/skills/impeccable/*`.
 
-Expected proof commands after approval may include:
+Verified proof commands:
 
 ```powershell
 npx impeccable --help
-npx impeccable audit --help
-node .agents\skills\impeccable\scripts\detect.mjs --help
+npx impeccable detect --help
+npx impeccable detect --json src
 ```
+
+Future Impeccable usage may rely on actual `npx impeccable` CLI, help, detector, or command output as proof. Do not claim Impeccable usage or repair from `SKILL.md` alone. Do not claim the local skill folder was rewritten or repaired unless a future approved `--force` reinstall changes it.
 
 ## 21st.dev Magic MCP Plan
 
